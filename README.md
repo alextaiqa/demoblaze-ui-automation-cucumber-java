@@ -1,0 +1,17 @@
+1. Title
+2. Short Description (2–4 sentences)
+3. Tech Stack
+   - Java
+   - Selenium WebDriver
+   - Cucumber BDD
+   - PicoContainer (Dependency Injection)
+   - Page Object Model
+   - Maven
+   - TestNG
+4. Features
+5. Project Structure
+6. Architecture Explanation
+7. How to Run Tests
+8. Example Test Scenario
+9. Future Improvements (Optional, maybe add)
+10. About the Author
