@@ -3,7 +3,6 @@ package utils;
 import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.TimeoutException;
 
 public class DriverUtils {
 
@@ -14,7 +13,7 @@ public class DriverUtils {
     }
 
     public void openPage(String url) {
-        //openUrl
+        DriverManager.getDriver().get(url); // work on this
     }
 
     public String getPageTitle(String expectedTitle){
