@@ -4,14 +4,14 @@ import org.openqa.selenium.By;
 import utils.DriverUtils;
 import utils.TestData;
 
-public class LogInPage extends BasePage {
+public class LogInModal extends BasePage {
 
     private final By logInButtonCSS = By.cssSelector("#login2");
     private final By logInModalUsernameCSS = By.cssSelector("#loginusername");
     private final By logInModalPasswordCSS = By.cssSelector("#loginpassword");
     private final By logInModalLogInButtonCSS = By.cssSelector("button[onclick='logIn()']");
 
-    public LogInPage(DriverUtils driverUtils){
+    public LogInModal(DriverUtils driverUtils){
         super(driverUtils);
     }
 

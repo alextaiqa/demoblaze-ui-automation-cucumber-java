@@ -1,33 +1,40 @@
 package utils;
 
+import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.TimeoutException;
 
 public class DriverUtils {
 
     private final WaitUtils waitUtils;
 
-    public DriverUtils(WaitUtils waitUtils){
+    public DriverUtils(WaitUtils waitUtils) {
         this.waitUtils = waitUtils;
     }
 
-    public void openPage(String url){
+    public void openPage(String url) {
         //openUrl
     }
 
-    public void click(By selector){
+    public String getPageTitle(String expectedTitle){
+        waitUtils.waitForPageTitle(expectedTitle);
+        return DriverManager.getDriver().getTitle();
+    }
+
+    public void click(By selector) {
         waitUtils.getClickableElement(selector).click();
     }
 
-    public void type(By selector, String data){
+    public void type(By selector, String data) {
         waitUtils.getClickableElement(selector).sendKeys(data);
     }
 
-    public String getText(By selector){
+    public String getText(By selector) {
         return waitUtils.getVisibleElement(selector).getText();
     }
 
-    public String getAlertText(){
+    public String getAlertText() {
         return waitUtils.waitForAlert().getText();
     }
 
@@ -35,7 +42,7 @@ public class DriverUtils {
         waitUtils.waitForAlertAndAccept();
     }
 
-    public boolean isAlertPresent(){ //used for TC's
+    public boolean isAlertPresent() { //used for TC's
         try {
             waitUtils.waitForAlert();
             return true;

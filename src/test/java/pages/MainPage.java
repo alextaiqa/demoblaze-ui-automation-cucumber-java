@@ -15,13 +15,17 @@ public class MainPage extends BasePage{
     }
 
     public void openMainPage(){
-        DriverManager.getDriver().get(TestData.homePageURL);
+        driverUtils.openPage(TestData.homePageURL);
     }
 
-    public void confirmAWelcomeMessage(){
+    public void confirmAWelcomeMessage(){ //update this - assert in the test
         String actualResult = driverUtils.getText(welcomeMessageCSS);
         String expectedResult = TestData.logInWelcomeMessage;
 
         Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
+    }
+
+    public String getMainPageTitle(){
+        return getPageTitle(TestData.mainPageTitle);
     }
 }

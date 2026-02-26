@@ -8,6 +8,7 @@
    - Page Object Model
    - Maven
    - TestNG
+   - AssertJ
 4. Features
 5. Project Structure
 6. Architecture Explanation

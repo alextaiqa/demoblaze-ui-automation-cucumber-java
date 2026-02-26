@@ -1,9 +1,10 @@
 package steps;
 
-import io.cucumber.java.PendingException;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import io.cucumber.java.en.*;
 import pages.MainPage;
+import utils.TestData;
+
+import static org.testng.Assert.*;
 
 public class MainPageSteps {
 
@@ -22,5 +23,12 @@ public class MainPageSteps {
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
          mainPage.confirmAWelcomeMessage();
+    }
+
+    @Then("I see a correct main page title")
+    public void iSeeACorrectMainPageTitle() {
+        String actualTitle = mainPage.getMainPageTitle();
+        String expectedTitle = TestData.mainPageTitle;
+        assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
     }
 }

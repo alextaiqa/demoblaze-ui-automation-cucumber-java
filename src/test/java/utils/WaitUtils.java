@@ -20,16 +20,32 @@ public class WaitUtils {
         return new WebDriverWait(driver, timeout);
     }
 
+    private WebDriverWait getRegularWait(){
+        return getWait(REGULAR_WAIT);
+    }
+
+    private WebDriverWait getAlertWait(){
+        return getWait(ALERT_WAIT);
+    }
+
+    public void waitForPageTitle(String expectedTitle){
+        try {
+            getRegularWait().until(ExpectedConditions.titleContains(expectedTitle));
+        } catch (TimeoutException e){
+            throw new TimeoutException("Title does not contain " + expectedTitle, e);
+        }
+    }
+
     public WebElement getClickableElement(By selector) {
-        return getWait(REGULAR_WAIT).until(ExpectedConditions.elementToBeClickable(selector));
+        return getRegularWait().until(ExpectedConditions.elementToBeClickable(selector));
     }
 
     public WebElement getVisibleElement(By selector) {
-        return getWait(REGULAR_WAIT).until(ExpectedConditions.visibilityOfElementLocated(selector));
+        return getRegularWait().until(ExpectedConditions.visibilityOfElementLocated(selector));
     }
 
     public Alert waitForAlert() {
-        return getWait(REGULAR_WAIT).until(ExpectedConditions.alertIsPresent());
+        return getRegularWait().until(ExpectedConditions.alertIsPresent());
     }
 
     //overloaded helper
