@@ -18,20 +18,20 @@
         <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId> <!--  SELENIUM DEPENDENCY  -->
-            <version>4.40.0</version>
+            <artifactId>selenium-java</artifactId>
+            <version>4.41.0</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId> <!--  CUCUMBER JAVA DEPENDENCY  -->
-            <version>7.33.0</version>
+            <version>7.34.1</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId> <!--  CUCUMBER TestNG DEPENDENCY  -->
-            <version>7.33.0</version>
+            <version>7.34.1</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
         <dependency>
@@ -46,11 +46,17 @@
             <artifactId>testng</artifactId>  <!--  TestNG DEPENDENCY  -->
             <version>7.11.0</version>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- Source: https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId> <!--  AssertJ DEPENDENCY  -->
+            <artifactId>assertj-core</artifactId>
             <version>3.27.7</version>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.17</version>
         </dependency>
 
         <!-- Things to possibly add:
