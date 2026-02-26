@@ -16,7 +16,7 @@ public class DriverUtils {
         DriverManager.getDriver().get(url); // work on this
     }
 
-    public String getPageTitle(String expectedTitle){
+    public String getPageTitle(String expectedTitle) {
         waitUtils.waitForPageTitle(expectedTitle);
         return DriverManager.getDriver().getTitle();
     }

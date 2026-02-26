@@ -1,6 +1,5 @@
 package pages;
 
-import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import utils.DriverUtils;
@@ -15,7 +14,8 @@ public class MainPage extends BasePage{
     }
 
     public void openMainPage(){
-        driverUtils.openPage(TestData.homePageURL);
+        log.info("Opening the main page: " + TestData.homePageURL);
+        openPage(TestData.homePageURL);
     }
 
     public void confirmAWelcomeMessage(){ //update this - assert in the test
