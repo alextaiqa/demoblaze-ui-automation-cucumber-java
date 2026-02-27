@@ -1,7 +1,9 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import org.testng.Assert;
 import pages.MainPage;
+import utils.DriverUtils;
 import utils.TestData;
 
 import static org.testng.Assert.*;
@@ -10,9 +12,8 @@ public class MainPageSteps {
 
      private MainPage mainPage;
 
-
-     public MainPageSteps(MainPage mainPage){
-         this.mainPage = mainPage;
+    public MainPageSteps(DriverUtils driverUtils) {
+        this.mainPage = new MainPage(driverUtils);
      }
 
     @Given("I open the main page")
@@ -22,7 +23,9 @@ public class MainPageSteps {
 
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
-         mainPage.confirmAWelcomeMessage();
+        String actualResult = mainPage.getAWelcomeMessage();
+        String expectedResult = TestData.logInWelcomeMessage;
+        Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
     @Then("I see a correct main page title")
