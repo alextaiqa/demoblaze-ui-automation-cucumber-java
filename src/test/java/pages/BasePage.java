@@ -15,6 +15,11 @@ public class BasePage {
         this.log = LoggerUtil.getLogger(this.getClass());
     }
 
+    public Logger getLog() {
+        return log;
+    }
+
+
     protected void openPage(String url){
         driverUtils.openPage(url);
     }

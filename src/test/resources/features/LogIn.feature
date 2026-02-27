@@ -27,3 +27,5 @@ Feature: Testing Cucumber Pico Container
   Scenario: Validate an unsuccessful log in - No username, no password
     And I click on the log in modal confirmation button
     Then I see a missing username and password message
+
+#    REVIEW THE ABOVE - REMOVE IF OUT OF SCOPE

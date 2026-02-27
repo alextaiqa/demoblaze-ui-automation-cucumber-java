@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import utils.DriverUtils;
 import utils.TestData;
 
@@ -18,11 +17,8 @@ public class MainPage extends BasePage{
         openPage(TestData.homePageURL);
     }
 
-    public void confirmAWelcomeMessage(){ //update this - assert in the test
-        String actualResult = driverUtils.getText(welcomeMessageCSS);
-        String expectedResult = TestData.logInWelcomeMessage;
-
-        Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
+    public String getAWelcomeMessage() { //update this - assert in the test
+        return driverUtils.getText(welcomeMessageCSS);
     }
 
     public String getMainPageTitle(){

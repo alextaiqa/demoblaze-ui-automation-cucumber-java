@@ -2,7 +2,6 @@ package utils;
 
 import driver.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 
 public class DriverUtils {
 
@@ -41,13 +40,12 @@ public class DriverUtils {
         waitUtils.waitForAlertAndAccept();
     }
 
-    public boolean isAlertPresent() { //used for TC's
-        try {
-            waitUtils.waitForAlert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-
-    }
+//    public boolean isAlertPresent() { //used for TC's
+//        try {
+//            waitUtils.waitForAlert();
+//            return true;
+//        } catch (NoAlertPresentException e) {
+//            return false;
+//        }
+//    }
 }
