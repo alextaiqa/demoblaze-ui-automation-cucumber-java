@@ -1,6 +1,6 @@
-1. Title
-2. Short Description (2–4 sentences)
-3. Tech Stack
+1. <strong>Title</strong>
+2. <strong>Short Description (2–4 sentences)</strong>
+3. <strong>Tech Stack</strong>
    - Java
    - Selenium WebDriver
    - Cucumber BDD
@@ -9,13 +9,13 @@
    - Maven
    - TestNG
    - AssertJ
-4. Features
-5. Project Structure
-6. Architecture Explanation
-7. How to Run Tests
-8. Example Test Scenario
-9. Future Improvements (Optional, maybe add)
-10. About the Author
+4. <strong>Features</strong>
+5. <strong>Project Structure</strong>
+6. <strong>Architecture Explanation</strong>
+7. <strong>How to Run Tests</strong>
+8. <strong>Example Test Scenario</strong>
+9. <strong>Future Improvements (Optional, maybe add)</strong>
+10. <strong>About the Author</strong>
 
 <strong>License & Usage Restrictions</strong><br>
 This framework is a part of my portfolio. It is provided for demonstration purposes only.<br>
