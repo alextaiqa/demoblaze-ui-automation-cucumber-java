@@ -17,6 +17,6 @@
 9. Future Improvements (Optional, maybe add)
 10. About the Author
 
-<strong>License & Usage Restrictions<strong><br>
+<strong>License & Usage Restrictions</strong><br>
 This framework is a part of my portfolio. It is provided for demonstration purposes only.<br>
 Unauthorized use, modification, or distribution is prohibited without written permission.
