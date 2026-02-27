@@ -16,3 +16,7 @@
 8. Example Test Scenario
 9. Future Improvements (Optional, maybe add)
 10. About the Author
+
+License & Usage Restrictions
+This framework is a part of my portfolio. It is provided for demonstration purposes only.
+Unauthorized use, modification, or distribution is prohibited without written permission.
