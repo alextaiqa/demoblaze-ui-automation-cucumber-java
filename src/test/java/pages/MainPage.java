@@ -6,16 +6,19 @@ import utils.TestData;
 
 public class MainPage extends BasePage{
 
+    TestData data;
+
     private final By logInButtonCSS = By.cssSelector("#login2");
     private final By welcomeMessageCSS = By.cssSelector("#nameofuser");
 
     public MainPage(DriverUtils driverUtils){
         super(driverUtils);
+        this.data = new TestData("MainPage.yaml");
     }
 
     public void openMainPage(){
-        log.info("Opening the main page: " + TestData.homePageURL);
-        openPage(TestData.homePageURL);
+        log.info("Opening the main page: " + data.get("homePageURL"));
+        openPage(data.get("homePageURL"));
     }
 
     public void clickOnTheLogInButton() {
@@ -28,6 +31,6 @@ public class MainPage extends BasePage{
     }
 
     public String getMainPageTitle(){
-        return getPageTitle(TestData.mainPageTitle);
+        return getPageTitle(data.get("mainPageTitle"));
     }
 }
