@@ -51,11 +51,12 @@ public class LogInModal extends BasePage {
         return driverUtils.getAlertText().trim();
     }
 
-    private String getIncorrectUsernameOrPasswordAlert() {
-        return "";
+    //test data getters
+    public String getIncorrectUsernameOrPasswordAlertData() {
+        return data.get("incorrectUsernameOrPasswordAlert");
     }
 
-    private String getEmptyPasswordAndUsernameAlert() {
-        return "";
+    public String getEmptyPasswordAndUsernameAlertData() {
+        return data.get("emptyPasswordAndUsernameAlert");
     }
 }
