@@ -2,7 +2,6 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.LogInModal;
 
 import static org.testng.Assert.assertTrue;
@@ -45,7 +44,7 @@ public class LogInModalSteps {
     @Then("I see a wrong username or password message")
     public void iSeeAWrongUsernameOrPasswordMessage() {
         assertTrue(logInModal.isWrongUsernameAlertShown(),
-                "Login modal - wrong alert message for an incorrect username");
+                "Login modal - confirming a correct alert message is shown for a wrong username and password");
     }
 
     @Then("I see a missing username and password message")
