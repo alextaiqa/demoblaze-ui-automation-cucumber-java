@@ -1,18 +1,24 @@
 package utils;
 
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.InputStream;
+import java.util.Map;
+
 public class TestData {
 
-    //main page
-    public static final String homePageURL = "https://demoblaze.com/index.html";
-    public static final String logInWelcomeMessage = "Welcome shrek1";
-    public static final String mainPageTitle = "STORE";
+    private final Map<String, Object> data;
 
-    //log in
-    public static final String username = "shrek1";
-    public static final String password = "shreksPassword";
-    public static final String incorrectUsername = "shrek12345";
-    public static final String incorrectPassword = "shreksPassword12345";
-    public static final String incorrectUsernameOrPasswordAlert = "Incorrect username or password.";
-    public static final String emptyPasswordAndUsernameAlert = "Please fill out Username and Password.";
+    public TestData(String fileName) {
+        Yaml yaml = new Yaml();
+        try (InputStream in = TestData.class.getClassLoader().getResourceAsStream("testData/" + fileName)) {
+            data = yaml.load(in);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load YAML: " + fileName, e);
+        }
+    }
 
+    public String get(String key) {
+        return (String) data.get(key);
+    }
 }
