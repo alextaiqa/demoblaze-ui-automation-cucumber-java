@@ -1,4 +1,4 @@
-@login
+@logInModal
 
 Feature: Testing Cucumber Pico Container
 
@@ -14,8 +14,7 @@ Feature: Testing Cucumber Pico Container
 
   @known_bug
   Scenario: Validate an unsuccessful log in - invalid credentials
-    And I enter an invalid username
-    And I enter an invalid password
+    And I enter invalid credentials
     And I click on the log in modal confirmation button
     Then I see a wrong username or password message
 

@@ -6,43 +6,42 @@ import utils.TestData;
 
 public class LogInModal extends BasePage {
 
-    private final By logInButtonCSS = By.cssSelector("#login2");
-    private final By logInModalUsernameCSS = By.cssSelector("#loginusername");
-    private final By logInModalPasswordCSS = By.cssSelector("#loginpassword");
-    private final By logInModalLogInButtonCSS = By.cssSelector("button[onclick='logIn()']");
+    private final By usernameCSS = By.cssSelector("#loginusername");
+    private final By passwordCSS = By.cssSelector("#loginpassword");
+    private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
 
     public LogInModal(DriverUtils driverUtils){
         super(driverUtils);
     }
 
-    public void clickOnTheLogInButton(){
-        log.info("Clicking on the log in button on the main page");
-        driverUtils.click(logInButtonCSS);
-    }
 
     public void logInModalEnterACorrectUsername(){
-        log.info("Log in modal - entering a correct username: " + TestData.username);
-        driverUtils.type(logInModalUsernameCSS, TestData.username);
+        String correctUsername = TestData.username;
+        log.info("Log in modal - entering a correct username: {}", correctUsername);
+        driverUtils.type(usernameCSS, correctUsername);
     }
 
     public void logInModalEnterACorrectPassword(){
-        log.info("Log in modal - entering a correct password: " + TestData.password);
-        driverUtils.type(logInModalPasswordCSS, TestData.password);
+        String correctPassword = TestData.password;
+        log.info("Log in modal - entering a correct password: {}", correctPassword);
+        driverUtils.type(passwordCSS, correctPassword);
     }
 
     public void logInModalEnterAnIncorrectUsername(){
-        log.info("Log in modal - entering an incorrect username: " + TestData.incorrectUsername);
-        driverUtils.type(logInModalUsernameCSS, TestData.incorrectUsername);
+        String incorrectUsername = TestData.incorrectUsername;
+        log.info("Log in modal - entering an incorrect username: {}", incorrectUsername);
+        driverUtils.type(usernameCSS, incorrectUsername);
     }
 
     public void logInModalEnterAnIncorrectPassword(){
-        log.info("Log in modal - entering an incorrect password: " + TestData.incorrectPassword);
-        driverUtils.type(logInModalPasswordCSS, TestData.incorrectPassword);
+        String incorrectPassword = TestData.incorrectPassword;
+        log.info("Log in modal - entering an incorrect password: {}", incorrectPassword);
+        driverUtils.type(passwordCSS, incorrectPassword);
     }
 
-    public void LogInModalClickOnTheLogInButton(){
+    public void logInModalClickOnTheLogInButton() {
         log.info("Clicking on the log in button inside the 'log in' modal");
-        driverUtils.click(logInModalLogInButtonCSS);
+        driverUtils.click(logInButtonCSS);
     }
 
     public boolean isWrongUsernameAlertShown(){

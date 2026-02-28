@@ -15,11 +15,6 @@ public class LogInModalSteps {
         this.logInModal = logInModal;
     }
 
-    @When("I click on the log in button")
-    public void iClickOnTheLogInButton(){
-        logInModal.clickOnTheLogInButton();
-    }
-
     @And("I enter a valid username")
     public void iEnterAValidUsername(){
         logInModal.logInModalEnterACorrectUsername();
@@ -36,19 +31,15 @@ public class LogInModalSteps {
         iEnterAValidPassword();
     }
 
+    @And("I enter invalid credentials")
+    public void iEnterInvalidCredentials() {
+        logInModal.logInModalEnterAnIncorrectUsername();
+        logInModal.logInModalEnterAnIncorrectPassword();
+    }
+
     @And("I click on the log in modal confirmation button")
     public void iClickOnTheLogInModalConfirmationButton(){
-        logInModal.LogInModalClickOnTheLogInButton();
-    }
-
-    @And("I enter an invalid username")
-    public void iEnterAnInvalidUsername() {
-        logInModal.logInModalEnterAnIncorrectUsername();
-    }
-
-    @And("I enter an invalid password")
-    public void iEnterAnInvalidPassword() {
-        logInModal.logInModalEnterAnIncorrectPassword();
+        logInModal.logInModalClickOnTheLogInButton();
     }
 
     @Then("I see a wrong username or password message")

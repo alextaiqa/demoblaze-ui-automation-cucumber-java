@@ -21,6 +21,11 @@ public class MainPageSteps {
         mainPage.openMainPage();
     }
 
+    @When("I click on the log in button")
+    public void iClickOnTheLogInButton() {
+        mainPage.clickOnTheLogInButton();
+    }
+
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
         String actualResult = mainPage.getAWelcomeMessage();
