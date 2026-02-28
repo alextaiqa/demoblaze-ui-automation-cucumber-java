@@ -14,42 +14,37 @@ public class LogInModal extends BasePage {
         super(driverUtils);
     }
 
-    public void logInModalEnterACorrectUsername(){
+    public void enterACorrectUsername() {
         String correctUsername = TestData.username;
-        log.info("Log in modal - entering a correct username: {}", correctUsername);
+        getLog().info("Log in modal - entering a correct username: {}", correctUsername);
         driverUtils.type(usernameCSS, correctUsername);
     }
 
-    public void logInModalEnterACorrectPassword(){
+    public void enterACorrectPassword() {
         String correctPassword = TestData.password;
         log.info("Log in modal - entering a correct password: {}", correctPassword);
         driverUtils.type(passwordCSS, correctPassword);
     }
 
-    public void logInModalEnterAnIncorrectUsername(){
+    public void enterAnIncorrectUsername() {
         String incorrectUsername = TestData.incorrectUsername;
         log.info("Log in modal - entering an incorrect username: {}", incorrectUsername);
         driverUtils.type(usernameCSS, incorrectUsername);
     }
 
-    public void logInModalEnterAnIncorrectPassword(){
+    public void enterAnIncorrectPassword() {
         String incorrectPassword = TestData.incorrectPassword;
         log.info("Log in modal - entering an incorrect password: {}", incorrectPassword);
         driverUtils.type(passwordCSS, incorrectPassword);
     }
 
-    public void logInModalClickOnTheLogInButton() {
+    public void clickOnTheLogInButton() {
         log.info("Clicking on the log in button inside the 'log in' modal");
         driverUtils.click(logInButtonCSS);
     }
 
-    public boolean isWrongUsernameAlertShown(){
-        log.info("Waiting for an incorrect username alert");
-        return driverUtils.getAlertText().contains(TestData.incorrectUsernameAlertMessage);
-    }
-
-    public boolean isEmptyUsernameAndPasswordAlertShown(){
-        log.info("Waiting for an empty username AND password alert");
-        return driverUtils.getAlertText().contains(TestData.emptyPasswordAndUsernameFieldsMessage);
+    public String getLogInModalAlert() {
+        log.info("Getting a log in modal alert message");
+        return driverUtils.getAlertText().trim();
     }
 }
