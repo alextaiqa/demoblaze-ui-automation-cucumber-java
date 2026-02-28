@@ -66,7 +66,12 @@
             <artifactId>logback-classic</artifactId>
             <version>1.5.32</version>
         </dependency>
-
+        <!-- Source: https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.5</version>
+        </dependency>
         <!-- Things to possibly add:
               - commons io for file input/output-->
     </dependencies>
