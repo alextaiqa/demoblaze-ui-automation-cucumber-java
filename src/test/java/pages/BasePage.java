@@ -1,10 +1,8 @@
 package pages;
 
-import org.slf4j.Logger; //???
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.DriverUtils;
-import utils.LoggerUtil;
 
 public class BasePage {
     protected DriverUtils driverUtils;
@@ -12,13 +10,8 @@ public class BasePage {
 
     protected BasePage(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
-        this.log = LoggerUtil.getLogger(this.getClass());
+        this.log = LoggerFactory.getLogger(this.getClass());
     }
-
-    public Logger getLog() {
-        return log;
-    }
-
 
     protected void openPage(String url){
         driverUtils.openPage(url);
