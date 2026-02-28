@@ -16,7 +16,7 @@ public class LogInModal extends BasePage {
 
     public void enterACorrectUsername() {
         String correctUsername = TestData.username;
-        getLog().info("Log in modal - entering a correct username: {}", correctUsername);
+        log.info("Log in modal - entering a correct username: {}", correctUsername);
         driverUtils.type(usernameCSS, correctUsername);
     }
 
