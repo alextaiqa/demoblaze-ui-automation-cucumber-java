@@ -1,3 +1,2 @@
-browser=chrome
-baseUrl="https://demoblaze.com/
-explicit.wait=10
+browser: "chrome"
+explicit.wait: 10

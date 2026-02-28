@@ -1,0 +1,6 @@
+username: "shrek1"
+password: "shreksPassword"
+incorrectUsername: "shrek12345"
+incorrectPassword: "shreksPassword12345"
+incorrectUsernameOrPasswordAlert: "Incorrect username or password."
+emptyPasswordAndUsernameAlert: "Please fill out Username and Password."
