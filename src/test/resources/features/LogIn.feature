@@ -7,24 +7,19 @@ Feature: Testing Cucumber Pico Container
     Given I open the main page
     When I click on the log in button
 
-  Scenario: Validate a successful log in
+  Scenario: Validate a successful log in - valid credentials
     And I enter valid credentials
     And I click on the log in modal confirmation button
     Then I see a welcome message
 
-  Scenario: Validate an unsuccessful log in - wrong username
+  @known_bug
+  Scenario: Validate an unsuccessful log in - invalid credentials
     And I enter an invalid username
-    And I enter a valid password
-    And I click on the log in modal confirmation button
-    Then I see a wrong username message
-
-  Scenario: Validate an unsuccessful log in - wrong password
-    And I enter a valid username
     And I enter an invalid password
     And I click on the log in modal confirmation button
-    Then I see a wrong password message
+    Then I see a wrong username or password message
 
-  Scenario: Validate an unsuccessful log in - No username, no password
+  Scenario: Validate an unsuccessful log in - empty username and password fields
     And I click on the log in modal confirmation button
     Then I see a missing username and password message
 

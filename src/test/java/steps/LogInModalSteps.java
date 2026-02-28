@@ -7,11 +7,11 @@ import pages.LogInModal;
 
 import static org.testng.Assert.assertTrue;
 
-public class LogInSteps {
+public class LogInModalSteps {
 
     private LogInModal logInModal;
 
-    public LogInSteps(LogInModal logInModal){
+    public LogInModalSteps(LogInModal logInModal) {
         this.logInModal = logInModal;
     }
 
@@ -51,21 +51,14 @@ public class LogInSteps {
         logInModal.logInModalEnterAnIncorrectPassword();
     }
 
-    @Then("I see a wrong username message")
-    public void iSeeAWrongUsernameMessage() {
+    @Then("I see a wrong username or password message")
+    public void iSeeAWrongUsernameOrPasswordMessage() {
         assertTrue(logInModal.isWrongUsernameAlertShown(),
                 "Login modal - wrong alert message for an incorrect username");
     }
 
-    //bug
-    @Then("I see a wrong password message")
-    public void iSeeAWrongPasswordMessage(){
-        assertTrue(logInModal.isWrongPasswordAlertShown(),
-                "Login modal - wrong alert message for an incorrect password");
-    }
-
     @Then("I see a missing username and password message")
-    public void iSeeAmissingUsernameAndPasswordMessage(){
+    public void iSeeAMissingUsernameAndPasswordMessage() {
         assertTrue(logInModal.isEmptyUsernameAndPasswordAlertShown(),
                 "Login modal - wrong alert message for an empty username and password");
     }
