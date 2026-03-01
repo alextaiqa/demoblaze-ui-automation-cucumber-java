@@ -8,16 +8,16 @@ public class TestData {
 
     private final Map<String, Object> data;
 
-    public TestData(String fileName) {
+    public TestData(String path) {
         Yaml yaml = new Yaml();
-        try (InputStream in = TestData.class.getClassLoader().getResourceAsStream("testData/" + fileName)) {
+        try (InputStream in = TestData.class.getClassLoader().getResourceAsStream(path)) {
             data = yaml.load(in);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load YAML: " + fileName, e);
+            throw new RuntimeException("Failed to load YAML: " + path, e);
         }
     }
 
     public String get(String key) {
-        return (String) data.get(key);
+        return String.valueOf(data.get(key));
     }
 }
