@@ -1,2 +1,3 @@
 browser: "chrome"
-explicit.wait: 10
+explicit.regular.wait: 10
+explicit.alert.wait: 2

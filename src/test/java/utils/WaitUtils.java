@@ -1,5 +1,6 @@
 package utils;
 
+import config.Config;
 import driver.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,8 +10,9 @@ import java.time.Duration;
 
 public class WaitUtils {
 
-    private static final Duration REGULAR_WAIT = Duration.ofSeconds(10);
-    private static final Duration ALERT_WAIT = Duration.ofSeconds(2);
+    private final Config config = new Config();
+    private final Duration REGULAR_WAIT = config.getRegularWait();
+    private final Duration ALERT_WAIT = config.getAlertWait();
 
     private WebDriverWait getWait(Duration timeout){
         WebDriver driver = DriverManager.getDriver();
@@ -45,17 +47,6 @@ public class WaitUtils {
     }
 
     public Alert waitForAlert() {
-        return getRegularWait().until(ExpectedConditions.alertIsPresent());
-    }
-
-    //overloaded helper
-    public Alert waitForAlert(Duration timeout) {
-        return getWait(timeout).until(ExpectedConditions.alertIsPresent());
-    }
-
-    public void waitForAlertAndAccept() {
-        try {
-            waitForAlert(ALERT_WAIT).accept();
-        } catch (TimeoutException ignored) {} //if it fails, then no alert is present - hooks are good to be closed
+        return getAlertWait().until(ExpectedConditions.alertIsPresent());
     }
 }
