@@ -3,7 +3,6 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.LogInModal;
-import utils.TestData;
 
 import static org.testng.Assert.assertEquals;
 

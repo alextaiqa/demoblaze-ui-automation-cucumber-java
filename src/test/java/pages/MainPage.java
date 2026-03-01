@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import utils.DriverUtils;
-import utils.TestData;
 
 public class MainPage extends BasePage{
 
@@ -10,7 +9,7 @@ public class MainPage extends BasePage{
     private final By welcomeMessageCSS = By.cssSelector("#nameofuser");
 
     public MainPage(DriverUtils driverUtils){
-        super(driverUtils, "MainPage.yaml");
+        super(driverUtils, "testdata/MainPage.yaml");
     }
 
     public void openMainPage(){

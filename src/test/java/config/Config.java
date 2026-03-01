@@ -8,7 +8,7 @@ public class Config {
     private final TestData data;
 
     public Config() {
-        this.data = new TestData("config.yaml");
+        this.data = new TestData("config/config.yaml");
     }
 
     public Duration getRegularWait() {

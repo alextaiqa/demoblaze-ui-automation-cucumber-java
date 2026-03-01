@@ -12,7 +12,7 @@ public class LogInModal extends BasePage {
     private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
 
     public LogInModal(DriverUtils driverUtils){
-        super(driverUtils, "loginModal.yaml");
+        super(driverUtils, "testdata/loginModal.yaml");
     }
 
     public void enterACorrectUsername() {
