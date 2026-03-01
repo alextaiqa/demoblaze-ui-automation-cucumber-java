@@ -2,19 +2,17 @@ package pages;
 
 import org.openqa.selenium.By;
 import utils.DriverUtils;
-import utils.TestData;
 
 public class LogInModal extends BasePage {
 
-    private final TestData data;
+
 
     private final By usernameCSS = By.cssSelector("#loginusername");
     private final By passwordCSS = By.cssSelector("#loginpassword");
     private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
 
     public LogInModal(DriverUtils driverUtils){
-        super(driverUtils);
-        this.data = new TestData("LogInModal.yaml");
+        super(driverUtils, "loginModal.yaml");
     }
 
     public void enterACorrectUsername() {
@@ -51,7 +49,7 @@ public class LogInModal extends BasePage {
         return driverUtils.getAlertText().trim();
     }
 
-    //test data getters
+    //test data getters for assertions in steps
     public String getIncorrectUsernameOrPasswordAlertData() {
         return data.get("incorrectUsernameOrPasswordAlert");
     }

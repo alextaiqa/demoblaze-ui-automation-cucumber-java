@@ -6,14 +6,11 @@ import utils.TestData;
 
 public class MainPage extends BasePage{
 
-    TestData data;
-
     private final By logInButtonCSS = By.cssSelector("#login2");
     private final By welcomeMessageCSS = By.cssSelector("#nameofuser");
 
     public MainPage(DriverUtils driverUtils){
-        super(driverUtils);
-        this.data = new TestData("MainPage.yaml");
+        super(driverUtils, "MainPage.yaml");
     }
 
     public void openMainPage(){
@@ -26,11 +23,21 @@ public class MainPage extends BasePage{
         driverUtils.click(logInButtonCSS);
     }
 
-    public String getAWelcomeMessage() { //update this - assert in the test
+    public String getWelcomeMessage() {
         return driverUtils.getText(welcomeMessageCSS);
     }
 
     public String getMainPageTitle(){
         return getPageTitle(data.get("mainPageTitle"));
+    }
+
+    //data getters
+
+    public String getExpectedWelcomeMessage() {
+        return data.get("logInWelcomeMessage");
+    }
+
+    public String getExpectedTitle() {
+        return "";
     }
 }
