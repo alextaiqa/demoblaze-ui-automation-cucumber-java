@@ -2,6 +2,7 @@ package utils;
 
 import driver.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 
 public class DriverUtils {
 
@@ -37,7 +38,10 @@ public class DriverUtils {
     }
 
     public void waitForAlertAndAccept() {
-        waitUtils.waitForAlertAndAccept();
+        try {
+            waitUtils.waitForAlert().accept();
+        } catch (TimeoutException ignored) {
+        } //if it fails, then no alert is present - hooks are good to be closed
     }
 
 //    public boolean isAlertPresent() { //used for TC's
