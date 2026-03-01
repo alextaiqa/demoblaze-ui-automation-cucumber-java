@@ -4,7 +4,6 @@ import io.cucumber.java.en.*;
 import org.testng.Assert;
 import pages.MainPage;
 import utils.DriverUtils;
-import utils.TestData;
 
 import static org.testng.Assert.*;
 
@@ -28,15 +27,15 @@ public class MainPageSteps {
 
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
-        String actualResult = mainPage.getAWelcomeMessage();
-        String expectedResult = TestData.logInWelcomeMessage;
+        String actualResult = mainPage.getWelcomeMessage();
+        String expectedResult = mainPage.getExpectedWelcomeMessage();
         Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
     @Then("I see a correct main page title")
     public void iSeeACorrectMainPageTitle() {
         String actualTitle = mainPage.getMainPageTitle();
-        String expectedTitle = TestData.mainPageTitle;
+        String expectedTitle = mainPage.getExpectedTitle();
         assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
     }
 }
