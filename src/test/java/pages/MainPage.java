@@ -49,9 +49,8 @@ public class MainPage extends BasePage{
         return driverUtils.getText(welcomeMessageCSS);
     }
 
-    public String getTitle() {
-        log.info("Getting the actual title of the main page");
-        return getPageTitle(data.get("mainPageTitle"));
+    public String getActualTitle() {
+        return getPageTitle("STORE", "main");
     }
 
     //test data getters - used for assertions in steps

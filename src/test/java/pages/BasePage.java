@@ -20,8 +20,8 @@ public class BasePage {
         driverUtils.openPage(url);
     }
 
-    protected String getPageTitle(String expectedTitle){
-        log.info("Getting the actual title of the page");
+    protected String getPageTitle(String expectedTitle, String pageName) {
+        log.info("Getting the actual title of the {} page", pageName);
         return driverUtils.getPageTitle(expectedTitle);
     }
 
