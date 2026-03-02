@@ -70,6 +70,6 @@ public class LoginModal extends BasePage {
 
     public String getExpectedHeaderData() {
         log.info("Getting the expected login modal header - from data");
-        return data.get("loginHeader");
+        return data.get("loginModalHeader");
     }
 }
