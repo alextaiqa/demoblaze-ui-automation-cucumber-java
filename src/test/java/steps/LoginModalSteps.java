@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import pages.LoginModal;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class LoginModalSteps {
 
@@ -46,10 +47,16 @@ public class LoginModalSteps {
                 "Login modal - wrong alert message for an empty username and password");
     }
 
-    @Then("I see a login modal appear")
-    public void iSeeALoginModalAppear() {
-        String actualHeader = logInModal.getHeader();
-        String expectedHeader = logInModal.getHeaderData();
-        assertEquals(actualHeader, expectedHeader, "Login modal missing");
+    @Then("I see a login modal appears")
+    public void iSeeALoginModalAppears() {
+        assertTrue(logInModal.isModalDisplayed(), "Login modal missing");
+        iSeeALoginModalHeaderAppears();
+    }
+
+    @Then("I see a login modal header appears")
+    public void iSeeALoginModalHeaderAppears() {
+        String actualHeader = logInModal.getActualHeader();
+        String expectedHeader = logInModal.getExpectedHeaderData();
+        assertEquals(actualHeader, expectedHeader, "Login modal has an incorrect header");
     }
 }
