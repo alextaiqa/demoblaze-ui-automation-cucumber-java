@@ -5,16 +5,19 @@ import utils.DriverUtils;
 
 public class LoginModal extends BasePage {
 
+    //selectors
     private final By loginModalCSS = By.cssSelector("#logInModal");
     private final By loginModalHeaderCSS = By.cssSelector("#logInModalLabel");
     private final By usernameCSS = By.cssSelector("#loginusername");
     private final By passwordCSS = By.cssSelector("#loginpassword");
     private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
 
+    //constructor
     public LoginModal(DriverUtils driverUtils) {
         super(driverUtils, "testdata/loginModal.yaml");
     }
 
+    //methods
     public void enterACorrectUsername() {
         String correctUsername = data.get("username");
         log.info("Log in modal - entering a correct username: {}", correctUsername);
@@ -59,7 +62,7 @@ public class LoginModal extends BasePage {
         return driverUtils.isElementDisplayed(loginModalCSS);
     }
 
-    //***TEST DATA GETTERS - USED FOR ASSERTIONS IN STEPS***
+    //test data getters - used for assertions in steps
     public String getIncorrectUsernameOrPasswordAlertData() {
         return data.get("incorrectUsernameOrPasswordAlert");
     }

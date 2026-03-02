@@ -5,16 +5,19 @@ import utils.DriverUtils;
 
 public class MainPage extends BasePage{
 
+    //selectors
     private final By contactButtonXPath = By.xpath("//a[normalize-space()='Contact']");
     private final By aboutUsButtonXpath = By.xpath("//a[normalize-space()='About us']");
     private final By logInButtonCSS = By.cssSelector("#login2");
     private final By signUpButtonCSS = By.cssSelector("#signin2");
     private final By welcomeMessageCSS = By.cssSelector("#nameofuser");
 
+    //constructor
     public MainPage(DriverUtils driverUtils){
         super(driverUtils, "testdata/MainPage.yaml");
     }
 
+    //methods
     public void open() {
         String url = data.get("homePageURL");
         log.info("Opening the main page. URL: {}", url);
@@ -51,7 +54,7 @@ public class MainPage extends BasePage{
         return getPageTitle(data.get("mainPageTitle"));
     }
 
-    //data getters
+    //test data getters - used for assertions in steps
 
     public String getExpectedWelcomeMessage() {
         log.info("Getting an expected welcome message for a logged in user - from data");
