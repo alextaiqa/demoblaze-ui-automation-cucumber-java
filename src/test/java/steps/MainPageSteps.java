@@ -20,9 +20,24 @@ public class MainPageSteps {
         mainPage.open();
     }
 
+    @When("I click on the contact button")
+    public void iClickOnTheContactButton() {
+        mainPage.clickOnTheContactButton();
+    }
+
+    @When("I click on the about us button")
+    public void iClickOnTheAboutUsButton() {
+        mainPage.clickOnTheAboutUsButton();
+    }
+
     @When("I click on the log in button")
     public void iClickOnTheLogInButton() {
         mainPage.clickOnTheLogInButton();
+    }
+
+    @When("I click on the sign up button")
+    public void iClickOnTheSignUpButton() {
+        mainPage.clickOnTheSignUpButton();
     }
 
     @Then("I see a welcome message")
