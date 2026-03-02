@@ -12,8 +12,7 @@ Feature: Testing Cucumber Pico Container
     And I click on the log in modal confirmation button
     Then I see a welcome message
 
-  @known_bug
-#    BUG-001
+  @known_bug @BUG
 #    Expected result: "Incorrect username or password."
 #    Actual result: "User does not exist."
   Scenario: Validate an unsuccessful log in - invalid credentials
