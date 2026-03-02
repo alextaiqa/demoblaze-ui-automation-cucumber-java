@@ -49,7 +49,7 @@ public class LoginModalSteps {
 
     @Then("I see a login modal appears")
     public void iSeeALoginModalAppears() {
-        assertTrue(logInModal.isModalDisplayed(), "Login modal missing");
+        assertTrue(logInModal.isModalDisplayed(), "Login modal is not displayed");
         iSeeALoginModalHeaderAppears();
     }
 

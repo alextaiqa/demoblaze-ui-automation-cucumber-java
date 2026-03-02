@@ -54,7 +54,7 @@ public class LoginModal extends BasePage {
 
     public String getActualHeader() {
         log.info("Getting the actual login modal header");
-        return driverUtils.getText(loginModalHeaderCSS);
+        return driverUtils.getText(loginModalHeaderCSS).trim();
     }
 
     public boolean isModalDisplayed() {
