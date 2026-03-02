@@ -44,12 +44,7 @@ public class DriverUtils {
         } //if it fails, then no alert is present - hooks are good to be closed
     }
 
-//    public boolean isAlertPresent() { //used for TC's
-//        try {
-//            waitUtils.waitForAlert();
-//            return true;
-//        } catch (NoAlertPresentException e) {
-//            return false;
-//        }
-//    }
+    public boolean isElementDisplayed(By selector) {
+        return waitUtils.getVisibleElement(selector).isDisplayed();
+    }
 }
