@@ -49,7 +49,7 @@ public class MainPageSteps {
 
     @Then("I see a correct main page title")
     public void iSeeACorrectMainPageTitle() {
-        String actualTitle = mainPage.getTitle();
+        String actualTitle = mainPage.getActualTitle();
         String expectedTitle = mainPage.getExpectedTitle();
         assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
     }
