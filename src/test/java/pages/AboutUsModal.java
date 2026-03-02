@@ -2,7 +2,7 @@ package pages;
 
 import utils.DriverUtils;
 
-public class AboutUsModal extends BasePage {
+public class AboutUsModal extends BaseModal {
 
     //selectors
 

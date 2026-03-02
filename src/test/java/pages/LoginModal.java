@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import utils.DriverUtils;
 
-public class LoginModal extends BasePage {
+public class LoginModal extends BaseModal {
 
     //selectors
     private final By loginModalCSS = By.cssSelector("#logInModal");

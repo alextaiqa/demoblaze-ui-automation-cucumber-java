@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import utils.DriverUtils;
 
-public class ContactModal extends BasePage {
+public class ContactModal extends BaseModal {
 
     //selectors
     private final By contactModalCSS = By.cssSelector("#exampleModal");
