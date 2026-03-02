@@ -10,10 +10,10 @@ public class BasePage {
     protected final Logger log;
     protected final TestData data;
 
-    protected BasePage(DriverUtils driverUtils, String fileName) {
+    protected BasePage(DriverUtils driverUtils, String filePath) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
-        this.data = new TestData(fileName);
+        this.data = new TestData(filePath);
     }
 
     protected void openPage(String url){
