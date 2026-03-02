@@ -3,15 +3,15 @@ package pages;
 import org.openqa.selenium.By;
 import utils.DriverUtils;
 
-public class LogInModal extends BasePage {
+public class LoginModal extends BasePage {
 
 
-
+    private final By loginModalHeaderCSS = By.cssSelector("#logInModalLabel");
     private final By usernameCSS = By.cssSelector("#loginusername");
     private final By passwordCSS = By.cssSelector("#loginpassword");
     private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
 
-    public LogInModal(DriverUtils driverUtils){
+    public LoginModal(DriverUtils driverUtils) {
         super(driverUtils, "testdata/loginModal.yaml");
     }
 
@@ -44,9 +44,13 @@ public class LogInModal extends BasePage {
         driverUtils.click(logInButtonCSS);
     }
 
-    public String getLogInModalAlert() {
+    public String getAlert() {
         log.info("Getting a log in modal alert message");
         return driverUtils.getAlertText().trim();
+    }
+
+    public String getHeader() {
+        return driverUtils.getText(loginModalHeaderCSS);
     }
 
     //test data getters for assertions in steps
@@ -56,5 +60,9 @@ public class LogInModal extends BasePage {
 
     public String getEmptyPasswordAndUsernameAlertData() {
         return data.get("emptyPasswordAndUsernameAlert");
+    }
+
+    public String getHeaderData() {
+        return data.get("loginHeader");
     }
 }

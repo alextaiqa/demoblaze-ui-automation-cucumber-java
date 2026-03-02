@@ -1,16 +1,15 @@
 package steps;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import pages.LogInModal;
+import pages.LoginModal;
 
 import static org.testng.Assert.assertEquals;
 
-public class LogInModalSteps {
+public class LoginModalSteps {
 
-    private final LogInModal logInModal;
+    private final LoginModal logInModal;
 
-    public LogInModalSteps(LogInModal logInModal) {
+    public LoginModalSteps(LoginModal logInModal) {
         this.logInModal = logInModal;
     }
 
@@ -33,7 +32,7 @@ public class LogInModalSteps {
 
     @Then("I see a wrong username or password message")
     public void iSeeAWrongUsernameOrPasswordMessage() {
-        String actualAlertMessage = logInModal.getLogInModalAlert();
+        String actualAlertMessage = logInModal.getAlert();
         String expectedAlertMessage = logInModal.getIncorrectUsernameOrPasswordAlertData();
         assertEquals(actualAlertMessage, expectedAlertMessage,
                 "Login modal - incorrect username or password - alert doesn't have a right message");
@@ -41,9 +40,16 @@ public class LogInModalSteps {
 
     @Then("I see a missing username and password message")
     public void iSeeAMissingUsernameAndPasswordMessage() {
-        String actualAlertMessage = logInModal.getLogInModalAlert();
+        String actualAlertMessage = logInModal.getAlert();
         String expectedAlertMessage = logInModal.getEmptyPasswordAndUsernameAlertData();
         assertEquals(actualAlertMessage, expectedAlertMessage,
                 "Login modal - wrong alert message for an empty username and password");
+    }
+
+    @Then("I see a login modal appear")
+    public void iSeeALoginModalAppear() {
+        String actualHeader = logInModal.getHeader();
+        String expectedHeader = logInModal.getHeaderData();
+        assertEquals(actualHeader, expectedHeader, "Login modal missing");
     }
 }

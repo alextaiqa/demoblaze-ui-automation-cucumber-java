@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps", "hooks", "context", "driver", "pages", "utils"},
-        tags = "@logInModal", //logInModal, mainPage
+        tags = "@mainPage", //logInModal, mainPage
         plugin = {"pretty",
                 "html:target/cucumber.html",
                 "json:target/cucumber.json"

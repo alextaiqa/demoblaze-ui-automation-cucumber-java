@@ -17,7 +17,7 @@ public class MainPageSteps {
 
     @Given("I open the main page")
     public void iOpenTheMainPage(){
-        mainPage.openMainPage();
+        mainPage.open();
     }
 
     @When("I click on the log in button")
@@ -34,7 +34,7 @@ public class MainPageSteps {
 
     @Then("I see a correct main page title")
     public void iSeeACorrectMainPageTitle() {
-        String actualTitle = mainPage.getMainPageTitle();
+        String actualTitle = mainPage.getTitle();
         String expectedTitle = mainPage.getExpectedTitle();
         assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
     }

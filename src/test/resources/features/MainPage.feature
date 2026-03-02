@@ -8,5 +8,7 @@
     Scenario: Verify the title of the main page is correct
       Then I see a correct main page title
 
-#    Scenario:
+    Scenario:
+      When I click on the log in button
+      Then I see a login modal appear
 

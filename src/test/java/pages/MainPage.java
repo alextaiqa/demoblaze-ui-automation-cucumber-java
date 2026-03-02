@@ -12,9 +12,10 @@ public class MainPage extends BasePage{
         super(driverUtils, "testdata/MainPage.yaml");
     }
 
-    public void openMainPage(){
-        log.info("Opening the main page: " + data.get("homePageURL"));
-        openPage(data.get("homePageURL"));
+    public void open() {
+        String url = data.get("homePageURL");
+        log.info("Opening the main page. URL: {}", url);
+        openPage(url);
     }
 
     public void clickOnTheLogInButton() {
@@ -23,20 +24,24 @@ public class MainPage extends BasePage{
     }
 
     public String getWelcomeMessage() {
+        log.info("Getting an actual welcome message for a logged in user");
         return driverUtils.getText(welcomeMessageCSS);
     }
 
-    public String getMainPageTitle(){
+    public String getTitle() {
+        log.info("Getting the actual title of the main page");
         return getPageTitle(data.get("mainPageTitle"));
     }
 
     //data getters
 
     public String getExpectedWelcomeMessage() {
+        log.info("Getting an expected welcome message for a logged in user - from data");
         return data.get("logInWelcomeMessage");
     }
 
     public String getExpectedTitle() {
-        return "";
+        log.info("Getting the expected title of the main page - from data");
+        return data.get("mainPageTitle");
     }
 }
