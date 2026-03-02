@@ -5,7 +5,7 @@ import utils.DriverUtils;
 
 public class LoginModal extends BasePage {
 
-
+    private final By loginModalCSS = By.cssSelector("#logInModal");
     private final By loginModalHeaderCSS = By.cssSelector("#logInModalLabel");
     private final By usernameCSS = By.cssSelector("#loginusername");
     private final By passwordCSS = By.cssSelector("#loginpassword");
@@ -49,11 +49,17 @@ public class LoginModal extends BasePage {
         return driverUtils.getAlertText().trim();
     }
 
-    public String getHeader() {
+    public String getActualHeader() {
+        log.info("Getting the actual login modal header");
         return driverUtils.getText(loginModalHeaderCSS);
     }
 
-    //test data getters for assertions in steps
+    public boolean isModalDisplayed() {
+        log.info("Checking if login modal is displayed");
+        return driverUtils.isElementDisplayed(loginModalCSS);
+    }
+
+    //***TEST DATA GETTERS - USED FOR ASSERTIONS IN STEPS***
     public String getIncorrectUsernameOrPasswordAlertData() {
         return data.get("incorrectUsernameOrPasswordAlert");
     }
@@ -62,7 +68,8 @@ public class LoginModal extends BasePage {
         return data.get("emptyPasswordAndUsernameAlert");
     }
 
-    public String getHeaderData() {
+    public String getExpectedHeaderData() {
+        log.info("Getting the expected login modal header - from data");
         return data.get("loginHeader");
     }
 }
