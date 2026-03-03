@@ -14,7 +14,38 @@ public class LoginModal extends BaseModal {
 
     //constructor
     public LoginModal(DriverUtils driverUtils) {
-        super(driverUtils, "testdata/loginModal.yaml");
+        super(driverUtils);
+    }
+
+    //methods
+    public void enterACorrectUsername(String correctUsername) {
+        log.info("Log in modal - entering a correct username: {}", correctUsername);
+        driverUtils.type(usernameCSS, correctUsername);
+    }
+
+    public void enterACorrectPassword(String correctPassword) {
+        log.info("Log in modal - entering a correct password: {}", correctPassword);
+        driverUtils.type(passwordCSS, correctPassword);
+    }
+
+    public void enterAnIncorrectUsername(String incorrectUsername) {
+        log.info("Log in modal - entering an incorrect username: {}", incorrectUsername);
+        driverUtils.type(usernameCSS, incorrectUsername);
+    }
+
+    public void enterAnIncorrectPassword(String incorrectPassword) {
+        log.info("Log in modal - entering an incorrect password: {}", incorrectPassword);
+        driverUtils.type(passwordCSS, incorrectPassword);
+    }
+
+    public void clickOnTheLogInButton() {
+        log.info("Clicking on the log in button inside the 'log in' modal");
+        driverUtils.click(logInButtonCSS);
+    }
+
+    public String getAlert() {
+        log.info("Getting a log in modal alert message");
+        return driverUtils.getAlertText().trim();
     }
 
     //methods for common behavior
@@ -33,62 +64,17 @@ public class LoginModal extends BaseModal {
         return "'Login'";
     }
 
-    //methods
-    public void enterACorrectUsername() {
-        String correctUsername = data.get("username");
-        log.info("Log in modal - entering a correct username: {}", correctUsername);
-        driverUtils.type(usernameCSS, correctUsername);
-    }
-
-    public void enterACorrectPassword() {
-        String correctPassword = data.get("password");
-        log.info("Log in modal - entering a correct password: {}", correctPassword);
-        driverUtils.type(passwordCSS, correctPassword);
-    }
-
-    public void enterAnIncorrectUsername() {
-        String incorrectUsername = data.get("incorrectUsername");
-        log.info("Log in modal - entering an incorrect username: {}", incorrectUsername);
-        driverUtils.type(usernameCSS, incorrectUsername);
-    }
-
-    public void enterAnIncorrectPassword() {
-        String incorrectPassword = data.get("incorrectPassword");
-        log.info("Log in modal - entering an incorrect password: {}", incorrectPassword);
-        driverUtils.type(passwordCSS, incorrectPassword);
-    }
-
-    public void clickOnTheLogInButton() {
-        log.info("Clicking on the log in button inside the 'log in' modal");
-        driverUtils.click(logInButtonCSS);
-    }
-
-    public String getAlert() {
-        log.info("Getting a log in modal alert message");
-        return driverUtils.getAlertText().trim();
-    }
-
-    public String getActualHeader() {
-        log.info("Getting the actual login modal header");
-        return driverUtils.getText(loginModalHeaderCSS).trim();
-    }
-
-    public boolean isModalDisplayed() {
-        log.info("Checking if login modal is displayed");
-        return driverUtils.isElementDisplayed(loginModalContainerCSS);
-    }
-
     //test data getters - used for assertions in steps
-    public String getIncorrectUsernameOrPasswordAlertData() {
-        return data.get("incorrectUsernameOrPasswordAlert");
-    }
-
-    public String getEmptyPasswordAndUsernameAlertData() {
-        return data.get("emptyPasswordAndUsernameAlert");
-    }
-
-    public String getExpectedHeaderData() {
-        log.info("Getting the expected login modal header - from data");
-        return data.get("loginModalHeader");
-    }
+//    public String getIncorrectUsernameOrPasswordAlertData() {
+//        return data.get("incorrectUsernameOrPasswordAlert");
+//    }
+//
+//    public String getEmptyPasswordAndUsernameAlertData() {
+//        return data.get("emptyPasswordAndUsernameAlert");
+//    }
+//
+//    public String getExpectedHeaderData() {
+//        log.info("Getting the expected login modal header - from data");
+//        return data.get("loginModalHeader");
+//    }
 }

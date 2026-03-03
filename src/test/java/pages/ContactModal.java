@@ -11,7 +11,7 @@ public class ContactModal extends BaseModal {
 
     //constructor
     public ContactModal(DriverUtils driverUtils) {
-        super(driverUtils, "testdata/contactModal.yaml");
+        super(driverUtils);
     }
 
     //methods for common behavior
@@ -32,10 +32,6 @@ public class ContactModal extends BaseModal {
 
     //methods
 
-    public String getActualHeader() {
-        log.info("Getting the actual header of the 'Contact' modal");
-        return driverUtils.getText(contactModalHeaderCSS).trim();
-    }
 
     //test data getters - used for assertions in steps
 //    public String getExpectedHeader() {

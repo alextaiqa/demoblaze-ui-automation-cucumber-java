@@ -10,7 +10,7 @@ public class AboutUsModal extends BaseModal {
 
     //constructor
     public AboutUsModal(DriverUtils driverUtils) {
-        super(driverUtils, "testdata/aboutUsModal.yaml");
+        super(driverUtils);
     }
 
     //methods for common behavior

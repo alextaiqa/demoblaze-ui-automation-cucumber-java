@@ -14,7 +14,7 @@ public class MainPage extends BasePage{
 
     //constructor
     public MainPage(DriverUtils driverUtils){
-        super(driverUtils, "testdata/MainPage.yaml");
+        super(driverUtils);
     }
 
     //methods
