@@ -1,5 +1,5 @@
-username: "shrek1"
-password: "shreksPassword"
+correctUsername: "shrek1"
+correctPassword: "shreksPassword"
 incorrectUsername: "shrek12345"
 incorrectPassword: "shreksPassword12345"
 incorrectUsernameOrPasswordAlert: "Incorrect username or password."
