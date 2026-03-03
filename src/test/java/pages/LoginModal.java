@@ -48,7 +48,7 @@ public class LoginModal extends BaseModal {
         return driverUtils.getAlertText().trim();
     }
 
-    //methods for common behavior
+    //getters for common methods
     @Override
     protected By getModalContainer() {
         return loginModalContainerCSS;
