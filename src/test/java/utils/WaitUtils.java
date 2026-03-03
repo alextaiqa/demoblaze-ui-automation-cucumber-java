@@ -5,6 +5,8 @@ import driver.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
@@ -13,6 +15,11 @@ public class WaitUtils {
     private final Config config = new Config();
     private final Duration REGULAR_WAIT = config.getRegularWait();
     private final Duration ALERT_WAIT = config.getAlertWait();
+    private final Logger log;
+
+    public WaitUtils() {
+        this.log = LoggerFactory.getLogger(this.getClass());
+    }
 
     private WebDriverWait getWait(Duration timeout){
         WebDriver driver = DriverManager.getDriver();
@@ -43,7 +50,13 @@ public class WaitUtils {
     }
 
     public WebElement getVisibleElement(By selector) {
-        return getRegularWait().until(ExpectedConditions.visibilityOfElementLocated(selector));
+        try {
+            return getRegularWait().until(ExpectedConditions.visibilityOfElementLocated(selector));
+        } catch (TimeoutException e) {
+            log.warn("Element with selector {} was not visible. Waited for {} seconds",
+                    selector.toString(), REGULAR_WAIT.getSeconds());
+            return null;
+        }
     }
 
     public Alert waitForAlert() {
