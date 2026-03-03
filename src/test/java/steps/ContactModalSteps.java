@@ -5,11 +5,13 @@ import pages.ContactModal;
 
 import static org.testng.Assert.*;
 
-public class ContactModalSteps {
+public class ContactModalSteps extends BaseSteps {
 
     private final ContactModal contactModal;
 
+
     public ContactModalSteps(ContactModal contactModal) {
+        super("testdata/contactModal.yaml");
         this.contactModal = contactModal;
     }
 
@@ -20,8 +22,8 @@ public class ContactModalSteps {
 
     @Then("I see a contact modal header appears")
     public void iSeeAContactModalHeaderAppears() {
-        String actualResult = contactModal.getActualHeader();
-        String expectedResult = contactModal.getExpectedHeader();
+        String actualResult = contactModal.getHeaderText();
+        String expectedResult = data;
         assertEquals(actualResult, expectedResult, "Contact modal has an incorrect header");
     }
 }
