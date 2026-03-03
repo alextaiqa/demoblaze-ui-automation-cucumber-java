@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.DriverUtils;
-import utils.TestData;
 
 public abstract class BaseModal {
 
@@ -18,19 +17,19 @@ public abstract class BaseModal {
     protected abstract String getModalName(); //for logs
 
     //constructor
-    public BaseModal(DriverUtils driverUtils, String filePath) {
+    public BaseModal(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
-        this.data = new TestData(filePath); //migrate all to steps !!!!
     }
 
     //methods
-    public boolean isModalDisplayed() {
+    public boolean isDisplayed() {
         log.info("Checking if the {} modal is displayed", getModalName());
         return driverUtils.isElementDisplayed(getModalContainer());
     }
 
     public String getHeaderText() {
+        log.info("Getting the actual header of the {} modal", getModalName());
         return driverUtils.getText(getHeaderLocator());
     }
 }
