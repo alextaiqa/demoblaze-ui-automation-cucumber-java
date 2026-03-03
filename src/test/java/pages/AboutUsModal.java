@@ -6,29 +6,31 @@ import utils.DriverUtils;
 public class AboutUsModal extends BaseModal {
 
     //selectors
-
+    private final By aboutUsModalContainerCSS = By.cssSelector("#videoModal");
+    private final By aboutUSModalHeaderCSS = By.cssSelector("#videoModalLabel");
 
     //constructor
     public AboutUsModal(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-    //methods for common behavior
+    //methods
+
+
+    //getters for common methods
     @Override
     protected By getModalContainer() {
-        return null;
+        return aboutUsModalContainerCSS;
     }
 
     @Override
     protected By getHeaderLocator() {
-        return null;
+        return aboutUSModalHeaderCSS;
     }
 
     @Override
     protected String getModalName() {
         return "'About us'";
     }
-
-    //methods
 
 }
