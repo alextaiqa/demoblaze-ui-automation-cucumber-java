@@ -31,6 +31,4 @@ public class AboutUsModal extends BaseModal {
 
     //methods
 
-    //test data getters - used for assertions in steps
-
 }

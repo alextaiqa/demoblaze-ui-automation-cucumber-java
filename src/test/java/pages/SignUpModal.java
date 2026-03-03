@@ -31,6 +31,4 @@ public class SignUpModal extends BaseModal {
 
     //methods
 
-    //test data getters - used for assertions in steps
-
 }
