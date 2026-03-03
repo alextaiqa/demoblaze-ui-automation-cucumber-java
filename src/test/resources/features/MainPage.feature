@@ -10,7 +10,7 @@ Feature: Testing main page elements
 
   Scenario Outline: Verify that all nav bar modals are displayed on click ("Contact", "About us", "Log in", "Sign up")
     When I click on the <button> button
-    Then I see a <modal> modal appears
+    Then I see the <modal> modal appears
     Examples:
       | button   | modal    |
       | contact  | contact  |
