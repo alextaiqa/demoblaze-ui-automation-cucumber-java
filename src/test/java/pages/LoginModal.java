@@ -63,18 +63,4 @@ public class LoginModal extends BaseModal {
     protected String getModalName() {
         return "'Login'";
     }
-
-    //test data getters - used for assertions in steps
-//    public String getIncorrectUsernameOrPasswordAlertData() {
-//        return data.get("incorrectUsernameOrPasswordAlert");
-//    }
-//
-//    public String getEmptyPasswordAndUsernameAlertData() {
-//        return data.get("emptyPasswordAndUsernameAlert");
-//    }
-//
-//    public String getExpectedHeaderData() {
-//        log.info("Getting the expected login modal header - from data");
-//        return data.get("loginModalHeader");
-//    }
 }
