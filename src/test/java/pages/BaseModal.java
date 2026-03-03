@@ -10,19 +10,20 @@ public abstract class BaseModal {
     protected final DriverUtils driverUtils;
     protected final Logger log;
 
-    protected abstract By getModalContainer();
-
-    protected abstract By getHeaderLocator();
-
-    protected abstract String getModalName(); //for logs
-
     //constructor
     public BaseModal(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
     }
 
-    //methods
+    //getters for common methods
+    protected abstract By getModalContainer();
+
+    protected abstract By getHeaderLocator();
+
+    protected abstract String getModalName(); //for logs
+
+    //common methods
     public boolean isDisplayed() {
         log.info("Checking if the {} modal is displayed", getModalName());
         return driverUtils.isElementDisplayed(getModalContainer());
