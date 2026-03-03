@@ -10,7 +10,7 @@ public class SignUpModal extends BaseModal {
 
     //constructor
     public SignUpModal(DriverUtils driverUtils) {
-        super(driverUtils, "testdata/signUpModal.yaml");
+        super(driverUtils);
     }
 
     //methods for common behavior

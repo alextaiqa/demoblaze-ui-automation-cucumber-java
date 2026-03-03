@@ -7,11 +7,12 @@ import utils.DriverUtils;
 
 import static org.testng.Assert.*;
 
-public class MainPageSteps {
+public class MainPageSteps extends BaseSteps {
 
      private MainPage mainPage;
 
     public MainPageSteps(DriverUtils driverUtils) {
+        super("testdata/mainPage.yaml");
         this.mainPage = new MainPage(driverUtils);
      }
 
