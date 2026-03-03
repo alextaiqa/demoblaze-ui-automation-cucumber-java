@@ -18,7 +18,7 @@ public class MainPageSteps extends BaseSteps {
 
     @Given("I open the main page")
     public void iOpenTheMainPage(){
-        mainPage.open();
+        mainPage.open(data.get("homePageURL"));
     }
 
     @When("I click on the contact button")
@@ -44,14 +44,14 @@ public class MainPageSteps extends BaseSteps {
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
         String actualResult = mainPage.getWelcomeMessage();
-        String expectedResult = mainPage.getExpectedWelcomeMessage();
+        String expectedResult = data.get("logInWelcomeMessage");
         Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
     @Then("I see a correct main page title")
     public void iSeeACorrectMainPageTitle() {
-        String actualTitle = mainPage.getActualTitle();
-        String expectedTitle = mainPage.getExpectedTitle();
+        String expectedTitle = data.get("mainPageTitle");
+        String actualTitle = mainPage.getTitle(expectedTitle);
         assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
     }
 }

@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import utils.DriverUtils;
 
-public class MainPage extends BasePage{
+public class MainPage extends BasePage {
 
     //selectors
     private final By contactButtonXPath = By.xpath("//a[normalize-space()='Contact']");
@@ -13,16 +13,11 @@ public class MainPage extends BasePage{
     private final By welcomeMessageCSS = By.cssSelector("#nameofuser");
 
     //constructor
-    public MainPage(DriverUtils driverUtils){
+    public MainPage(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
     //methods
-    public void open() {
-        String url = data.get("homePageURL");
-        log.info("Opening the main page. URL: {}", url);
-        openPage(url);
-    }
 
     public void clickOnTheContactButton() {
         log.info("Clicking on the contact button on the main page");
@@ -49,19 +44,9 @@ public class MainPage extends BasePage{
         return driverUtils.getText(welcomeMessageCSS);
     }
 
-    public String getActualTitle() {
-        return getPageTitle("STORE", "main");
-    }
-
-    //test data getters - used for assertions in steps
-
-    public String getExpectedWelcomeMessage() {
-        log.info("Getting an expected welcome message for a logged in user - from data");
-        return data.get("logInWelcomeMessage");
-    }
-
-    public String getExpectedTitle() {
-        log.info("Getting the expected title of the main page - from data");
-        return data.get("mainPageTitle");
+    //methods for common behavior
+    @Override
+    protected String getPageName() {
+        return "'Main'";
     }
 }

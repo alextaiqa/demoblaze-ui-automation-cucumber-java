@@ -4,22 +4,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.DriverUtils;
 
-public class BasePage {
+public abstract class BasePage {
+
+    //global vars
     protected DriverUtils driverUtils;
     protected final Logger log;
 
+    //constructors
     protected BasePage(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
     }
 
-    protected void openPage(String url){
+    //getters
+    protected abstract String getPageName();
+
+    //methods
+    public void open(String url) {
+        log.info("Opening the {} page", getPageName());
         driverUtils.openPage(url);
     }
 
-    protected String getPageTitle(String expectedTitle, String pageName) {
-        log.info("Getting the actual title of the {} page", pageName);
-        return driverUtils.getPageTitle(expectedTitle);
+    public String getTitle(String expectedTitle) {
+        log.info("Getting the actual title of the {} page", getPageName());
+        return driverUtils.getTitle(expectedTitle);
     }
 
 }
