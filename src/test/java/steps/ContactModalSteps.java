@@ -15,15 +15,16 @@ public class ContactModalSteps extends BaseSteps {
         this.contactModal = contactModal;
     }
 
-    @Then("I see a contact modal appears")
-    public void iSeeAContactModalAppears() {
-        assertTrue(contactModal.isDisplayed(), "Contact modal is not displayed");
+    @Then("I see the contact modal appears")
+    public void iSeeTheContactModalAppears() {
+        assertTrue(contactModal.isDisplayed(), "The 'Contact' modal is not displayed");
+        iSeeTheContactModalHeaderAppears();
     }
 
-    @Then("I see a contact modal header appears")
-    public void iSeeAContactModalHeaderAppears() {
+    @Then("I see the contact modal header appears")
+    public void iSeeTheContactModalHeaderAppears() {
         String actualResult = contactModal.getHeaderText();
-        String expectedResult = data;
-        assertEquals(actualResult, expectedResult, "Contact modal has an incorrect header");
+        String expectedResult = data.get("contactModalHeader");
+        assertEquals(actualResult, expectedResult, "The 'Contact' modal has an incorrect header");
     }
 }

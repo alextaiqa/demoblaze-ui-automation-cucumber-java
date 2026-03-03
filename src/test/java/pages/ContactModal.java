@@ -14,7 +14,9 @@ public class ContactModal extends BaseModal {
         super(driverUtils);
     }
 
-    //methods for common behavior
+    //methods
+
+    //getters for common methods
     @Override
     protected By getModalContainer() {
         return contactModalCSS;
@@ -29,16 +31,4 @@ public class ContactModal extends BaseModal {
     protected String getModalName() {
         return "'Contact'";
     }
-
-    //methods
-
-
-    //test data getters - used for assertions in steps
-//    public String getExpectedHeader() {
-//        log.info("Getting the expected header of the 'Contact' modal");
-//        return data.get("contactModalHeader");
-//    }
-
-
-
 }
