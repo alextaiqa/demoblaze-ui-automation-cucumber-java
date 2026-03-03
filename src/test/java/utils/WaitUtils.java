@@ -53,8 +53,8 @@ public class WaitUtils {
         try {
             return getRegularWait().until(ExpectedConditions.visibilityOfElementLocated(selector));
         } catch (TimeoutException e) {
-            log.warn("Element with selector {} was not visible. Waited for {} seconds",
-                    selector.toString(), REGULAR_WAIT.getSeconds());
+            log.warn("Element with selector '{}' was not visible. Waited for {} seconds.",
+                    selector, REGULAR_WAIT.getSeconds());
             return null;
         }
     }
