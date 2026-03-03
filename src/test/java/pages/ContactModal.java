@@ -14,11 +14,23 @@ public class ContactModal extends BaseModal {
         super(driverUtils, "testdata/contactModal.yaml");
     }
 
-    //methods
-    public boolean isDisplayed() {
-        log.info("Checking if the contact modal is displayed");
-        return driverUtils.isElementDisplayed(contactModalCSS);
+    //methods for common behavior
+    @Override
+    protected By getModalContainer() {
+        return contactModalCSS;
     }
+
+    @Override
+    protected By getHeaderLocator() {
+        return contactModalHeaderCSS;
+    }
+
+    @Override
+    protected String getModalName() {
+        return "'Contact'";
+    }
+
+    //methods
 
     public String getActualHeader() {
         log.info("Getting the actual header of the 'Contact' modal");
@@ -26,10 +38,11 @@ public class ContactModal extends BaseModal {
     }
 
     //test data getters - used for assertions in steps
-    public String getExpectedHeader() {
-        log.info("Getting the expected header of the 'Contact' modal");
-        return data.get("contactModalHeader");
-    }
+//    public String getExpectedHeader() {
+//        log.info("Getting the expected header of the 'Contact' modal");
+//        return data.get("contactModalHeader");
+//    }
+
 
 
 }

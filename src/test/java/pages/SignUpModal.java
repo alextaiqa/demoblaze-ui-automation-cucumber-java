@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import utils.DriverUtils;
 
 public class SignUpModal extends BaseModal {
@@ -10,6 +11,22 @@ public class SignUpModal extends BaseModal {
     //constructor
     public SignUpModal(DriverUtils driverUtils) {
         super(driverUtils, "testdata/signUpModal.yaml");
+    }
+
+    //methods for common behavior
+    @Override
+    protected By getModalContainer() {
+        return null;
+    }
+
+    @Override
+    protected By getHeaderLocator() {
+        return null;
+    }
+
+    @Override
+    protected String getModalName() {
+        return "'Sign up'";
     }
 
     //methods

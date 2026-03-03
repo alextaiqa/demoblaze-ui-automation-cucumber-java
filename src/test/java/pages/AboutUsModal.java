@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import utils.DriverUtils;
 
 public class AboutUsModal extends BaseModal {
@@ -10,6 +11,22 @@ public class AboutUsModal extends BaseModal {
     //constructor
     public AboutUsModal(DriverUtils driverUtils) {
         super(driverUtils, "testdata/aboutUsModal.yaml");
+    }
+
+    //methods for common behavior
+    @Override
+    protected By getModalContainer() {
+        return null;
+    }
+
+    @Override
+    protected By getHeaderLocator() {
+        return null;
+    }
+
+    @Override
+    protected String getModalName() {
+        return "'About us'";
     }
 
     //methods

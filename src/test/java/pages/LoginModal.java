@@ -6,7 +6,7 @@ import utils.DriverUtils;
 public class LoginModal extends BaseModal {
 
     //selectors
-    private final By loginModalCSS = By.cssSelector("#logInModal");
+    private final By loginModalContainerCSS = By.cssSelector("#logInModal");
     private final By loginModalHeaderCSS = By.cssSelector("#logInModalLabel");
     private final By usernameCSS = By.cssSelector("#loginusername");
     private final By passwordCSS = By.cssSelector("#loginpassword");
@@ -15,6 +15,22 @@ public class LoginModal extends BaseModal {
     //constructor
     public LoginModal(DriverUtils driverUtils) {
         super(driverUtils, "testdata/loginModal.yaml");
+    }
+
+    //methods for common behavior
+    @Override
+    protected By getModalContainer() {
+        return loginModalContainerCSS;
+    }
+
+    @Override
+    protected By getHeaderLocator() {
+        return loginModalHeaderCSS;
+    }
+
+    @Override
+    protected String getModalName() {
+        return "'Login'";
     }
 
     //methods
@@ -59,7 +75,7 @@ public class LoginModal extends BaseModal {
 
     public boolean isModalDisplayed() {
         log.info("Checking if login modal is displayed");
-        return driverUtils.isElementDisplayed(loginModalCSS);
+        return driverUtils.isElementDisplayed(loginModalContainerCSS);
     }
 
     //test data getters - used for assertions in steps
