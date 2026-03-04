@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Then;
 import pages.ContactModal;
 
@@ -17,15 +18,14 @@ public class ContactModalSteps extends BaseSteps {
     }
 
     //methods
-    @Then("I see the contact modal appears")
-    public void iSeeTheContactModalAppears() {
-        assertTrue(contactModal.isDisplayed(), "The 'Contact' modal is not displayed");
-    }
 
-    @Then("I see the contact modal header appears")
-    public void iSeeTheContactModalHeaderAppears() {
-        String actualResult = contactModal.getHeaderText();
-        String expectedResult = data.get("contactModalHeader");
-        assertEquals(actualResult, expectedResult, "The 'Contact' modal has an incorrect header");
+    // This method repeats in other nav bar modalSteps.
+    // I could abstract it in a BaseModalSteps class, but I'm keeping as is for now. Seems to be better for readability.
+    @Then("I see the contact modal with a correct header appears")
+    public void iSeeTheContactModalWithACorrectHeaderAppears() {
+        assertTrue(contactModal.isDisplayed(), "The 'Contact' modal is not displayed");
+        String actualHeader = contactModal.getHeaderText();
+        String expectedHeader = data.get("contactModalHeader");
+        assertEquals(actualHeader, expectedHeader, "The 'Contact' modal has an incorrect header");
     }
 }

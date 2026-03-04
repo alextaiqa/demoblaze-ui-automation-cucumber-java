@@ -48,14 +48,9 @@ public class LoginModalSteps extends BaseSteps {
                 "Login modal - wrong alert message for an empty username and password");
     }
 
-    @Then("I see the login modal appears")
-    public void iSeeTheLoginModalAppears() {
+    @Then("I see the login modal with a correct header appears")
+    public void iSeeTheLoginModalWithACorrectHeaderAppears() {
         assertTrue(logInModal.isDisplayed(), "The 'Log in' modal is not displayed");
-        iSeeTheLoginModalHeaderAppears();
-    }
-
-    @Then("I see the login modal header appears")
-    public void iSeeTheLoginModalHeaderAppears() {
         String actualHeader = logInModal.getHeaderText();
         String expectedHeader = data.get("loginModalHeader");
         assertEquals(actualHeader, expectedHeader, "The 'Log in' modal has an incorrect header");

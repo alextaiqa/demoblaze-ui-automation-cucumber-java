@@ -14,14 +14,9 @@ public class SignUpModalSteps extends BaseSteps {
         this.signUpModal = signUpModal;
     }
 
-    @Then("I see the sign up modal appears")
-    public void iSeeTheSignUpModalAppears() {
+    @Then("I see the sign up modal with a correct header appears")
+    public void iSeeTheSignUpModalWithACorrectHeaderAppears() {
         assertTrue(signUpModal.isDisplayed(), "The 'Sign up' modal is not displayed");
-        iSeeTheSignUpModalHeaderAppears();
-    }
-
-    @Then("I see the sign up modal header appears")
-    public void iSeeTheSignUpModalHeaderAppears() {
         String actualHeader = signUpModal.getHeaderText();
         String expectedHeader = data.get("signUpHeader");
         assertEquals(actualHeader, expectedHeader, "The 'Sign up' modal has an incorrect header");

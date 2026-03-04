@@ -14,14 +14,9 @@ public class AboutUsModalSteps extends BaseSteps {
         this.aboutUsModal = aboutUsModal;
     }
 
-    @Then("I see the about us modal appears")
-    public void iSeeTheAboutUsModalAppears() {
+    @Then("I see the about us modal with a correct header appears")
+    public void iSeeTheAboutUsModalWithACorrectHeaderAppears() {
         assertTrue(aboutUsModal.isDisplayed(), "The 'About us' modal is not displayed");
-        iSeeTheAboutUsHeaderAppears();
-    }
-
-    @Then("I see the about us header appears")
-    public void iSeeTheAboutUsHeaderAppears() {
         String actualHeader = aboutUsModal.getHeaderText();
         String expectedHeader = data.get("aboutUsModalHeader");
         assertEquals(actualHeader, expectedHeader, "The 'About us' modal has an incorrect header");
