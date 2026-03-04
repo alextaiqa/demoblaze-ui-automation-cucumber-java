@@ -8,9 +8,10 @@ public class MainPage extends BasePage {
     //selectors
     private final By contactButtonXPath = By.xpath("//a[normalize-space()='Contact']");
     private final By aboutUsButtonXpath = By.xpath("//a[normalize-space()='About us']");
-    private final By logInButtonCSS = By.cssSelector("#login2");
-    private final By signUpButtonCSS = By.cssSelector("#signin2");
-    private final By welcomeMessageCSS = By.cssSelector("#nameofuser");
+    private final By cartButtonCSS = By.id("#cartur");
+    private final By logInButtonCSS = By.id("#login2");
+    private final By signUpButtonCSS = By.id("#signin2");
+    private final By welcomeMessageCSS = By.id("#nameofuser");
 
     //constructor
     public MainPage(DriverUtils driverUtils) {
@@ -18,24 +19,28 @@ public class MainPage extends BasePage {
     }
 
     //methods
-
     public void clickOnTheContactButton() {
-        log.info("Clicking on the contact button on the main page");
+        log.info("Clicking on the 'Contact' button on the nav bar");
         driverUtils.click(contactButtonXPath);
     }
 
     public void clickOnTheAboutUsButton() {
-        log.info("Clicking on the about us button on the main page");
+        log.info("Clicking on the 'About us' button on the nav bar");
         driverUtils.click(aboutUsButtonXpath);
     }
 
+    public void clickOnTheCartButton() {
+        log.info("Clicking on the 'Cart' button on the nav bar");
+        driverUtils.click(cartButtonCSS);
+    }
+
     public void clickOnTheLogInButton() {
-        log.info("Clicking on the log in button on the main page");
+        log.info("Clicking on the 'Log in' button on the nav bar");
         driverUtils.click(logInButtonCSS);
     }
 
     public void clickOnTheSignUpButton() {
-        log.info("Clicking on the sign up button on the main page");
+        log.info("Clicking on the 'Sign up' button on the nav bar");
         driverUtils.click(signUpButtonCSS);
     }
 
