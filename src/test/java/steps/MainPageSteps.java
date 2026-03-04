@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 import pages.MainPage;
@@ -41,6 +42,11 @@ public class MainPageSteps extends BaseSteps {
         mainPage.clickOnTheSignUpButton();
     }
 
+    @And("I click on the cart button")
+    public void iClickOnTheCartButton() {
+        mainPage.clickOnTheCartButton();
+    }
+
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
         String actualResult = mainPage.getWelcomeMessage();
@@ -48,8 +54,8 @@ public class MainPageSteps extends BaseSteps {
         Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
-    @Then("I see a correct main page title")
-    public void iSeeACorrectMainPageTitle() {
+    @Then("I see a correct title for the main page")
+    public void iSeeACorrectTitleForTheMainPage() {
         String expectedTitle = data.get("mainPageTitle");
         String actualTitle = mainPage.getTitle(expectedTitle);
         assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
