@@ -6,11 +6,11 @@ Feature: Testing main page elements
     Given I open the main page
 
   Scenario: Verify the title of the main page is correct
-    Then I see a correct main page title
+    Then I see a correct title for the main page
 
-  Scenario Outline: Verify that all nav bar modals are displayed on click ("Contact", "About us", "Log in", "Sign up")
+  Scenario Outline: Verify that all nav bar modals are displayed on click.
     When I click on the <button> button
-    Then I see the <modal> modal appears
+    Then I see the <modal> modal with a correct header appears
     Examples:
       | button   | modal    |
       | contact  | contact  |
