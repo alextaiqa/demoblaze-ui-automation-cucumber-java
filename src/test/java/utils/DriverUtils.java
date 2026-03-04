@@ -3,6 +3,7 @@ package utils;
 import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 
 public class DriverUtils {
 
@@ -45,6 +46,7 @@ public class DriverUtils {
     }
 
     public boolean isElementDisplayed(By selector) {
-        return waitUtils.getVisibleElement(selector).isDisplayed();
+        WebElement element = waitUtils.getVisibleElement(selector);
+        return element != null && element.isDisplayed();
     }
 }
