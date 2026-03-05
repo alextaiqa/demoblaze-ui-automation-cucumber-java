@@ -2,7 +2,7 @@ package steps;
 
 import io.cucumber.java.en.*;
 import org.testng.Assert;
-import pages.pages.MainPage;
+import pages.MainPage;
 import utils.DriverUtils;
 
 import static org.testng.Assert.*;
