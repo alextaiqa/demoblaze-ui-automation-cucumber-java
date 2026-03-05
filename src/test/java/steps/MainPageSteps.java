@@ -1,6 +1,5 @@
 package steps;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
 import pages.MainPage;
@@ -10,7 +9,7 @@ import static org.testng.Assert.*;
 
 public class MainPageSteps extends BaseSteps {
 
-     private MainPage mainPage;
+    private final MainPage mainPage;
 
     public MainPageSteps(DriverUtils driverUtils) {
         super("testdata/mainPage.yaml");
@@ -56,8 +55,6 @@ public class MainPageSteps extends BaseSteps {
 
     @Then("I see a correct title for the main page")
     public void iSeeACorrectTitleForTheMainPage() {
-        String expectedTitle = data.get("mainPageTitle");
-        String actualTitle = mainPage.getTitle(expectedTitle);
-        assertEquals(actualTitle, expectedTitle, "Main page title is not correct");
+        assertPageTitle(mainPage, mainPage.getPageName(), data.get("mainPageTitle"));
     }
 }
