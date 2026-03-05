@@ -21,6 +21,11 @@ public class MainPageSteps extends BaseSteps {
         mainPage.open(data.get("homePageURL"));
     }
 
+    @And("I click on the home button")
+    public void iClickOnTheHomeButton() {
+        mainPage.clickOnTheHomeButton();
+    }
+
     @When("I click on the contact button")
     public void iClickOnTheContactButton() {
         mainPage.clickOnTheContactButton();
@@ -56,5 +61,10 @@ public class MainPageSteps extends BaseSteps {
     @Then("I see a correct title for the main page")
     public void iSeeACorrectTitleForTheMainPage() {
         assertPageTitle(mainPage, mainPage.getPageName(), data.get("mainPageTitle"));
+    }
+
+    @Then("I see a categories container")
+    public void iSeeACategoriesContainer() {
+        assertTrue(mainPage.isCategoriesContainerDisplayed());
     }
 }
