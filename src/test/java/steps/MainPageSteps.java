@@ -2,7 +2,7 @@ package steps;
 
 import io.cucumber.java.en.*;
 import org.testng.Assert;
-import pages.MainPage;
+import pages.pages.MainPage;
 import utils.DriverUtils;
 
 import static org.testng.Assert.*;
@@ -21,34 +21,39 @@ public class MainPageSteps extends BaseSteps {
         mainPage.open(data.get("homePageURL"));
     }
 
-    @And("I click on the home button")
-    public void iClickOnTheHomeButton() {
-        mainPage.clickOnTheHomeButton();
+    @And("I click on the nav bar logo link")
+    public void iClickOnTheNavBarLogoLink() {
+        mainPage.clickOnTheNavBarLogoLink();
     }
 
-    @When("I click on the contact button")
-    public void iClickOnTheContactButton() {
-        mainPage.clickOnTheContactButton();
+    @And("I click on the nav bar home link")
+    public void iClickOnTheNavBarHomeLink() {
+        mainPage.clickOnTheNavBarHomeLink();
     }
 
-    @When("I click on the about us button")
-    public void iClickOnTheAboutUsButton() {
-        mainPage.clickOnTheAboutUsButton();
+    @When("I click on the nav bar contact link")
+    public void iClickOnTheNavBarContactLink() {
+        mainPage.clickOnTheNavBarContactLink();
     }
 
-    @When("I click on the log in button")
-    public void iClickOnTheLogInButton() {
-        mainPage.clickOnTheLogInButton();
+    @When("I click on the nav bar about us link")
+    public void iClickOnTheNavBarAboutUsLink() {
+        mainPage.clickOnTheNavBarAboutUsLink();
     }
 
-    @When("I click on the sign up button")
-    public void iClickOnTheSignUpButton() {
-        mainPage.clickOnTheSignUpButton();
+    @When("I click on the nav bar log in link")
+    public void iClickOnTheNavBarLogInLink() {
+        mainPage.clickOnTheNavBarLogInLink();
     }
 
-    @And("I click on the cart button")
-    public void iClickOnTheCartButton() {
-        mainPage.clickOnTheCartButton();
+    @When("I click on the nav bar sign up link")
+    public void iClickOnTheNavBarSignUpLink() {
+        mainPage.clickOnTheNavBarSignUpLink();
+    }
+
+    @And("I click on the nav bar cart link")
+    public void iClickOnTheNavBarCartLink() {
+        mainPage.clickOnTheNavBarCartLink();
     }
 
     @Then("I see a welcome message")
