@@ -1,6 +1,6 @@
 @logInModal
 
-Feature: Testing Cucumber Pico Container
+Feature: Log in modal functionality
 
 #  steps that happen before everything else for all the tests for this feature - a setup of sorts
   Background: Log in modal is open
@@ -12,7 +12,7 @@ Feature: Testing Cucumber Pico Container
     And I click on the log in modal confirmation button
     Then I see a welcome message
 
-  @known_bug @BUG
+  @known_bug @Bug
 #    Expected result: "Incorrect username or password."
 #    Actual result: "User does not exist."
   Scenario: Validate an unsuccessful log in - invalid credentials
@@ -23,5 +23,3 @@ Feature: Testing Cucumber Pico Container
   Scenario: Validate an unsuccessful log in - empty username and password fields
     And I click on the log in modal confirmation button
     Then I see a missing username and password message
-
-#    REVIEW THE ABOVE - REMOVE IF OUT OF SCOPE
