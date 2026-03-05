@@ -21,3 +21,10 @@ Feature: Main page functionality
   Scenario: Verify the "Cart" nav bar button redirects to the "Cart" page on click
     And I click on the cart button
     Then I see a place order button
+
+  Scenario: Verify the "Home button redirect to the "Home" page on click
+    And I click on the home button
+    Then I see a categories container
+
+#    Scenario:
+#      And I click on the
