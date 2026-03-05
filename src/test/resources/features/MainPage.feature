@@ -9,22 +9,20 @@ Feature: Main page functionality
     Then I see a correct title for the main page
 
   Scenario Outline: Verify that all nav bar modals are displayed on click.
-    When I click on the <button> button
+    When I click on the nav bar <link> link
     Then I see the <modal> modal with a correct header appears
     Examples:
-      | button   | modal    |
+      | link     | modal    |
       | contact  | contact  |
       | about us | about us |
       | log in   | login    |
       | sign up  | sign up  |
 
-  Scenario: Verify the "Cart" nav bar button redirects to the "Cart" page on click
-    And I click on the cart button
-    Then I see a place order button
-
-  Scenario: Verify the "Home button redirect to the "Home" page on click
-    And I click on the home button
-    Then I see a categories container
-
-#    Scenario:
-#      And I click on the
+  Scenario Outline: Verifying that all nav bar links redirect correctly
+    When I click on the nav bar <link> link
+    Then I see a <result>
+    Examples:
+      | link | result               |
+      | cart | place order button   |
+      | home | categories container |
+      | logo | categories container |
