@@ -37,14 +37,6 @@ public class WaitUtils {
         return getWait(ALERT_WAIT);
     }
 
-    public void waitForPageTitle(String expectedTitle){
-        try {
-            getRegularWait().until(ExpectedConditions.titleContains(expectedTitle));
-        } catch (TimeoutException e){
-            throw new TimeoutException("Title does not contain " + expectedTitle, e);
-        }
-    }
-
     public WebElement getClickableElement(By selector) {
         return getRegularWait().until(ExpectedConditions.elementToBeClickable(selector));
     }
