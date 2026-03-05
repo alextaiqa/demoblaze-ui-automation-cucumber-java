@@ -1,6 +1,6 @@
 @mainPage
 
-Feature: Testing main page elements
+Feature: Main page functionality
 
   Background: The main page is open
     Given I open the main page
@@ -18,3 +18,6 @@ Feature: Testing main page elements
       | log in   | login    |
       | sign up  | sign up  |
 
+  Scenario: Verify the "Cart" nav bar button redirects to the "Cart" page on click
+    And I click on the cart button
+    Then I see a place order button
