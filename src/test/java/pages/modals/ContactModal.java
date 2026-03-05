@@ -1,6 +1,7 @@
-package pages;
+package pages.modals;
 
 import org.openqa.selenium.By;
+import pages.BaseModal;
 import utils.DriverUtils;
 
 public class ContactModal extends BaseModal {
