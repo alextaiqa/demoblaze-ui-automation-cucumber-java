@@ -8,10 +8,10 @@ public class MainPage extends BasePage {
     //selectors
     private final By contactButtonXPath = By.xpath("//a[normalize-space()='Contact']");
     private final By aboutUsButtonXpath = By.xpath("//a[normalize-space()='About us']");
-    private final By cartButtonCSS = By.id("#cartur");
-    private final By logInButtonCSS = By.id("#login2");
-    private final By signUpButtonCSS = By.id("#signin2");
-    private final By welcomeMessageCSS = By.id("#nameofuser");
+    private final By cartButtonCSS = By.id("cartur");
+    private final By logInButtonCSS = By.id("login2");
+    private final By signUpButtonCSS = By.id("signin2");
+    private final By welcomeMessageCSS = By.id("nameofuser");
 
     //constructor
     public MainPage(DriverUtils driverUtils) {
@@ -51,7 +51,7 @@ public class MainPage extends BasePage {
 
     //methods for common behavior
     @Override
-    protected String getPageName() {
+    public String getPageName() {
         return "'Main'";
     }
 }
