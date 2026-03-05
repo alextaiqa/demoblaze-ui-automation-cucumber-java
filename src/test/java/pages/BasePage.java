@@ -25,9 +25,9 @@ public abstract class BasePage {
         driverUtils.openPage(url);
     }
 
-    public String getTitle(String expectedTitle) {
+    public String getTitle() {
         log.info("Getting the actual title of the {} page", getPageName());
-        return driverUtils.getTitle(expectedTitle);
+        return driverUtils.getTitle();
     }
 
 }
