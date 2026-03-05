@@ -1,8 +1,8 @@
-package steps;
+package steps.modals;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Then;
-import pages.ContactModal;
+import pages.modals.ContactModal;
+import steps.BaseSteps;
 
 import static org.testng.Assert.*;
 

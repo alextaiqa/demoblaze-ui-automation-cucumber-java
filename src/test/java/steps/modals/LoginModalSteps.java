@@ -1,7 +1,8 @@
-package steps;
+package steps.modals;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import pages.LoginModal;
+import pages.modals.LoginModal;
+import steps.BaseSteps;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

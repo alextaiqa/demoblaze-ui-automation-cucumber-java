@@ -1,7 +1,8 @@
-package steps;
+package steps.modals;
 
 import io.cucumber.java.en.Then;
-import pages.AboutUsModal;
+import pages.modals.AboutUsModal;
+import steps.BaseSteps;
 
 import static org.testng.Assert.*;
 
