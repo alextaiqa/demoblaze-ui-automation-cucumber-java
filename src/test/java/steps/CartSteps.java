@@ -2,7 +2,7 @@ package steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import pages.pages.CartPage;
+import pages.CartPage;
 
 import static org.testng.Assert.*;
 
