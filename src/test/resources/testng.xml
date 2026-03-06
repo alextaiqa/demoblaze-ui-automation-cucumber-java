@@ -2,7 +2,8 @@
 <suite name="Cucumber Suite" parallel="tests" thread-count="2">
     <test name="Cucumber Tests">
         <classes>
-            <class name="runners.TestRunner"/>
+            <class name="runners.MainPageRunnerTest"/>
+            <class name="runners.NavBarRunnerTest"/>
         </classes>
     </test>
-</suite> <!-- what is this??????? -->
+</suite>
