@@ -4,6 +4,8 @@
         <classes>
             <class name="runners.MainPageRunnerTest"/>
             <class name="runners.NavBarRunnerTest"/>
+            <class name="runners.CartPageRunnerTest"/>
+            <class name="runners.LoginModalRunnerTest"/>
         </classes>
     </test>
 </suite>
