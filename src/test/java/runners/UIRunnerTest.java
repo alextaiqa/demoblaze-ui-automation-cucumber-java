@@ -6,15 +6,15 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = {"steps", "hooks", "context", "driver", "pages", "utils"},
-        tags = "@cart",
+        glue = {"hooks", "steps", "context"},
+        tags = "@ui and not @bug",
         plugin = {"pretty",
-                "html:target/cucumber-cart.html",
-                "json:target/cucumber-cart.json"
-        }, monochrome = true
+                "html:target/cucumber-ui.html",
+                "json:target/cucumber-ui.json"
+        }, monochrome = true //provides cleaner logs
 )
 
-public class CartPageRunnerTest extends AbstractTestNGCucumberTests {
+public class UIRunnerTest extends AbstractTestNGCucumberTests {
     @Override
     @DataProvider(parallel = true)
     public Object[][] scenarios() {
