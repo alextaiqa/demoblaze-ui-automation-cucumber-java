@@ -1,11 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Cucumber Suite" parallel="tests" thread-count="2">
-    <test name="Cucumber Tests">
+<suite name="Cucumber Suite" parallel="tests" thread-count="2" data-provider-thread-count="2">
+    <test name="UI Tests">
         <classes>
-            <class name="runners.MainPageRunnerTest"/>
+            <class name="runners.UIRunnerTest"/>
             <class name="runners.NavBarRunnerTest"/>
-            <class name="runners.CartPageRunnerTest"/>
-            <class name="runners.LoginModalRunnerTest"/>
         </classes>
     </test>
 </suite>
