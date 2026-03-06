@@ -3,7 +3,7 @@ package driver;
 import org.openqa.selenium.WebDriver;
 
 public class DriverManager {
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>(); // what is this??
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>(); // stores several drivers
 
     public static WebDriver getDriver() {
         return driver.get(); //get???? what is this???
@@ -14,6 +14,6 @@ public class DriverManager {
     }
 
     public static void unload() {
-        driver.remove(); //what is this? What is it removing?
+        driver.remove(); //removes a driver from a list of them
     }
 }
