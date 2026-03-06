@@ -1,3 +1,4 @@
-browser: "chrome"
+browserChrome: "chrome"
+browserFirefox: "firefox"
 explicit.regular.wait: 10
 explicit.alert.wait: 2
