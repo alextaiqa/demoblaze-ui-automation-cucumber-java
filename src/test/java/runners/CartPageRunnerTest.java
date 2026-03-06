@@ -7,14 +7,14 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps", "hooks", "context", "driver", "pages", "utils"},
-        tags = "@navBar",
+        tags = "@cart",
         plugin = {"pretty",
-                "html:target/cucumber-navBar.html",
-                "json:target/cucumber-navBar.json"
+                "html:target/cucumber-cart.html",
+                "json:target/cucumber-cart.json"
         }, monochrome = true
 )
 
-public class NavBarRunnerTest extends AbstractTestNGCucumberTests {
+public class CartPageRunnerTest extends AbstractTestNGCucumberTests {
     @Override
     @DataProvider(parallel = true)
     public Object[][] scenarios() {
