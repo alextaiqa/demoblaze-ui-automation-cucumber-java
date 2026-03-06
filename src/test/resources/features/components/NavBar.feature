@@ -1,4 +1,4 @@
-@navBar
+@ui @navBar
 
 Feature: Navigational bar functionality
 

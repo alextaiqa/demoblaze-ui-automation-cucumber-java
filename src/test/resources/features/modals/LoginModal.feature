@@ -1,4 +1,4 @@
-@logInModal
+@navBar @logInModal
 
 Feature: Log in modal functionality
 
@@ -12,7 +12,7 @@ Feature: Log in modal functionality
     And I click on the log in modal confirmation button
     Then I see a welcome message
 
-  @known_bug @Bug
+  @known_bug @bug
 #    Expected result: "Incorrect username or password."
 #    Actual result: "User does not exist."
   Scenario: Validate an unsuccessful log in - invalid credentials

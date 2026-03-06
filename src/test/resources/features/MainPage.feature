@@ -1,4 +1,4 @@
-@mainPage
+@ui @mainPage
 
 Feature: Main page functionality
 
