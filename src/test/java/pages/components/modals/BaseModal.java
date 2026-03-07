@@ -1,4 +1,4 @@
-package pages.modals;
+package pages.components.modals;
 
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
