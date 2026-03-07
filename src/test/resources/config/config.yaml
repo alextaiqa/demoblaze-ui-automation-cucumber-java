@@ -1,4 +1,6 @@
 browserChrome: "chrome"
 browserFirefox: "firefox"
+headless: "false"
+baseUrl: "https://demoblaze.com/index.html"
 explicit.regular.wait: 10
 explicit.alert.wait: 2
