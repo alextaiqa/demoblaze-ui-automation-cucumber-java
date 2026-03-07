@@ -1,7 +1,7 @@
-package steps.modals;
+package steps.components.modals;
 
 import io.cucumber.java.en.Then;
-import pages.modals.ContactModal;
+import pages.components.modals.ContactModal;
 import steps.BaseSteps;
 
 import static org.testng.Assert.*;
