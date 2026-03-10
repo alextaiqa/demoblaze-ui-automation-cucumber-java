@@ -74,7 +74,6 @@
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -88,5 +87,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
