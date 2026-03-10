@@ -8,6 +8,8 @@ import io.cucumber.java.Scenario;
 import factory.DriverFactory;
 import org.openqa.selenium.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.DriverUtils;
 import utils.ScreenshotUtils;
 
@@ -18,6 +20,7 @@ public class Hooks {
     private final DriverFactory driverFactory;
     private final DriverUtils driverUtils;
     private final ScreenshotUtils screenshotUtils;
+    private final Logger log;
 
     public Hooks(TestContext testContext, DriverFactory driverFactory, DriverUtils driverUtils,
                  ScreenshotUtils screenshotUtils) {
@@ -25,6 +28,7 @@ public class Hooks {
         this.driverFactory = driverFactory;
         this.driverUtils = driverUtils;
         this.screenshotUtils = screenshotUtils;
+        this.log = LoggerFactory.getLogger(this.getClass());
     }
 
     @Before
@@ -37,13 +41,15 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) { //Cucumber passes the currently running scenario
         if (scenario.isFailed()) {
+            log.error("Scenario failed: {}", scenario.getName());
             try {
-                System.out.println("Scenario failed: " + scenario.getName());
-                handleAlertIfPresent();
+                handleAlertIfPresent(); //a screenshot cannot be taken if an alert is present
                 screenshotUtils.takeAScreenshot(scenario);
             } catch (Exception e) {
-                System.out.println("Exception: " + e.getMessage());
+                log.error("Hooks - teardown - error while taking a screenshot", e);
             }
+        } else {
+            log.info("Scenario passed: {}", scenario.getName());
         }
         quitDriver();
     }
