@@ -72,8 +72,21 @@
             <artifactId>snakeyaml</artifactId>
             <version>2.5</version>
         </dependency>
-        <!-- Things to possibly add:
-              - commons io for file input/output-->
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+                <configuration>
+                    <parallel>tests</parallel> <!-- run tests in parallel -->
+                    <threadCount>2</threadCount> <!-- max 2 tests at the same time -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
