@@ -13,14 +13,15 @@ public class DriverFactory {
 
         Config config = new Config();
 
-        String browser = System.getProperty("browser", "chrome"); // config.getBrowser()
+        String browser = System.getProperty("browser", config.getChromeBrowser()); //
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", String.valueOf(config.isHeadless())));
 
         switch (browser.toLowerCase()) {
 
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
 
-                if (config.isHeadless()) {
+                if (headless) {
                     chromeOptions.addArguments("--headless=new");
                 }
                 chromeOptions.addArguments("--start-maximized");
@@ -29,7 +30,7 @@ public class DriverFactory {
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
 
-                if (config.isHeadless()) {
+                if (headless) {
                     firefoxOptions.addArguments("--headless");
                 }
                 WebDriver driver = new FirefoxDriver(firefoxOptions);

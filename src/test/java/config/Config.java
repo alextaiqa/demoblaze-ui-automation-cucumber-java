@@ -11,7 +11,7 @@ public class Config {
         this.data = new TestData("config/config.yaml");
     }
 
-    public String getBrowser() {
+    public String getChromeBrowser() {
         return data.get("browserChrome");
     }
 
