@@ -6,10 +6,12 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import factory.DriverFactory;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.BeforeClass;
 import utils.DriverUtils;
 import utils.ScreenshotUtils;
 
@@ -29,6 +31,14 @@ public class Hooks {
         this.driverUtils = driverUtils;
         this.screenshotUtils = screenshotUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
+    }
+
+    @BeforeClass
+    public void setBrowserLabel() {
+        // Get browser from system property
+        String browser = System.getProperty("browser", "chrome");
+        // Add it as an Allure label
+        Allure.label("browser", browser);
     }
 
     @Before
