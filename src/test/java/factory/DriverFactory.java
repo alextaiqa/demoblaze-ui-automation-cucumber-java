@@ -13,7 +13,7 @@ public class DriverFactory {
 
         Config config = new Config();
 
-        String browser = System.getProperty("browser", config.getBrowser());
+        String browser = System.getProperty("browser"); // config.getBrowser()
 
         switch (browser.toLowerCase()) {
 
