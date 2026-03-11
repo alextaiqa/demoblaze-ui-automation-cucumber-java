@@ -10,7 +10,8 @@ import org.testng.annotations.DataProvider;
         tags = "@navBar and not @bug",
         plugin = {"pretty",
                 "html:target/cucumber-navBar.html",
-                "json:target/cucumber-navBar.json"
+                "json:target/cucumber-navBar.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }, monochrome = true
 )
 

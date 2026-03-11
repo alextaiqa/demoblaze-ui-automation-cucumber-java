@@ -10,7 +10,8 @@ import org.testng.annotations.DataProvider;
         tags = "@ui and not @bug",
         plugin = {"pretty",
                 "html:target/cucumber-ui.html",
-                "json:target/cucumber-ui.json"
+                "json:target/cucumber-ui.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }, monochrome = true //provides cleaner logs
 )
 
