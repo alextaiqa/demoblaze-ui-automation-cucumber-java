@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <!--parallel="methods" - cucumber scenarios, parallel="classes" - runner classes, parallel="tests" - test blocks-->
-<suite name="Cucumber Suite" parallel="classes" thread-count="2" data-provider-thread-count="2">
+<!--thread-count="2" ignored in cucumber +testNG; works in pure testNG-->
+<suite name="Cucumber Suite" parallel="tests" data-provider-thread-count="2">
     <test name="UI Tests">
         <classes>
             <class name="runners.UIRunnerTest"/>
