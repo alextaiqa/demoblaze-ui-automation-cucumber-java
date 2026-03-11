@@ -6,6 +6,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import factory.DriverFactory;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 
 import org.slf4j.Logger;
@@ -32,7 +33,14 @@ public class Hooks {
     }
 
     @Before
-    public void setup() {
+    public void setup(Scenario scenario) {
+        String browser = System.getProperty("browser", "chrome");
+
+        Allure.getLifecycle().updateTestCase(testResult -> {
+            testResult.setName("[" + browser + "] " + scenario.getName());
+        });
+
+
         WebDriver driver = driverFactory.createDriver();
         DriverManager.setDriver(driver);
         testContext.setDriver(driver);
