@@ -5,10 +5,11 @@
    - Selenium WebDriver
    - Cucumber BDD
    - PicoContainer (Dependency Injection)
+   - TestNG
    - Page Object Model
    - Maven
-   - TestNG
    - AssertJ
+   - Allure reports
 4. <strong>Features</strong>
 5. <strong>Project Structure</strong>
 6. <strong>Architecture Explanation</strong>
