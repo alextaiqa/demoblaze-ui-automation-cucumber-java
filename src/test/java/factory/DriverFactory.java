@@ -1,6 +1,7 @@
 package factory;
 
 import config.Config;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,23 +20,27 @@ public class DriverFactory {
         switch (browser.toLowerCase()) {
 
             case "chrome":
+                WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 
                 if (headless) {
                     chromeOptions.addArguments("--headless=new");
                 }
-                chromeOptions.addArguments("--start-maximized");
-                return new ChromeDriver(chromeOptions);
+                WebDriver chromeDriver = new ChromeDriver(chromeOptions);
+                chromeDriver.manage().window().maximize();
+                return chromeDriver;
 
             case "firefox":
+                WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
 
                 if (headless) {
                     firefoxOptions.addArguments("--headless");
                 }
-                WebDriver driver = new FirefoxDriver(firefoxOptions);
-                driver.manage().window().maximize();
-                return driver;
+
+                WebDriver firefoxDriver = new FirefoxDriver(firefoxOptions);
+                firefoxDriver.manage().window().maximize();
+                return firefoxDriver;
 
             default:
                 throw new RuntimeException("Unsupported browser: " + browser);
