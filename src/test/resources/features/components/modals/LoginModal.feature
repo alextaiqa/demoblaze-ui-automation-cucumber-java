@@ -2,13 +2,13 @@
 
 Feature: Log in modal functionality
 
-#  steps that happen before everything else for all the tests for this feature - a setup of sorts
+#  steps that happen before everything else for all the tests for this feature
   Background: Log in modal is open
     Given I open the main page
     When I click on the nav bar log in link
 
   Scenario: Validate a successful log in - valid credentials
-    And I enter valid credentials
+    And I enter valid login credentials
     And I click on the log in modal confirmation button
     Then I see a welcome message
 
@@ -16,7 +16,7 @@ Feature: Log in modal functionality
 #    Expected result: "Incorrect username or password."
 #    Actual result: "User does not exist."
   Scenario: Validate an unsuccessful log in - invalid credentials
-    And I enter invalid credentials
+    And I enter invalid login credentials
     And I click on the log in modal confirmation button
     Then I see a wrong username or password message
 

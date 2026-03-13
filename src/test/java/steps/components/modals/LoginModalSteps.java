@@ -1,4 +1,6 @@
 package steps.components.modals;
+
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.modals.LoginModal;
@@ -16,14 +18,14 @@ public class LoginModalSteps extends BaseSteps {
         this.logInModal = logInModal;
     }
 
-    @And("I enter valid credentials")
-    public void iEnterValidCredentials() {
+    @And("I enter valid login credentials")
+    public void iEnterValidLoginCredentials() {
         logInModal.enterACorrectUsername(data.get("correctUsername"));
         logInModal.enterACorrectPassword(data.get("correctPassword"));
     }
 
-    @And("I enter invalid credentials")
-    public void iEnterInvalidCredentials() {
+    @And("I enter invalid login credentials")
+    public void iEnterInvalidLoginCredentials() {
         logInModal.enterAnIncorrectUsername(data.get("incorrectUsername"));
         logInModal.enterAnIncorrectPassword(data.get("incorrectPassword"));
     }
