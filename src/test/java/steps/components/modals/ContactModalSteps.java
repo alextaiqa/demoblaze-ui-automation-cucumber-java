@@ -1,6 +1,8 @@
 package steps.components.modals;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.components.modals.ContactModal;
 import steps.BaseSteps;
 
@@ -27,5 +29,47 @@ public class ContactModalSteps extends BaseSteps {
         String actualHeader = contactModal.getHeaderText();
         String expectedHeader = data.get("contactModalHeader");
         assertEquals(actualHeader, expectedHeader, "The 'Contact' modal has an incorrect header");
+    }
+
+    @And("I enter a valid contact email")
+    public void iEnterAValidContactEmail() {
+        contactModal.enterAValidEmail(data.get("validContactEmail"));
+    }
+
+    @And("I enter a valid contact name")
+    public void iEnterAValidContactName() {
+        contactModal.enterAValidName(data.get("validContactName"));
+    }
+
+    @And("I enter a valid contact message")
+    public void iEnterAValidContactMessage() {
+        contactModal.enterAValidMessage(data.get("validContactMessage"));
+    }
+
+    @When("I click on the contact modal confirmation button")
+    public void iClickOnTheContactModalConfirmationButton() {
+        contactModal.clickOnTheConfirmationButton();
+    }
+
+    @Then("I see a successfully sent contact message")
+    public void iSeeASuccessfullySentContactMessage() {
+        String actualResult = contactModal.getAlertText();
+        String expectedResult = data.get("successfulMessage");
+        assertEquals(actualResult, expectedResult,
+                "Contact modal - valid credentials - successful alert message is not correct");
+
+    }
+
+    @And("I enter an invalid contact email without domain")
+    public void iEnterAnInvalidContactEmailWithoutDomain() {
+        contactModal.enterAnInvalidEmailWithoutDomain(data.get("invalidContactEmailNoDomain"));
+    }
+
+    @Then("I see an invalid email contact message")
+    public void iSeeAnInvalidEmailContactMessage() {
+        String actualResult = contactModal.getAlertText();
+        String expectedResult = data.get("invalidContactEmailNoDomain");
+        assertEquals(actualResult, expectedResult,
+                "Contact modal - invalid email - no domain - incorrect alert message");
     }
 }
