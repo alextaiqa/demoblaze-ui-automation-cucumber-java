@@ -15,6 +15,7 @@ public class NavBar extends BasePage {
     private final By logInButtonID = By.id("login2");
     private final By signUpButtonID = By.id("signin2");
     private final By welcomeMessageID = By.id("nameofuser");
+    private final By signOutButtonID = By.id("nameofuser");
 
     //constructor
     public NavBar(DriverUtils driverUtils) {
@@ -59,6 +60,11 @@ public class NavBar extends BasePage {
     public String getWelcomeMessage() {
         log.info("Getting an actual welcome message for a logged in user");
         return driverUtils.getText(welcomeMessageID);
+    }
+
+    public void clickOnTheLogOutLink() {
+        log.info("Clicking on the 'Log out' button on the nav bar");
+        driverUtils.click(signOutButtonID);
     }
 
     //methods for common behavior
