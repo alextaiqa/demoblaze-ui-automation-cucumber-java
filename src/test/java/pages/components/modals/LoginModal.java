@@ -44,7 +44,7 @@ public class LoginModal extends BaseModal {
     }
 
     public String getAlert() {
-        log.info("Getting a log in modal alert message");
+        log.info("Getting a 'Log in' modal alert message");
         return driverUtils.getAlertText().trim();
     }
 
