@@ -54,8 +54,8 @@ public class NavBarSteps extends BaseSteps {
         navBar.clickOnTheCartButton();
     }
 
-    @Then("I see a welcome message")
-    public void iSeeAWelcomeMessage() {
+    @Then("I see a nav bar welcome message")
+    public void iSeeANavBarWelcomeMessage() {
         String actualResult = navBar.getWelcomeMessage();
         String expectedResult = data.get("logInWelcomeMessage");
         assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
