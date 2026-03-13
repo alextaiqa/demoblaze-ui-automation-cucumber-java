@@ -22,4 +22,11 @@ Feature: Navigational bar functionality
       | link | result               |
       | cart | place order button   |
       | home | categories container |
-      | logo | categories container |
+      | logo | categories container
+
+  Scenario: Verify a user is able to log out
+    And I click on the nav bar log in link
+    And I enter valid login credentials
+    And I see a welcome message
+    And I click on the nav bar log out link
+    Then I see a sign up nav bar link
