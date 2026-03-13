@@ -59,4 +59,9 @@ public class NavBarSteps extends BaseSteps {
         String expectedResult = data.get("logInWelcomeMessage");
         Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
+
+    @And("I click on the nav bar log out link")
+    public void iClickOnTheNavBarLogOutLink() {
+        navBar.clickOnTheLogOutLink();
+    }
 }
