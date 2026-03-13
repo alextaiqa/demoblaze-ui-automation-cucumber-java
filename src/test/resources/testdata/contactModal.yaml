@@ -1,1 +1,6 @@
 contactModalHeader: "New message"
+validContactEmail: "cucumberTestingEmail@gmail.com"
+invalidContactEmailNoDomain: "cucumberTestingEmail"
+validContactName: "cucumberTestingName"
+validContactMessage: "I am a message"
+successfulMessage: "Thanks for the message!!"
