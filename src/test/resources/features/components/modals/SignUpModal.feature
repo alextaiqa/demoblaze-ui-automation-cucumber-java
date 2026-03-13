@@ -1,3 +1,3 @@
 @navBar @signUpModal
 
-Feature:
+Feature: Verify that sign up modal functionality works correctly
