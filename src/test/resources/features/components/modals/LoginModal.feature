@@ -5,7 +5,7 @@ Feature: Log in modal functionality
 #  steps that happen before everything else for all the tests for this feature
   Background: Log in modal is open
     Given I open the main page
-    When I click on the nav bar log in link
+    When I click on the nav bar log in button
 
   Scenario: Validate a successful log in - valid credentials
     And I enter valid login credentials

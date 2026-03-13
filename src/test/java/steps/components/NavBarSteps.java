@@ -3,9 +3,10 @@ package steps.components;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
 import pages.components.NavBar;
 import steps.BaseSteps;
+
+import static org.testng.Assert.*;
 
 public class NavBarSteps extends BaseSteps {
 
@@ -18,50 +19,57 @@ public class NavBarSteps extends BaseSteps {
     }
 
     //steps
-    @And("I click on the nav bar logo link")
-    public void iClickOnTheNavBarLogoLink() {
-        navBar.clickOnTheLogoLink();
+    @And("I click on the nav bar logo button")
+    public void iClickOnTheNavBarLogoButton() {
+        navBar.clickOnTheLogo();
     }
 
-    @And("I click on the nav bar home link")
-    public void iClickOnTheNavBarHomeLink() {
-        navBar.clickOnTheHomeLink();
+    @And("I click on the nav bar home button")
+    public void iClickOnTheNavBarHomeButton() {
+        navBar.clickOnTheHomeButton();
     }
 
-    @When("I click on the nav bar contact link")
-    public void iClickOnTheNavBarContactLink() {
-        navBar.clickOnTheContactLink();
+    @When("I click on the nav bar contact button")
+    public void iClickOnTheNavBarContactButton() {
+        navBar.clickOnTheContactButton();
     }
 
-    @When("I click on the nav bar about us link")
-    public void iClickOnTheNavBarAboutUsLink() {
-        navBar.clickOnTheAboutUsLink();
+    @When("I click on the nav bar about us button")
+    public void iClickOnTheNavBarAboutUsButton() {
+        navBar.clickOnTheAboutUsButton();
     }
 
-    @When("I click on the nav bar log in link")
-    public void iClickOnTheNavBarLogInLink() {
-        navBar.clickOnTheLogInLink();
+    @When("I click on the nav bar log in button")
+    public void iClickOnTheNavBarLogInButton() {
+        navBar.clickOnTheLogInButton();
     }
 
-    @When("I click on the nav bar sign up link")
-    public void iClickOnTheNavBarSignUpLink() {
-        navBar.clickOnTheSignUpLink();
+    @When("I click on the nav bar sign up button")
+    public void iClickOnTheNavBarSignUpButton() {
+        navBar.clickOnTheSignUpButton();
     }
 
-    @And("I click on the nav bar cart link")
-    public void iClickOnTheNavBarCartLink() {
-        navBar.clickOnTheCartLink();
+    @And("I click on the nav bar cart button")
+    public void iClickOnTheNavBarCartButton() {
+        navBar.clickOnTheCartButton();
     }
 
     @Then("I see a welcome message")
     public void iSeeAWelcomeMessage() {
         String actualResult = navBar.getWelcomeMessage();
         String expectedResult = data.get("logInWelcomeMessage");
-        Assert.assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
+        assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
-    @And("I click on the nav bar log out link")
-    public void iClickOnTheNavBarLogOutLink() {
-        navBar.clickOnTheLogOutLink();
+    @And("I click on the nav bar log out button")
+    public void iClickOnTheNavBarLogOutButton() {
+        navBar.clickOnTheLogOutButton();
+    }
+
+    @Then("I see a sign up nav bar button")
+    public void iSeeASignUpNavBarButton() {
+        String actualResult = navBar.getSignUpButtonText().trim();
+        String expectedResult = "Sign up";
+        assertEquals(actualResult, expectedResult, "");
     }
 }

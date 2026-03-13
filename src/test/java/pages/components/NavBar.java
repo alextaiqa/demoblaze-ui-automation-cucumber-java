@@ -15,44 +15,44 @@ public class NavBar extends BasePage {
     private final By logInButtonID = By.id("login2");
     private final By signUpButtonID = By.id("signin2");
     private final By welcomeMessageID = By.id("nameofuser");
-    private final By signOutButtonID = By.id("nameofuser");
+    private final By logOutButtonID = By.id("logout2");
 
     //constructor
     public NavBar(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-    public void clickOnTheLogoLink() {
+    public void clickOnTheLogo() {
         log.info("Clicking on the nav bar logo");
         driverUtils.click(logoID);
     }
 
-    public void clickOnTheHomeLink() {
+    public void clickOnTheHomeButton() {
         log.info("Clicking on the 'Home' button on the nav bar");
         driverUtils.click(homeButtonXPath);
     }
 
-    public void clickOnTheContactLink() {
+    public void clickOnTheContactButton() {
         log.info("Clicking on the 'Contact' button on the nav bar");
         driverUtils.click(contactButtonXPath);
     }
 
-    public void clickOnTheAboutUsLink() {
+    public void clickOnTheAboutUsButton() {
         log.info("Clicking on the 'About us' button on the nav bar");
         driverUtils.click(aboutUsButtonXpath);
     }
 
-    public void clickOnTheCartLink() {
+    public void clickOnTheCartButton() {
         log.info("Clicking on the 'Cart' button on the nav bar");
         driverUtils.click(cartButtonID);
     }
 
-    public void clickOnTheLogInLink() {
+    public void clickOnTheLogInButton() {
         log.info("Clicking on the 'Log in' button on the nav bar");
         driverUtils.click(logInButtonID);
     }
 
-    public void clickOnTheSignUpLink() {
+    public void clickOnTheSignUpButton() {
         log.info("Clicking on the 'Sign up' button on the nav bar");
         driverUtils.click(signUpButtonID);
     }
@@ -62,9 +62,13 @@ public class NavBar extends BasePage {
         return driverUtils.getText(welcomeMessageID);
     }
 
-    public void clickOnTheLogOutLink() {
+    public void clickOnTheLogOutButton() {
         log.info("Clicking on the 'Log out' button on the nav bar");
-        driverUtils.click(signOutButtonID);
+        driverUtils.click(logOutButtonID);
+    }
+
+    public String getSignUpButtonText() {
+        return driverUtils.getText(signUpButtonID);
     }
 
     //methods for common behavior
