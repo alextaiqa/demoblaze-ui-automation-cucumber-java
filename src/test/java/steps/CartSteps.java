@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.CartPage;
 
 import static org.testng.Assert.*;
@@ -29,5 +30,16 @@ public class CartSteps extends BaseSteps {
     @Then("I see a place order button")
     public void iSeeAPlaceOrderButton() {
         assertTrue(cartPage.isPlaceOrderButtonDisplayed(), "'Place Order' button not found");
+    }
+
+    @When("I click on the place order button")
+    public void iClickOnThePlaceOrderButton() {
+        cartPage.clickOnThePlaceOrderButton();
+    }
+
+    @Then("I do not see a place order modal")
+    public void iDoNotSeeAPlaceOrderModal() {
+        assertFalse(cartPage.isPlaceOrderModalDisplayed(),
+                "Clicking on the 'Place Order' button while the cart is empty opens the 'Place Order' modal");
     }
 }
