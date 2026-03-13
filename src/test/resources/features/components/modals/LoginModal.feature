@@ -1,6 +1,6 @@
 @navBar @logInModal
 
-Feature: Log in modal functionality
+Feature: Verify that login modal functionality works correctly
 
 #  steps that happen before everything else for all the tests for this feature
   Background: Log in modal is open
