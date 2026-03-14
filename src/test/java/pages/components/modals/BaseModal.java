@@ -33,4 +33,9 @@ public abstract class BaseModal {
         log.info("Getting the actual header of the {} modal", getModalName());
         return driverUtils.getText(getHeaderLocator());
     }
+
+    public String getAlertText() {
+        log.info("Getting a {} modal alert message", getModalName());
+        return driverUtils.getAlertText().trim();
+    }
 }

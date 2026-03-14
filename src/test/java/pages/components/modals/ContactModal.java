@@ -39,13 +39,12 @@ public class ContactModal extends BaseModal {
         driverUtils.click(contactModalConfirmationButtonCSS);
     }
 
-    public String getAlertText() {
-        log.info("Getting a 'Contact' modal alert message");
-        return driverUtils.getAlertText();
-    }
-
     public void enterAnInvalidEmailWithoutDomain(String data) {
         driverUtils.type(contactModalEmailID, data);
+    }
+
+    public void enterAnInvalidNameWithSpecialCharacters(String data) {
+        driverUtils.type(contactModalNameID, data);
     }
 
     //getters for base methods

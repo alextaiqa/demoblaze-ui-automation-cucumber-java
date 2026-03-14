@@ -43,11 +43,6 @@ public class LoginModal extends BaseModal {
         driverUtils.click(logInButtonCSS);
     }
 
-    public String getAlert() {
-        log.info("Getting a 'Log in' modal alert message");
-        return driverUtils.getAlertText().trim();
-    }
-
     //getters for common methods
     @Override
     protected By getModalContainer() {

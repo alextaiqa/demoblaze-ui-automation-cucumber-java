@@ -56,7 +56,7 @@ public class LoginModalSteps extends BaseSteps {
 
     @Then("I see a wrong username or password login message")
     public void iSeeAWrongUsernameOrPasswordLoginMessage() {
-        String actualAlertMessage = logInModal.getAlert();
+        String actualAlertMessage = logInModal.getAlertText();
         String expectedAlertMessage = data.get("incorrectUsernameOrPasswordAlert");
         assertEquals(actualAlertMessage, expectedAlertMessage,
                 "Login modal - incorrect username or password - alert doesn't have a right message");
@@ -64,7 +64,7 @@ public class LoginModalSteps extends BaseSteps {
 
     @Then("I see a missing username and password login message")
     public void iSeeAMissingUsernameAndPasswordLoginMessage() {
-        String actualAlertMessage = logInModal.getAlert();
+        String actualAlertMessage = logInModal.getAlertText();
         String expectedAlertMessage = data.get("emptyPasswordAndUsernameAlert");
         assertEquals(actualAlertMessage, expectedAlertMessage,
                 "Login modal - wrong alert message for an empty username and password");
