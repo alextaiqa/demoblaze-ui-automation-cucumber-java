@@ -85,4 +85,9 @@ public class ContactModalSteps extends BaseSteps {
         assertEquals(actualResult, expectedResult,
                 "Contact modal - invalid name - special characters - incorrect alert message");
     }
+
+    @And("I enter an invalid contact name with numbers")
+    public void iEnterAnInvalidContactNameWithNumbers() {
+        contactModal.enterAnInvalidNameWithNumbers(data.get("invalidContactNameWithNumbers"));
+    }
 }
