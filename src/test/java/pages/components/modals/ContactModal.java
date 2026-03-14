@@ -40,10 +40,17 @@ public class ContactModal extends BaseModal {
     }
 
     public void enterAnInvalidEmailWithoutDomain(String data) {
+        log.info("Entering an invalid email - with no domain");
         driverUtils.type(contactModalEmailID, data);
     }
 
     public void enterAnInvalidNameWithSpecialCharacters(String data) {
+        log.info("Entering an invalid name - with special characters");
+        driverUtils.type(contactModalNameID, data);
+    }
+
+    public void enterAnInvalidNameWithNumbers(String data) {
+        log.info("Entering an invalid name - with numbers");
         driverUtils.type(contactModalNameID, data);
     }
 
