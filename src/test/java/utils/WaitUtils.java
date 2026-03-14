@@ -38,7 +38,13 @@ public class WaitUtils {
     }
 
     public WebElement getClickableElement(By selector) {
-        return getRegularWait().until(ExpectedConditions.elementToBeClickable(selector));
+        try {
+            return getRegularWait().until(ExpectedConditions.elementToBeClickable(selector));
+        } catch (Exception e) {
+            log.warn("Element with selector '{}' was not clickable. Waited for {} seconds.",
+                    selector, REGULAR_WAIT.getSeconds());
+            return null;
+        }
     }
 
     public WebElement getVisibleElement(By selector) {
@@ -51,7 +57,22 @@ public class WaitUtils {
         }
     }
 
+    public Boolean isElementInvisible(By selector) {
+        try {
+            return getRegularWait().until(ExpectedConditions.invisibilityOfElementLocated(selector));
+        } catch (Exception e) {
+            log.warn("Element with selector '{}' was visible. Waited for {} seconds.",
+                    selector, REGULAR_WAIT.getSeconds());
+            return false;
+        }
+    }
+
     public Alert waitForAlert() {
-        return getAlertWait().until(ExpectedConditions.alertIsPresent());
+        try {
+            return getAlertWait().until(ExpectedConditions.alertIsPresent());
+        } catch (Exception e) {
+            log.warn("No alert found. Waited for {} seconds.", REGULAR_WAIT.getSeconds());
+            return null;
+        }
     }
 }

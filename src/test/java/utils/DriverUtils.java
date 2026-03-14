@@ -48,4 +48,8 @@ public class DriverUtils {
         WebElement element = waitUtils.getVisibleElement(selector);
         return element != null && element.isDisplayed();
     }
+
+    public boolean isElementInvisible(By selector) {
+        return waitUtils.isElementInvisible(selector);
+    }
 }
