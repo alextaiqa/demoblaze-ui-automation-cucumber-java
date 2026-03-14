@@ -6,7 +6,7 @@ import utils.DriverUtils;
 public class ContactModal extends BaseModal {
 
     //selectors
-    private final By contactModalCSS = By.cssSelector("#exampleModal");
+    private final By contactModalID = By.id("exampleModal");
     private final By contactModalHeaderCSS = By.cssSelector("#exampleModalLabel");
     private final By contactModalEmailID = By.id("recipient-email");
     private final By contactModalNameID = By.id("recipient-name");
@@ -64,22 +64,25 @@ public class ContactModal extends BaseModal {
     }
 
     public void enterTwoHundredCharactersIntoTheMessageField() {
+        log.info("Entering 200 characters into the message field");
         String data = "12345678910";
         driverUtils.type(contactModalMessageID, data.repeat(20));
     }
 
     public void clickOnTheClosingButton() {
+        log.info("Clicking on the closing button");
         driverUtils.click(contactModalClosingButtonXPath);
     }
 
     public void clickOnTheClosingXButton() {
+        log.info("Clicking on the closing 'X' button");
         driverUtils.click(contactModalClosingXButtonXPath);
     }
 
     //getters for base methods
     @Override
     protected By getModalContainer() {
-        return contactModalCSS;
+        return contactModalID;
     }
 
     @Override
