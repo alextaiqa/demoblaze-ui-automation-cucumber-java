@@ -1,7 +1,11 @@
+#username
 correctUsername: "cucumberTesting"
-correctPassword: "cucumberTestingPassword"
 incorrectUsername: "someUsername12345"
+#password
+correctPassword: "cucumberTestingPassword"
 incorrectPassword: "somePassword12345"
+#alert message
 incorrectUsernameOrPasswordAlert: "Incorrect username or password."
 emptyPasswordAndUsernameAlert: "Please fill out Username and Password."
+#modal header
 loginModalHeader: "Log in"
