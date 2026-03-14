@@ -29,6 +29,11 @@ public abstract class BaseModal {
         return driverUtils.isElementDisplayed(getModalContainer());
     }
 
+    public boolean isNotDisplayed() {
+        log.info("Checking if the {} modal is not displayed", getModalName());
+        return driverUtils.isElementInvisible(getModalContainer());
+    }
+
     public String getHeaderText() {
         log.info("Getting the actual header of the {} modal", getModalName());
         return driverUtils.getText(getHeaderLocator());
