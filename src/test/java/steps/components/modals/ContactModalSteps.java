@@ -90,4 +90,37 @@ public class ContactModalSteps extends BaseSteps {
     public void iEnterAnInvalidContactNameWithNumbers() {
         contactModal.enterAnInvalidNameWithNumbers(data.get("invalidContactNameWithNumbers"));
     }
+
+    @And("I enter an invalid contact email with incorrect domain")
+    public void iEnterAnInvalidContactEmailWithIncorrectDomain() {
+        contactModal.enterAnInvalidEmailWithIncorrectDomain(data.get("invalidContactEmailWithIncorrectDomain"));
+    }
+
+    @And("I enter two hundred characters into the message field of the contact modal")
+    public void iEnterTwoHundredCharactersIntoTheMessageFieldOfTheContactModal() {
+        contactModal.enterTwoHundredCharactersIntoTheMessageField();
+    }
+
+    @Then("I see a message field has too many characters contact message")
+    public void iSeeAMessageFieldHasTooManyCharactersContactMessage() {
+        String actualResult = contactModal.getAlertText();
+        String expectedResult = data.get("messageBoundaryAlert");
+        assertEquals(actualResult, expectedResult,
+                "Contact modal - message field - boundary testing - too many characters");
+    }
+
+    @When("I click on the contact modal closing button")
+    public void iClickOnTheContactModalClosingButton() {
+        contactModal.clickOnTheClosingButton();
+    }
+
+    @When("I click on the contact modal closing X button")
+    public void iClickOnTheContactModalClosingXButton() {
+        contactModal.clickOnTheClosingXButton();
+    }
+
+    @Then("I do not see a contact modal container")
+    public void iDoNotSeeAContactModalContainer() {
+
+    }
 }
