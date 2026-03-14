@@ -12,6 +12,10 @@ public class ContactModal extends BaseModal {
     private final By contactModalNameID = By.id("recipient-name");
     private final By contactModalMessageID = By.id("message-text");
     private final By contactModalConfirmationButtonCSS = By.cssSelector("button[onclick='send()']");
+    private final By contactModalClosingButtonXPath =
+            By.xpath("//div[@id='exampleModal']//button[normalize-space()='Close']");
+    private final By contactModalClosingXButtonXPath =
+            By.xpath("//div[@id='exampleModal']//span[normalize-space()='×']");
 
     //constructor
     public ContactModal(DriverUtils driverUtils) {
@@ -52,6 +56,24 @@ public class ContactModal extends BaseModal {
     public void enterAnInvalidNameWithNumbers(String data) {
         log.info("Entering an invalid name - with numbers");
         driverUtils.type(contactModalNameID, data);
+    }
+
+    public void enterAnInvalidEmailWithIncorrectDomain(String data) {
+        log.info("Entering an invalid email - with incorrect domain");
+        driverUtils.type(contactModalEmailID, data);
+    }
+
+    public void enterTwoHundredCharactersIntoTheMessageField() {
+        String data = "12345678910";
+        driverUtils.type(contactModalMessageID, data.repeat(20));
+    }
+
+    public void clickOnTheClosingButton() {
+        driverUtils.click(contactModalClosingButtonXPath);
+    }
+
+    public void clickOnTheClosingXButton() {
+        driverUtils.click(contactModalClosingXButtonXPath);
     }
 
     //getters for base methods
