@@ -121,6 +121,6 @@ public class ContactModalSteps extends BaseSteps {
 
     @Then("I do not see a contact modal container")
     public void iDoNotSeeAContactModalContainer() {
-
+        assertFalse(contactModal.isDisplayed(), "Contact modal is still displayed");
     }
 }
