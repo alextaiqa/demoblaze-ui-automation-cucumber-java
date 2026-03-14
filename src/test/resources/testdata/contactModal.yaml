@@ -6,6 +6,7 @@ invalidContactEmailNoDomain: "cucumberTestingEmail"
 #name
 validContactName: "cucumberTestingName"
 invalidContactNameWithSpecialCharacters: "*!cucumber&%TestingName?/"
+invalidContactNameWithNumbers: "cucumberTestingName12345"
 #message
 validContactMessage: "I am a message"
 #alert messages
