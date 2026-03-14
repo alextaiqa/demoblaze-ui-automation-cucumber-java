@@ -28,6 +28,6 @@ Feature: Navigational bar functionality
     And I click on the nav bar log in button
     And I enter valid login credentials
     And I click on the log in modal confirmation button
-    Then I see a welcome message
+    Then I see a nav bar welcome message
     And I click on the nav bar log out button
     Then I see a sign up nav bar button
