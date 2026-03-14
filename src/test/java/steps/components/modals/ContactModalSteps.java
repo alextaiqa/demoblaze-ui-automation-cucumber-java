@@ -68,8 +68,21 @@ public class ContactModalSteps extends BaseSteps {
     @Then("I see an invalid email contact message")
     public void iSeeAnInvalidEmailContactMessage() {
         String actualResult = contactModal.getAlertText();
-        String expectedResult = data.get("invalidContactEmailNoDomain");
+        String expectedResult = data.get("invalidEmailAlert");
         assertEquals(actualResult, expectedResult,
                 "Contact modal - invalid email - no domain - incorrect alert message");
+    }
+
+    @And("I enter an invalid contact name with special characters")
+    public void iEnterAnInvalidContactNameWithSpecialCharacters() {
+        contactModal.enterAnInvalidNameWithSpecialCharacters(data.get("invalidContactNameWithSpecialCharacters"));
+    }
+
+    @Then("I see an invalid name contact message")
+    public void iSeeAnInvalidNameContactMessage() {
+        String actualResult = contactModal.getAlertText();
+        String expectedResult = data.get("invalidNameAlert");
+        assertEquals(actualResult, expectedResult,
+                "Contact modal - invalid name - special characters - incorrect alert message");
     }
 }
