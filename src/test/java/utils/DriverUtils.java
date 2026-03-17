@@ -37,6 +37,10 @@ public class DriverUtils {
         return waitUtils.waitForAlert().getText();
     }
 
+    public String getAttribute(By selector, String attr) {
+        return waitUtils.getVisibleElement(selector).getAttribute(attr);
+    }
+
     public void waitForAlertAndAccept() {
         try {
             waitUtils.waitForAlert().accept();
