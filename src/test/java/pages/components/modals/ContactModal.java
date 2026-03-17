@@ -81,7 +81,17 @@ public class ContactModal extends BaseModal {
 
     public boolean isEmailFieldEmpty() {
         log.info("Checking if the email field is empty");
-        return driverUtils.getAttribute(contactModalEmailID, "value").isEmpty();
+        return driverUtils.isAttributeEmpty(contactModalEmailID, "value");
+    }
+
+    public boolean isNameFieldEmpty() {
+        log.info("Checking if the name field is empty");
+        return driverUtils.isAttributeEmpty(contactModalNameID, "value");
+    }
+
+    public boolean isMessageFieldEmpty() {
+        log.info("Checking if the message field is empty");
+        return driverUtils.isAttributeEmpty(contactModalMessageID, "value");
     }
 
     //getters for base methods
