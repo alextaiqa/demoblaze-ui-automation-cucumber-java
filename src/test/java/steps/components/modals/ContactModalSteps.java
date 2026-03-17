@@ -134,5 +134,7 @@ public class ContactModalSteps extends BaseSteps {
     @Then("I see all contact modal fields are empty")
     public void iSeeAllContactModalFieldsAreEmpty() {
         assertTrue(contactModal.isEmailFieldEmpty(), "Contact modal - email field is not empty");
+        assertTrue(contactModal.isNameFieldEmpty(), "Contact modal - name field is not empty");
+        assertTrue(contactModal.isMessageFieldEmpty(), "Contact modal - message field is not empty");
     }
 }
