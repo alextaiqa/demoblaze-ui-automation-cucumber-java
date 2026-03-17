@@ -46,6 +46,13 @@ public class ContactModalSteps extends BaseSteps {
         contactModal.enterAValidMessage(data.get("validContactMessage"));
     }
 
+    @And("I enter valid contact credentials")
+    public void iEnterValidContactCredentials() {
+        iEnterAValidContactEmail();
+        iEnterAValidContactName();
+        iEnterAValidContactMessage();
+    }
+
     @When("I click on the contact modal confirmation button")
     public void iClickOnTheContactModalConfirmationButton() {
         contactModal.clickOnTheConfirmationButton();
@@ -122,5 +129,10 @@ public class ContactModalSteps extends BaseSteps {
     @Then("I do not see a contact modal container")
     public void iDoNotSeeAContactModalContainer() {
         assertTrue(contactModal.isNotDisplayed(), "Contact modal is still displayed");
+    }
+
+    @Then("I see all contact modal fields are empty")
+    public void iSeeAllContactModalFieldsAreEmpty() {
+        assertTrue(contactModal.isEmailFieldEmpty(), "Contact modal - email field is not empty");
     }
 }
