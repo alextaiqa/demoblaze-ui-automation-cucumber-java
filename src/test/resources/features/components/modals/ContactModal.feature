@@ -7,9 +7,7 @@ Feature: Verify the contact modal works correctly
     And I click on the nav bar contact button
 
   Scenario: Verify a message can be sent - valid credentials
-
     And I enter valid contact credentials
-
     When I click on the contact modal confirmation button
     Then I see a successfully sent contact message
 
@@ -26,7 +24,6 @@ Feature: Verify the contact modal works correctly
       | data                  |
       | without domain        |
       | with incorrect domain |
-
 
   @known_bug @bug
 #      Expected: Message cannot be sent. Incorrect name alert message appears
@@ -58,6 +55,7 @@ Feature: Verify the contact modal works correctly
       | closing   |
       | closing X |
 
+  @known_bug @bug
   Scenario: Verify all fields are cleared once the modal is closed
     And I enter valid contact credentials
     And I click on the contact modal closing button
