@@ -41,6 +41,10 @@ public class DriverUtils {
         return waitUtils.getVisibleElement(selector).getAttribute(attr);
     }
 
+    public boolean isAttributeEmpty(By selector, String attr) {
+        return getAttribute(selector, attr).isEmpty();
+    }
+
     public void waitForAlertAndAccept() {
         try {
             waitUtils.waitForAlert().accept();
