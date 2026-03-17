@@ -79,6 +79,11 @@ public class ContactModal extends BaseModal {
         driverUtils.click(contactModalClosingXButtonXPath);
     }
 
+    public boolean isEmailFieldEmpty() {
+        log.info("Checking if the email field is empty");
+        return driverUtils.getAttribute(contactModalEmailID, "value").isEmpty();
+    }
+
     //getters for base methods
     @Override
     protected By getModalContainer() {
