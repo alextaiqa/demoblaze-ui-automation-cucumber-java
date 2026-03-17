@@ -7,9 +7,9 @@ Feature: Verify the contact modal works correctly
     And I click on the nav bar contact button
 
   Scenario: Verify a message can be sent - valid credentials
-    And I enter a valid contact email
-    And I enter a valid contact name
-    And I enter a valid contact message
+
+    And I enter valid contact credentials
+
     When I click on the contact modal confirmation button
     Then I see a successfully sent contact message
 
@@ -57,3 +57,9 @@ Feature: Verify the contact modal works correctly
       | button    |
       | closing   |
       | closing X |
+
+  Scenario: Verify all fields are cleared once the modal is closed
+    And I enter valid contact credentials
+    And I click on the contact modal closing button
+    When I click on the nav bar contact button
+    Then I see all contact modal fields are empty
