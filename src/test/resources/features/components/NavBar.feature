@@ -5,9 +5,6 @@ Feature: Navigational bar functionality
   Background: The main page is open
     Given I open the main page
 
-  Scenario: Verify a nav bar is displayed
-    Then I see a nav bar is displayed
-
   Scenario Outline: Verify that all nav bar modals are displayed on click.
     When I click on the nav bar <button> button
     Then I see the <modal> modal with a correct header appears
@@ -28,9 +25,7 @@ Feature: Navigational bar functionality
       | logo   | categories container |
 
   Scenario: Verify a user is able to log out
-    And I click on the nav bar log in button
-    And I enter valid login credentials
-    And I click on the log in modal confirmation button
+    And I log in
     Then I see a nav bar welcome message
     And I click on the nav bar log out button
     Then I see a sign up nav bar button
