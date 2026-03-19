@@ -77,4 +77,17 @@ public class LoginModalSteps extends BaseSteps {
         String expectedHeader = data.get("loginModalHeader");
         assertEquals(actualHeader, expectedHeader, "The 'Log in' modal has an incorrect header");
     }
+
+    @And("I click on the login modal closing button")
+    public void iClickOnTheLoginModalClosingButton() {
+        logInModal.clickOnTheClosingButton();
+    }
+
+    @Then("I see all login modal fields are empty")
+    public void iSeeAllLoginModalFieldsAreEmpty() {
+        assertTrue(logInModal.isUsernameFieldEmpty(),
+                "'Log in' modal - username field is not cleared after the modal is closed");
+        assertTrue(logInModal.isPasswordFieldEmpty(),
+                "'Log in' modal - password field is not cleared after the modal is closed");
+    }
 }
