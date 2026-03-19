@@ -2,8 +2,7 @@
 
 Feature: Cart page functionality
 
-  @only
-  Scenario:
+  Scenario: Verify the nav bar is displayed
     Given I open the cart page
     Then I see a nav bar is displayed
 
