@@ -31,6 +31,7 @@ public class NavBar {
 
     //methods
     public boolean isDisplayed() {
+        log.info("Checking if the nav bar is displayed");
         return driverUtils.isElementDisplayed(navBarCSS);
     }
 
@@ -80,6 +81,7 @@ public class NavBar {
     }
 
     public String getSignUpButtonText() {
+        log.info("Getting the 'Sign up' button text");
         return driverUtils.getText(signUpButtonID);
     }
 }
