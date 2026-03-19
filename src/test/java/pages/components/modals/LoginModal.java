@@ -11,6 +11,8 @@ public class LoginModal extends BaseModal {
     private final By usernameCSS = By.cssSelector("#loginusername");
     private final By passwordCSS = By.cssSelector("#loginpassword");
     private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
+    private final By closeButtonXPath =
+            By.xpath("//div[@id='logInModal']//button[normalize-space()='Close']");
 
     //constructor
     public LoginModal(DriverUtils driverUtils) {
@@ -39,8 +41,23 @@ public class LoginModal extends BaseModal {
     }
 
     public void clickOnTheLogInButton() {
-        log.info("Clicking on the log in button inside the 'log in' modal");
+        log.info("Log in modal - clicking on the log in confirmation button");
         driverUtils.click(logInButtonCSS);
+    }
+
+    public void clickOnTheClosingButton() {
+        log.info("Log in modal - clicking on the closing button");
+        driverUtils.click(closeButtonXPath);
+    }
+
+    public boolean isUsernameFieldEmpty() {
+        log.info("Log in modal - checking if the username field is empty");
+        return driverUtils.isAttributeEmpty(usernameCSS, "value");
+    }
+
+    public boolean isPasswordFieldEmpty() {
+        log.info("Log in modal - checking if the password field is empty");
+        return driverUtils.isAttributeEmpty(passwordCSS, "value");
     }
 
     //getters for common methods
