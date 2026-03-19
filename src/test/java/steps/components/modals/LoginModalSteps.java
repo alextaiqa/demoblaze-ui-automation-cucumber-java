@@ -1,5 +1,6 @@
 package steps.components.modals;
 
+import flows.AuthFlow;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.modals.LoginModal;
@@ -11,10 +12,17 @@ import static org.testng.Assert.assertTrue;
 public class LoginModalSteps extends BaseSteps {
 
     private final LoginModal logInModal;
+    private final AuthFlow authFlow;
 
-    public LoginModalSteps(LoginModal logInModal) {
+    public LoginModalSteps(LoginModal logInModal, AuthFlow authFlow) {
         super("testdata/loginModal.yaml");
         this.logInModal = logInModal;
+        this.authFlow = authFlow;
+    }
+
+    @And("I log in")
+    public void iLogIn() {
+        authFlow.login(data.get("correctUsername"), data.get("correctPassword"));
     }
 
     @And("I enter valid login credentials")
