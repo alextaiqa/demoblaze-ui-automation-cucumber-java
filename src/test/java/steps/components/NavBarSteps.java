@@ -70,6 +70,11 @@ public class NavBarSteps extends BaseSteps {
     public void iSeeASignUpNavBarButton() {
         String actualResult = navBar.getSignUpButtonText().trim();
         String expectedResult = "Sign up";
-        assertEquals(actualResult, expectedResult, "");
+        assertEquals(actualResult, expectedResult, "Sign up nav bar button not seen");
+    }
+
+    @And("I see a nav bar is displayed")
+    public void iSeeANavBarIsDisplayed() {
+        assertTrue(navBar.isDisplayed(), "Navigational bar is not displayed");
     }
 }
