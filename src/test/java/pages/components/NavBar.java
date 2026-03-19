@@ -1,12 +1,14 @@
 package pages.components;
 
 import org.openqa.selenium.By;
-import pages.BasePage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.DriverUtils;
 
-public class NavBar extends BasePage {
+public class NavBar {
 
     //selectors
+    private final By navBarCSS = By.cssSelector(".navbar.navbar-toggleable-md.bg-inverse");
     private final By logoID = By.id("nava");
     private final By homeButtonXPath = By.xpath("//div[@id='navbarExample']//a[contains(normalize-space(),'Home')]");
     private final By contactButtonXPath = By.xpath("//a[normalize-space()='Contact']");
@@ -17,9 +19,19 @@ public class NavBar extends BasePage {
     private final By welcomeMessageID = By.id("nameofuser");
     private final By logOutButtonID = By.id("logout2");
 
+    //global variables
+    private final DriverUtils driverUtils;
+    private final Logger log;
+
     //constructor
     public NavBar(DriverUtils driverUtils) {
-        super(driverUtils);
+        this.driverUtils = driverUtils;
+        this.log = LoggerFactory.getLogger(this.getClass());
+    }
+
+    //methods
+    public boolean isDisplayed() {
+        return driverUtils.isElementDisplayed(navBarCSS);
     }
 
     public void clickOnTheLogo() {
@@ -69,11 +81,5 @@ public class NavBar extends BasePage {
 
     public String getSignUpButtonText() {
         return driverUtils.getText(signUpButtonID);
-    }
-
-    //methods for common behavior
-    @Override
-    public String getPageName() {
-        return "'Nav Bar Component'";
     }
 }
