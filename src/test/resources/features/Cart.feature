@@ -2,6 +2,11 @@
 
 Feature: Cart page functionality
 
+  @only
+  Scenario:
+    Given I open the cart page
+    Then I see a nav bar is displayed
+
   @known_bug @bug
 #    Expected title: "Cart"
 #    Actual title: "STORE"
