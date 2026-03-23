@@ -2,6 +2,8 @@ package utils;
 
 import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class TestData {
@@ -19,5 +21,16 @@ public class TestData {
 
     public String get(String key) {
         return String.valueOf(data.get(key));
+    }
+
+    public List<String> getStringList(String key) {
+
+        List<String> result = new ArrayList<>();
+
+        for (Object item : (List<?>) data.get(key)) {
+            result.add(String.valueOf(item));
+        }
+
+        return result;
     }
 }
