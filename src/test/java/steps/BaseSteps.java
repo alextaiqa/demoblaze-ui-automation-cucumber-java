@@ -1,7 +1,6 @@
 package steps;
 
 import pages.BasePage;
-import pages.components.NavBar;
 import utils.TestData;
 
 import static org.testng.Assert.assertEquals;
