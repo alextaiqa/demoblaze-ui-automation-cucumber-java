@@ -2,9 +2,14 @@
 
 Feature: Cart page functionality
 
-  Scenario: Verify the nav bar is displayed
+  Scenario Outline: Verify the nav bar is displayed
     Given I open the cart page
-    Then I see a nav bar is displayed
+    Then I see a <component> is displayed
+    Examples:
+      | component        |
+      | nav bar          |
+      | footnote         |
+      | copyright ribbon |
 
   @known_bug @bug
 #    Expected title: "Cart"
