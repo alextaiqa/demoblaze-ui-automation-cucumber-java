@@ -74,7 +74,15 @@ public class DriverUtils {
         return waitUtils.isElementInvisible(selector);
     }
 
+    public WebElement getVisibleElement(By selector) {
+        return waitUtils.getVisibleElement(selector);
+    }
+
     public List<WebElement> getVisibleElements(By selector) {
         return waitUtils.getVisibleElements(selector);
+    }
+
+    public List<WebElement> getPresentElements(By selector) {
+        return waitUtils.getPresentElements(selector);
     }
 }
