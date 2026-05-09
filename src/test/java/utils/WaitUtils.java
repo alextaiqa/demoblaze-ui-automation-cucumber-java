@@ -71,6 +71,16 @@ public class WaitUtils {
         }
     }
 
+    public List<WebElement> getPresentElements(By selector) {
+        try {
+            return getRegularWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(selector));
+        } catch (TimeoutException e) {
+            log.warn("Elements with a selector '{}' were not present. Waited for {} seconds.",
+                    selector, REGULAR_WAIT.getSeconds());
+            return null;
+        }
+    }
+
     public Boolean isElementInvisible(By selector) {
         try {
             return getRegularWait().until(ExpectedConditions.invisibilityOfElementLocated(selector));
