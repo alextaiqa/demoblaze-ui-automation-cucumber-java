@@ -50,28 +50,61 @@ public class MainPageSteps extends BaseSteps {
         mainPage.clickOnTheMonitorsCategoryButton();
     }
 
-
     @Then("I see no more than nine items in the Default category on the main page")
     public void iSeeNoMoreThanNineItemsInTheDefaultCategoryOnTheMainPage() {
-        assertTrue(mainPage.isDeviceCategorySizeBiggerThanNine(),
+        assertTrue(mainPage.isDeviceCategorySizeGreaterThanNine(),
                 "The 'Default' category has more than 9 items on the page");
     }
 
     @Then("I see no more than nine items in the Phones category on the main page")
     public void iSeeNoMoreThanNineItemsInThePhonesCategoryOnTheMainPage() {
-        assertTrue(mainPage.isDeviceCategorySizeBiggerThanNine(),
+        assertTrue(mainPage.isDeviceCategorySizeGreaterThanNine(),
                 "The 'Phones' category has more than 9 items on the page");
     }
 
     @Then("I see no more than nine items in the Laptops category on the main page")
     public void iSeeNoMoreThanNineItemsInTheLaptopsCategoryOnTheMainPage() {
-        assertTrue(mainPage.isDeviceCategorySizeBiggerThanNine(),
+        assertTrue(mainPage.isDeviceCategorySizeGreaterThanNine(),
                 "The 'Laptops' category has more than 9 items on the page");
     }
 
     @Then("I see no more than nine items in the Monitors category on the main page")
     public void iSeeNoMoreThanNineItemsInTheMonitorsCategoryOnTheMainPage() {
-        assertTrue(mainPage.isDeviceCategorySizeBiggerThanNine(),
+        assertTrue(mainPage.isDeviceCategorySizeGreaterThanNine(),
                 "The 'Monitors' category has more than 9 items on the page");
+    }
+
+    @Then("I see the first image of the preview gallery on the main page")
+    public void iSeeTheFirstImageOfThePreviewGalleryOnTheMainPage() {
+        assertTrue(mainPage.isPreviewGalleryImageDisplayed(1),
+                "The first image of the preview gallery is not displayed");
+    }
+
+    @Then("I see the second image of the preview gallery on the main page")
+    public void iSeeTheSecondImageOfThePreviewGalleryOnTheMainPage() {
+        assertTrue(mainPage.isPreviewGalleryImageDisplayed(2),
+                "The second image of the preview gallery is not displayed");
+    }
+
+    @Then("I see the third image of the preview gallery on the main page")
+    public void iSeeTheThirdImageOfThePreviewGalleryOnTheMainPage() {
+        assertTrue(mainPage.isPreviewGalleryImageDisplayed(3),
+                "The third image of the preview gallery is not displayed");
+    }
+
+    @And("I click on the next button of the preview gallery on the main page")
+    public void iClickOnTheNextButtonOfThePreviewGalleryOnTheMainPage() {
+        mainPage.clickOnTheNextButtonOfThePreviewGallery();
+    }
+
+    @And("I click on the previous button of the preview gallery on the main page")
+    public void iClickOnThePreviousButtonOfThePreviewGalleryOnTheMainPage() {
+        mainPage.clickOnThePreviousButtonOfThePreviewGallery();
+    }
+
+    @Then("I see the item preview gallery has a correct amount of images on the main page")
+    public void iSeeTheItemPreviewGalleryHasACorrectAmountOfImagesOnTheMainPage() {
+        assertEquals(mainPage.itemPreviewGalleryHasACorrectAmountOfImages(), data.get("previewGalleryImagesCount"),
+                "Preview gallery doesn't have a correct amount of images");
     }
 }
