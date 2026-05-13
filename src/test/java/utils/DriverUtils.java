@@ -3,8 +3,11 @@ package utils;
 import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +19,20 @@ public class DriverUtils {
         this.waitUtils = waitUtils;
     }
 
+    private WebDriver getDriver() {
+        WebDriver driver = DriverManager.getDriver();
+        if (driver == null) {
+            throw new IllegalStateException("DriverUtils - Constructor - Driver is null");
+        }
+        return driver;
+    }
+
     public void openPage(String url) {
-        DriverManager.getDriver().get(url); // work on this - waiting for page to load
+        getDriver().get(url); // work on this - waiting for page to load
     }
 
     public String getTitle() {
-        return DriverManager.getDriver().getTitle();
+        return getDriver().getTitle();
     }
 
     public void click(By selector) {
@@ -84,5 +95,15 @@ public class DriverUtils {
 
     public List<WebElement> getPresentElements(By selector) {
         return waitUtils.getPresentElements(selector);
+    }
+
+    public String getCSSValue(By selector, String keyword) {
+        return waitUtils.getVisibleElement(selector).getCssValue(keyword);
+    }
+
+    public void hoverOver(By selector) {
+        WebElement element = waitUtils.getVisibleElement(selector);
+        Actions action = new Actions(getDriver());
+        action.moveToElement(element).perform();
     }
 }
