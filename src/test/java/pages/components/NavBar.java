@@ -84,4 +84,14 @@ public class NavBar {
         log.info("Getting the 'Sign up' button text");
         return driverUtils.getText(signUpButtonID);
     }
+
+    public void hoverOverTheHomeButton() {
+        log.info("Hovering over the 'Home' nav bar button");
+        driverUtils.hoverOver(homeButtonXPath);
+    }
+
+    public String getHomeButtonColor() {
+        log.info("Getting the color of the home button");
+        return driverUtils.getCSSValue(homeButtonXPath, "color");
+    }
 }
