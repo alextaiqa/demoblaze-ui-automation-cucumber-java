@@ -5,8 +5,28 @@ import utils.DriverUtils;
 
 public class MainPage extends BasePage {
 
-    //selectors
+// =======================
+// SELECTORS
+// =======================
 
+    // PREVIEW GALLERY / CAROUSEL
+    /*
+     * Sidenote:
+     * - Only one image is "active" at a time.
+     * - After clicking on the next/previous button, the carousel transitions asynchronously - needs time.
+     * - The "active" class/state is updated only after the transition is completed.
+     *
+     * The selectors in this category depend on the "active" state to determine the currently visible slide.
+     * Removing or changing these selectors or carousel-related methods would break navigation assertions.
+     */
+    @SuppressWarnings("FieldCanBeLocal")
+    private final String PREVIEW_GALLERY_SLIDE_BY_INDEX_ACTIVE_XPATH =
+            "(//div[contains(@class,'carousel-item')])[%s][contains(@class,'active')]";
+    private final By previewGalleryImagesContainerXPath = By.xpath("//div[@id='contcar']//descendant::img");
+    private final By previousButtonOfThePreviewGalleryCSS = By.cssSelector(".carousel-control-prev");
+    private final By nextButtonOfThePreviewGalleryCSS = By.cssSelector(".carousel-control-next");
+
+    // DEVICE CATEGORIES
     private final By categoriesContainerID = By.id("contcont");
     private final By defaultCategoryButtonID = By.id("cat");
     private final By phonesCategoryButtonXPath =
@@ -18,12 +38,41 @@ public class MainPage extends BasePage {
     private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
 
 
-    //constructor
+    // =======================
+// CONSTRUCTOR
+// =======================
     public MainPage(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-    //methods
+// =======================
+// METHODS
+// =======================
+
+    // PREVIEW GALLERY / CAROUSEL
+    public boolean isPreviewGalleryImageDisplayed(int slideIndex) {
+        //A selector to validate that the expected slide is "active" based on its position in the carousel
+        By activeSlideImage = By.xpath(String.format(PREVIEW_GALLERY_SLIDE_BY_INDEX_ACTIVE_XPATH, slideIndex));
+
+        log.info("Checking if the '{}' image of the preview gallery is displayed", slideIndex);
+        return driverUtils.isElementDisplayed(activeSlideImage);
+    }
+
+    public void clickOnTheNextButtonOfThePreviewGallery() {
+        driverUtils.click(nextButtonOfThePreviewGalleryCSS);
+    }
+
+    public void clickOnThePreviousButtonOfThePreviewGallery() {
+        driverUtils.click(previousButtonOfThePreviewGalleryCSS);
+    }
+
+
+    public String itemPreviewGalleryHasACorrectAmountOfImages() {
+        log.info("Checking if a preview gallery has a correct amount of images");
+        return String.valueOf(driverUtils.getPresentElements(previewGalleryImagesContainerXPath).size());
+    }
+
+    // DEVICE CATEGORIES
     public boolean isCategoriesContainerDisplayed() {
         log.info("Checking if the 'Categories' container is displayed");
         return driverUtils.isElementDisplayed(categoriesContainerID);
@@ -49,12 +98,14 @@ public class MainPage extends BasePage {
         driverUtils.click(monitorsCategoryButtonXPath);
     }
 
-    public boolean isDeviceCategorySizeBiggerThanNine() {
+    public boolean isDeviceCategorySizeGreaterThanNine() {
         log.info("Checking if the category has more than 9 items");
         return driverUtils.getVisibleElements(deviceCategoryTableXPath).size() <= 9;
     }
 
-    //methods for common behavior
+    // =======================
+// METHODS FOR COMMON BEHAVIOR
+// =======================
     @Override
     public String getPageName() {
         return "'Main'";
