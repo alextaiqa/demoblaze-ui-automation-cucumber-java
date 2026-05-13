@@ -77,4 +77,16 @@ public class NavBarSteps extends BaseSteps {
     public void iSeeANavBarIsDisplayed() {
         assertTrue(navBar.isDisplayed(), "Navigational bar is not displayed");
     }
+
+    @And("I hover over the nav bar home button")
+    public void iHoverOverTheNavBarHomeButton() {
+        navBar.hoverOverTheHomeButton();
+    }
+
+    @Then("I see a nav bar home button changed color")
+    public void iSeeANavBarHomeButtonChangeColor() {
+        String expectedColor = data.get("colorOnHover");
+        String actualColor = navBar.getHomeButtonColor();
+        assertEquals(actualColor, expectedColor, "Nav bar - home button - color change on hover is incorrect");
+    }
 }
