@@ -29,3 +29,16 @@ Feature: Navigational bar functionality
     Then I see a nav bar welcome message
     And I click on the nav bar log out button
     Then I see a sign up nav bar button
+
+  @only
+  Scenario Outline: Verify that all navbar buttons change color on hover
+    And I hover over the nav bar <button> button
+    Then I see a nav bar <button> button changed color
+    Examples:
+      | button | button |
+      | home   | home   |
+#      | contact  | contact  |
+#      | about us | about us |
+#      | cart     | cart     |
+#      | log in   | log in   |
+#      | sign up  | sign up  |
