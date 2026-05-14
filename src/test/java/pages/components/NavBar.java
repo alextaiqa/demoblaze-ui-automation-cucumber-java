@@ -1,6 +1,7 @@
 package pages.components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.DriverUtils;
@@ -85,13 +86,28 @@ public class NavBar {
         return driverUtils.getText(signUpButtonID);
     }
 
-    public void hoverOverTheHomeButton() {
-        log.info("Hovering over the 'Home' nav bar button");
-        driverUtils.hoverOver(homeButtonXPath);
+
+    public void hoverOverTheButton(String button) {
+        log.info("Hovering over the '{}' nav bar button", button);
+        driverUtils.hoverOver(getButtonSelector(button)); //!!!!
     }
 
-    public String getHomeButtonColor() {
-        log.info("Getting the color of the home button");
-        return driverUtils.getCSSValue(homeButtonXPath, "color");
+    public String getButtonColor(String button) {
+        log.info("Getting the color of the '{}' button", button);
+        return driverUtils.getCSSValue(getButtonSelector(button), "color");
+    }
+
+    //helpers
+    public By getButtonSelector(String button) {
+        button = button.toLowerCase();
+        return switch (button) {
+            case "home" -> homeButtonXPath;
+            case "contact" -> contactButtonXPath;
+            case "about us" -> aboutUsButtonXpath;
+            case "cart" -> cartButtonID;
+            case "log in" -> logInButtonID;
+            case "sign up" -> signUpButtonID;
+            default -> throw new NoSuchElementException("Unexpected value: " + button);
+        };
     }
 }
