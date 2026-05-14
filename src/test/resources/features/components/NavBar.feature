@@ -32,13 +32,14 @@ Feature: Navigational bar functionality
 
   @only
   Scenario Outline: Verify that all navbar buttons change color on hover
-    And I hover over the nav bar <button> button
-    Then I see a nav bar <button> button changed color
+    And I see the nav bar "<button>" button is displayed in default color
+    And I hover over the nav bar "<button>" button
+    Then I see a nav bar "<button>" button changed color
     Examples:
-      | button | button |
-      | home   | home   |
-#      | contact  | contact  |
-#      | about us | about us |
-#      | cart     | cart     |
-#      | log in   | log in   |
-#      | sign up  | sign up  |
+      | button   |
+      | home     |
+      | contact  |
+      | about us |
+      | cart     |
+      | log in   |
+      | sign up  |
