@@ -1,5 +1,6 @@
 package steps.components;
 
+import context.TestContext;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,11 +12,13 @@ import static org.testng.Assert.*;
 public class NavBarSteps extends BaseSteps {
 
     private final NavBar navBar;
+    private final TestContext testContext;
 
     //constructor
-    public NavBarSteps(NavBar navBar) {
+    public NavBarSteps(NavBar navBar, TestContext testContext) {
         super("testdata/navBar.yaml");
         this.navBar = navBar;
+        this.testContext = testContext;
     }
 
     //steps
@@ -78,15 +81,22 @@ public class NavBarSteps extends BaseSteps {
         assertTrue(navBar.isDisplayed(), "Navigational bar is not displayed");
     }
 
-    @And("I hover over the nav bar home button")
-    public void iHoverOverTheNavBarHomeButton() {
-        navBar.hoverOverTheHomeButton();
+    @And("I see the nav bar {string} button is displayed in default color")
+    public void iSeeTheNavBarButtonIsDisplayedInDefaultColor(String button) {
+        String color = navBar.getButtonColor(button);
+        testContext.set("color", color);
     }
 
-    @Then("I see a nav bar home button changed color")
-    public void iSeeANavBarHomeButtonChangeColor() {
-        String expectedColor = data.get("colorOnHover");
-        String actualColor = navBar.getHomeButtonColor();
-        assertEquals(actualColor, expectedColor, "Nav bar - home button - color change on hover is incorrect");
+    @And("I hover over the nav bar {string} button")
+    public void iHoverOverTheNavBarButton(String button) {
+        navBar.hoverOverTheButton(button);
+    }
+
+    @Then("I see a nav bar {string} button changed color")
+    public void iSeeANavBarButtonChangedColor(String button) {
+        String colorBeforeHover = (String) testContext.get("color");
+        String colorAfterHover = navBar.getButtonColor(button);
+        assertNotEquals(colorAfterHover, colorBeforeHover,
+                "Nav bar - " + button + " button - color change on hover is incorrect");
     }
 }
