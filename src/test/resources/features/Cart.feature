@@ -23,6 +23,6 @@ Feature: Cart page functionality
 #      Actual: 'Place Order' modal opens while the cart is empty
   Scenario:
     Given I open the main page
-    And I click on the nav bar cart button
+    And I click on the nav bar "cart" button
     When I click on the place order button
     Then I do not see a place order modal

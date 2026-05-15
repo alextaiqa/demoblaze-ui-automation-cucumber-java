@@ -4,7 +4,7 @@ Feature: Verify the contact modal works correctly
 
   Background: Contact modal is open
     Given I open the main page
-    And I click on the nav bar contact button
+    And I click on the nav bar "contact" button
 
   Scenario: Verify a message can be sent - valid credentials
     And I enter valid contact credentials
@@ -59,5 +59,5 @@ Feature: Verify the contact modal works correctly
   Scenario: Verify all fields are cleared once the modal is closed
     And I enter valid contact credentials
     And I click on the contact modal closing button
-    When I click on the nav bar contact button
+    When I click on the nav bar "contact" button
     Then I see all contact modal fields are empty

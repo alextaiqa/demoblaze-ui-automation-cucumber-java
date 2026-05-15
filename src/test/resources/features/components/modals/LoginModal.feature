@@ -5,7 +5,7 @@ Feature: Verify that login modal functionality works correctly
 #  steps that happen before everything else for all the tests for this feature
   Background: Log in modal is open
     Given I open the main page
-    When I click on the nav bar log in button
+    When I click on the nav bar "log in" button
 
   Scenario: Validate a successful log in - valid credentials
     And I enter valid login credentials
@@ -28,5 +28,5 @@ Feature: Verify that login modal functionality works correctly
   Scenario: Verify that all fields get cleared when the modal is closed
     And I enter valid login credentials
     And I click on the login modal closing button
-    When I click on the nav bar log in button
+    When I click on the nav bar "log in" button
     Then I see all login modal fields are empty

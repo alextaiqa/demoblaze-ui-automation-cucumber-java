@@ -5,8 +5,9 @@ Feature: Navigational bar functionality
   Background: The main page is open
     Given I open the main page
 
+  @only
   Scenario Outline: Verify that all nav bar modals are displayed on click.
-    When I click on the nav bar <button> button
+    When I click on the nav bar "<button>" button
     Then I see the <modal> modal with a correct header appears
     Examples:
       | button   | modal    |
@@ -16,7 +17,7 @@ Feature: Navigational bar functionality
       | sign up  | sign up  |
 
   Scenario Outline: Verifying that all nav bar links redirect correctly
-    When I click on the nav bar <button> button
+    When I click on the nav bar "<button>" button
     Then I see a <result>
     Examples:
       | button | result               |
@@ -27,10 +28,9 @@ Feature: Navigational bar functionality
   Scenario: Verify a user is able to log out
     And I log in
     Then I see a nav bar welcome message
-    And I click on the nav bar log out button
+    And I click on the nav bar "log out" button
     Then I see a sign up nav bar button
 
-  @only
   Scenario Outline: Verify that all navbar buttons change color on hover
     And I see the nav bar "<button>" button is displayed in default color
     And I hover over the nav bar "<button>" button
