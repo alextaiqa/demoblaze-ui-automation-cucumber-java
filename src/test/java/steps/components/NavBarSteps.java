@@ -14,47 +14,21 @@ public class NavBarSteps extends BaseSteps {
     private final NavBar navBar;
     private final TestContext testContext;
 
-    //constructor
+    // =======================
+// CONSTRUCTOR
+// =======================
     public NavBarSteps(NavBar navBar, TestContext testContext) {
         super("testdata/navBar.yaml");
         this.navBar = navBar;
         this.testContext = testContext;
     }
 
-    //steps
-    @And("I click on the nav bar logo button")
-    public void iClickOnTheNavBarLogoButton() {
-        navBar.clickOnTheLogo();
-    }
-
-    @And("I click on the nav bar home button")
-    public void iClickOnTheNavBarHomeButton() {
-        navBar.clickOnTheHomeButton();
-    }
-
-    @When("I click on the nav bar contact button")
-    public void iClickOnTheNavBarContactButton() {
-        navBar.clickOnTheContactButton();
-    }
-
-    @When("I click on the nav bar about us button")
-    public void iClickOnTheNavBarAboutUsButton() {
-        navBar.clickOnTheAboutUsButton();
-    }
-
-    @When("I click on the nav bar log in button")
-    public void iClickOnTheNavBarLogInButton() {
-        navBar.clickOnTheLogInButton();
-    }
-
-    @When("I click on the nav bar sign up button")
-    public void iClickOnTheNavBarSignUpButton() {
-        navBar.clickOnTheSignUpButton();
-    }
-
-    @And("I click on the nav bar cart button")
-    public void iClickOnTheNavBarCartButton() {
-        navBar.clickOnTheCartButton();
+    // =======================
+// STEPS
+// =======================
+    @And("I click on the nav bar {string} button")
+    public void iClickOnTheButton(String button) {
+        navBar.clickOnTheButton(button);
     }
 
     @Then("I see a nav bar welcome message")
@@ -62,11 +36,6 @@ public class NavBarSteps extends BaseSteps {
         String actualResult = navBar.getWelcomeMessage();
         String expectedResult = data.get("logInWelcomeMessage");
         assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
-    }
-
-    @And("I click on the nav bar log out button")
-    public void iClickOnTheNavBarLogOutButton() {
-        navBar.clickOnTheLogOutButton();
     }
 
     @Then("I see a sign up nav bar button")
