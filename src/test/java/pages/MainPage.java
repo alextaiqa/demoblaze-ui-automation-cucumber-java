@@ -59,13 +59,14 @@ public class MainPage extends BasePage {
     }
 
     public void clickOnTheNextButtonOfThePreviewGallery() {
+        log.info("Clicking on the 'next' button of the preview gallery");
         driverUtils.click(nextButtonOfThePreviewGalleryCSS);
     }
 
     public void clickOnThePreviousButtonOfThePreviewGallery() {
+        log.info("Clicking on the 'previous' button of the preview gallery");
         driverUtils.click(previousButtonOfThePreviewGalleryCSS);
     }
-
 
     public String itemPreviewGalleryHasACorrectAmountOfImages() {
         log.info("Checking if a preview gallery has a correct amount of images");
