@@ -7,23 +7,32 @@ import utils.DriverUtils;
 
 public abstract class BaseModal {
 
+    // =======================
+// GLOBAL VARIABLES
+// =======================
     protected final DriverUtils driverUtils;
     protected final Logger log;
 
-    //constructor
+    // =======================
+// CONSTRUCTOR
+// =======================
     public BaseModal(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
     }
 
-    //getters for common methods
+    // =======================
+// GETTERS FOR COMMON METHODS
+// =======================
     protected abstract By getModalContainer();
 
     protected abstract By getHeaderLocator();
 
     protected abstract String getModalName(); //for logs
 
-    //common methods
+    // =======================
+// METHODS
+// =======================
     public boolean isDisplayed() {
         log.info("Checking if the {} modal is displayed", getModalName());
         return driverUtils.isElementDisplayed(getModalContainer());

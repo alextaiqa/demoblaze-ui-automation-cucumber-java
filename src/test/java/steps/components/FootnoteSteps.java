@@ -4,21 +4,29 @@ import io.cucumber.java.en.Then;
 import pages.components.Footnote;
 import utils.TestData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.*;
 
 public class FootnoteSteps {
 
+    // =======================
+// GLOBAL VARIABLES
+// =======================
     private final Footnote footnote;
     private final TestData data;
 
+    // =======================
+// CONSTRUCTOR
+// =======================
     public FootnoteSteps(Footnote footnote) {
         this.footnote = footnote;
         this.data = new TestData("testdata/footnote.yaml");
     }
 
+    // =======================
+// METHODS
+// =======================
     @Then("I see a footnote is displayed")
     public void iSeeAFootnoteIsDisplayed() {
         assertTrue(footnote.isDisplayed(), "Footnote is not displayed");

@@ -11,15 +11,24 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginModalSteps extends BaseSteps {
 
+    // =======================
+// GLOBAL VARIABLES
+// =======================
     private final LoginModal logInModal;
     private final AuthFlow authFlow;
 
+    // =======================
+// CONSTRUCTOR
+// =======================
     public LoginModalSteps(LoginModal logInModal, AuthFlow authFlow) {
         super("testdata/loginModal.yaml");
         this.logInModal = logInModal;
         this.authFlow = authFlow;
     }
 
+    // =======================
+// METHODS
+// =======================
     @And("I log in")
     public void iLogIn() {
         authFlow.login(data.get("correctUsername"), data.get("correctPassword"));

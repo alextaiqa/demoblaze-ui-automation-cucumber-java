@@ -10,11 +10,17 @@ public class SignUpModalSteps extends BaseSteps {
 
     private final SignUpModal signUpModal;
 
+    // =======================
+// CONSTRUCTOR
+// =======================
     public SignUpModalSteps(SignUpModal signUpModal) {
         super("testdata/signUpModal.yaml");
         this.signUpModal = signUpModal;
     }
 
+    // =======================
+// METHODS
+// =======================
     @Then("I see the sign up modal with a correct header appears")
     public void iSeeTheSignUpModalWithACorrectHeaderAppears() {
         assertTrue(signUpModal.isDisplayed(), "The 'Sign up' modal is not displayed");
