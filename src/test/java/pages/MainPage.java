@@ -1,7 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import utils.DriverUtils;
+
+import java.util.Map;
 
 public class MainPage extends BasePage {
 
@@ -37,6 +40,16 @@ public class MainPage extends BasePage {
             By.xpath("//a[@id='cat']/../a[contains(normalize-space(),'Monitors')]");
     private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
 
+// =======================
+// MAP (RESOLVER)
+// =======================
+
+    private final Map<String, By> deviceCategoriesButtons = Map.of(
+            "default", defaultCategoryButtonID,
+            "phones", phonesCategoryButtonXPath,
+            "laptops", laptopsCategoryButtonXPath,
+            "monitors", monitorsCategoryButtonXPath
+    );
 
     // =======================
 // CONSTRUCTOR
@@ -79,29 +92,26 @@ public class MainPage extends BasePage {
         return driverUtils.isElementDisplayed(categoriesContainerID);
     }
 
-    public void clickOnTheDefaultCategoryButton() {
-        log.info("Clicking on the 'Default' device category");
-        driverUtils.click(defaultCategoryButtonID);
-    }
-
-    public void clickOnThePhonesCategoryButton() {
-        log.info("Clicking on the 'Phones' device category");
-        driverUtils.click(phonesCategoryButtonXPath);
-    }
-
-    public void clickOnTheLaptopsCategoryButton() {
-        log.info("Clicking on the 'Laptops' device category");
-        driverUtils.click(laptopsCategoryButtonXPath);
-    }
-
-    public void clickOnTheMonitorsCategoryButton() {
-        log.info("Clicking on the 'Monitors' device category");
-        driverUtils.click(monitorsCategoryButtonXPath);
+    public void clickOnTheCategoryButton(String category) {
+        log.info("Clicking on the '{}' device category", category);
+        driverUtils.click(getCategoryButton(category));
     }
 
     public boolean isDeviceCategorySizeGreaterThanNine() {
         log.info("Checking if the category has more than 9 items");
         return driverUtils.getVisibleElements(deviceCategoryTableXPath).size() <= 9;
+    }
+
+    // =======================
+// HELPERS
+// =======================
+    private By getCategoryButton(String category) {
+        category = category.toLowerCase();
+        By selector = deviceCategoriesButtons.get(category);
+        if (selector == null) {
+            throw new NoSuchElementException("No such category found. Category received: " + category);
+        }
+        return selector;
     }
 
     // =======================
