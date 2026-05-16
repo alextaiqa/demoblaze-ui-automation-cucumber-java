@@ -22,12 +22,16 @@ public class MainPage extends BasePage {
      * The selectors in this category depend on the "active" state to determine the currently visible slide.
      * Removing or changing these selectors or carousel-related methods would break navigation assertions.
      */
-    @SuppressWarnings("FieldCanBeLocal")
+    @SuppressWarnings("FieldCanBeLocal") //responsible for multiple images via %s
     private final String PREVIEW_GALLERY_SLIDE_BY_INDEX_ACTIVE_XPATH =
             "(//div[contains(@class,'carousel-item')])[%s][contains(@class,'active')]";
     private final By previewGalleryImagesContainerXPath = By.xpath("//div[@id='contcar']//descendant::img");
     private final By previousButtonOfThePreviewGalleryCSS = By.cssSelector(".carousel-control-prev");
     private final By nextButtonOfThePreviewGalleryCSS = By.cssSelector(".carousel-control-next");
+
+    @SuppressWarnings("FieldCanBeLocal") //responsible for multiple options via %s
+    private final String OPTIONS_OF_THE_PREVIEW_GALLERY = "#carouselExampleIndicators li[data-slide-to='%s']";
+
 
     // DEVICE CATEGORIES
     private final By categoriesContainerID = By.id("contcont");
@@ -84,6 +88,11 @@ public class MainPage extends BasePage {
     public String itemPreviewGalleryHasACorrectAmountOfImages() {
         log.info("Checking if a preview gallery has a correct amount of images");
         return String.valueOf(driverUtils.getPresentElements(previewGalleryImagesContainerXPath).size());
+    }
+
+    public void clickOnTheOptionOfThePreviewGallery(int optionNumber) {
+        By selector = By.cssSelector(String.format(OPTIONS_OF_THE_PREVIEW_GALLERY, optionNumber - 1));
+        driverUtils.click(selector);
     }
 
     // DEVICE CATEGORIES
