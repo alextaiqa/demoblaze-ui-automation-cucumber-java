@@ -102,6 +102,16 @@ public class MainPage extends BasePage {
         return driverUtils.getVisibleElements(deviceCategoryTableXPath).size() <= 9;
     }
 
+    public void hoverOverTheDeviceCategoryButton(String button) {
+        log.info("Hovering over the {} in the device categories", button);
+        driverUtils.hoverOver(getCategoryButton(button));
+    }
+
+    public String getButtonColor(String button) {
+        log.info("Getting the color of the button '{}'", button);
+        return driverUtils.getCSSValue(getCategoryButton(button), "color");
+    }
+
     // =======================
 // HELPERS
 // =======================
