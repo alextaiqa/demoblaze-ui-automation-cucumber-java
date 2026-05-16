@@ -16,16 +16,6 @@ Feature: Main page functionality
       | footnote         |
       | copyright ribbon |
 
-  Scenario Outline: Verify there are no more than 9 items on the page for each device category
-    And I click on the "<category>" category on the main page
-    Then I see no more than nine items in the "<category>" category on the main page
-    Examples:
-      | category |
-      | Default  |
-      | Phones   |
-      | Laptops  |
-      | Monitors |
-
   Scenario: Verify the item preview gallery has a correct amount of images
     Then I see the item preview gallery has a correct amount of images on the main page
 
@@ -45,5 +35,28 @@ Feature: Main page functionality
     Then I see the 3 image of the preview gallery on the main page
     And I click on the previous button of the preview gallery on the main page
     Then I see the 2 image of the preview gallery on the main page
+
+  Scenario Outline: Verify there are no more than 9 items on the page for each device category
+    And I click on the "<category>" category on the main page
+    Then I see no more than nine items in the "<category>" category on the main page
+    Examples:
+      | category |
+      | Default  |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
+
+  @bug
+#    Expected: color change on hover
+#    Actual: same color before and after
+  Scenario Outline: Verify device categories' buttons change color on hover
+    And I see the "<button>" in the device categories in a default color
+    And I hover over the "<button>" in device categories
+    Then I see the "<button>" device categories changed color
+    Examples:
+      | button   |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
 
 
