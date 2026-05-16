@@ -86,4 +86,9 @@ public class MainPageSteps extends BaseSteps {
         assertNotEquals(colorAfterHover, colorBeforeHover,
                 "Device categories - hover over button '" + button + "' - color did not change");
     }
+
+    @And("I click on the {int} option of the preview gallery on the main page")
+    public void iClickOnTheOptionOfThePreviewGalleryOnTheMainPage(int optionNumber) {
+        mainPage.clickOnTheOptionOfThePreviewGallery(optionNumber);
+    }
 }
