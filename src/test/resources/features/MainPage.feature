@@ -5,6 +5,7 @@ Feature: Main page functionality
   Background: The main page is open
     Given I open the main page
 
+#    ====COMPONENTS SECTION====
   Scenario: Verify the title of the main page is correct
     Then I see a correct title for the main page
 
@@ -16,6 +17,7 @@ Feature: Main page functionality
       | footnote         |
       | copyright ribbon |
 
+#    ====PREVIEW GALLERY SECTION====
   Scenario: Verify the item preview gallery has a correct amount of images
     Then I see the item preview gallery has a correct amount of images on the main page
 
@@ -36,6 +38,17 @@ Feature: Main page functionality
     And I click on the previous button of the preview gallery on the main page
     Then I see the 2 image of the preview gallery on the main page
 
+  @only
+  Scenario: Verify a user is able to navigate to inactive images via preview gallery options
+    Then I see the 1 image of the preview gallery on the main page
+    And I click on the 2 option of the preview gallery on the main page
+    Then I see the 2 image of the preview gallery on the main page
+    And I click on the 1 option of the preview gallery on the main page
+    Then I see the 1 image of the preview gallery on the main page
+    And I click on the 3 option of the preview gallery on the main page
+    Then I see the 3 image of the preview gallery on the main page
+
+#    ====DEVICE CATEGORIES SECTION====
   Scenario Outline: Verify there are no more than 9 items on the page for each device category
     And I click on the "<category>" category on the main page
     Then I see no more than nine items in the "<category>" category on the main page
