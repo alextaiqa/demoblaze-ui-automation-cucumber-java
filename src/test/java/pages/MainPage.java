@@ -43,6 +43,8 @@ public class MainPage extends BasePage {
     private final By monitorsCategoryButtonXPath =
             By.xpath("//a[@id='cat']/../a[contains(normalize-space(),'Monitors')]");
     private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
+    private final By deviceCategoriesPreviousButtonID = By.id("prev2");
+    private final By deviceCategoriesNextButton = By.id("next2");
 
 // =======================
 // MAP (RESOLVER)
@@ -119,6 +121,11 @@ public class MainPage extends BasePage {
     public String getButtonColor(String button) {
         log.info("Getting the color of the button '{}'", button);
         return driverUtils.getCSSValue(getCategoryButton(button), "color");
+    }
+
+    public boolean isDeviceCategoriesPreviousButtonDisplayed(String button) {
+        log.info("Checking if the '{}' button in the device categories is displayed", button);
+        return driverUtils.isElementDisplayed(deviceCategoriesPreviousButtonID);
     }
 
     // =======================
