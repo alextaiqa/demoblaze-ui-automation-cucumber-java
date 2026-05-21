@@ -91,4 +91,11 @@ public class MainPageSteps extends BaseSteps {
     public void iClickOnTheOptionOfThePreviewGalleryOnTheMainPage(int optionNumber) {
         mainPage.clickOnTheOptionOfThePreviewGallery(optionNumber);
     }
+
+    @And("I do not see a previous button in the {string} device category")
+    public void iDoNotSeeAPreviousButtonInTheDeviceCategories(String category) {
+        boolean isPreviousButtonDisplayed = mainPage.isDeviceCategoriesPreviousButtonDisplayed(category);
+        assertFalse(isPreviousButtonDisplayed,
+                "Device categories - previous button is displayed on the first page");
+    }
 }
