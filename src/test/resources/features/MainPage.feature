@@ -38,7 +38,6 @@ Feature: Main page functionality
     And I click on the previous button of the preview gallery on the main page
     Then I see the 2 image of the preview gallery on the main page
 
-  @only
   Scenario: Verify a user is able to navigate to inactive images via preview gallery options
     Then I see the 1 image of the preview gallery on the main page
     And I click on the 2 option of the preview gallery on the main page
@@ -72,4 +71,26 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
+  @bug
+#      Expected: previous button is not displayed on the first page
+#      Actual: previous button is displayed on the first page
+  Scenario Outline: Verify that "Previous" button - in the device categories - is not displayed on the first page
+    And I click on the "<category>" category on the main page
+    And I do not see a previous button in the "<category>" device category
+    Examples:
+      | category |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
+
+  @only
+  Scenario Outline: Verify that "Next" button - in the device categories - is not displayed on the last page
+    And I click on the "<category>" category on the main page
+
+
+    Examples:
+      | category |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
 
