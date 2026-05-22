@@ -108,4 +108,5 @@ public class WaitUtils {
                     REGULAR_WAIT.getSeconds());
 
         }
+    }
 }
