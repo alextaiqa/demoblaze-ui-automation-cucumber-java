@@ -106,4 +106,8 @@ public class DriverUtils {
         Actions action = new Actions(getDriver());
         action.moveToElement(element).perform();
     }
+
+    public void waitForElementToBecomeStale(WebElement element) {
+        waitUtils.waitForStaleness(element);
+    }
 }
