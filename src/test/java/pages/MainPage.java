@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import utils.DriverUtils;
 
 import java.util.Map;
@@ -44,7 +45,7 @@ public class MainPage extends BasePage {
             By.xpath("//a[@id='cat']/../a[contains(normalize-space(),'Monitors')]");
     private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
     private final By deviceCategoriesPreviousButtonID = By.id("prev2");
-    private final By deviceCategoriesNextButton = By.id("next2");
+    private final By deviceCategoriesNextButtonID = By.id("next2");
 
 // =======================
 // MAP (RESOLVER)
@@ -103,14 +104,14 @@ public class MainPage extends BasePage {
         return driverUtils.isElementDisplayed(categoriesContainerID);
     }
 
-    public void clickOnTheCategoryButton(String category) {
+    public void clickOnTheDeviceCategoryButton(String category) {
         log.info("Clicking on the '{}' device category", category);
         driverUtils.click(getCategoryButton(category));
     }
 
     public boolean isDeviceCategorySizeGreaterThanNine() {
         log.info("Checking if the category has more than 9 items");
-        return driverUtils.getVisibleElements(deviceCategoryTableXPath).size() <= 9;
+        return driverUtils.getVisibleElements(deviceCategoryTableXPath).size() > 9;
     }
 
     public void hoverOverTheDeviceCategoryButton(String button) {
@@ -128,9 +129,42 @@ public class MainPage extends BasePage {
         return driverUtils.isElementDisplayed(deviceCategoriesPreviousButtonID);
     }
 
-    // =======================
-// HELPERS
-// =======================
+    public boolean isDeviceCategoriesNextButtonDisplayed() {
+        log.info("Checking if the next button in the device categories is displayed");
+        return driverUtils.isElementDisplayed(deviceCategoriesNextButtonID);
+    }
+
+    public void clickOnTheNextDeviceCategoryButton() {
+        log.info("Clicking on the 'next' button of the device category");
+        driverUtils.click(deviceCategoriesNextButtonID);
+    }
+
+    public void clickOnThePreviousDeviceCategoryButton() {
+        log.info("Clicking on the 'previous' button of the device category");
+        driverUtils.click(deviceCategoriesPreviousButtonID);
+    }
+
+    public void goToTheLastPageOfTheDeviceCategory() {
+        log.info("Getting to the last page of the device category");
+
+        while (isDeviceCategoriesNextButtonDisplayed()) {
+            if (driverUtils.getVisibleElements(deviceCategoryTableXPath).size() < 9) {
+                break;
+            }
+            WebElement oldTable = driverUtils.getVisibleElement(deviceCategoryTableXPath);
+            clickOnTheNextDeviceCategoryButton();
+            driverUtils.waitForElementToBecomeStale(oldTable);
+        }
+    }
+
+    public boolean isDeviceCategoryPageEmpty() {
+        log.info("Checking if the device category page is empty");
+        return driverUtils.getVisibleElements(deviceCategoryTableXPath).isEmpty();
+    }
+
+    /* =======================
+       HELPERS
+       ======================= */
     private By getCategoryButton(String category) {
         category = category.toLowerCase();
         By selector = deviceCategoriesButtons.get(category);
