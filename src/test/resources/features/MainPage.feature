@@ -92,7 +92,7 @@ Feature: Main page functionality
   Scenario Outline: Verify that "Next" button - in the device categories - is not displayed on the last page
     And I click on the "<category>" device category on the main page
     And I go to the last page of the device category
-    Then I do not see a next button in the "<category>" device category
+    Then I do not see a next button in the device category
     Examples:
       | category |
       | Default  |

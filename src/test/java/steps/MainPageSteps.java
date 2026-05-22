@@ -33,14 +33,14 @@ public class MainPageSteps extends BaseSteps {
         assertTrue(mainPage.isCategoriesContainerDisplayed());
     }
 
-    @And("I click on the {string} category on the main page")
+    @And("I click on the {string} device category on the main page")
     public void iClickOnTheCategoryOnTheMainPage(String category) {
-        mainPage.clickOnTheCategoryButton(category);
+        mainPage.clickOnTheDeviceCategoryButton(category);
     }
 
     @Then("I see no more than nine items in the {string} category on the main page")
     public void iSeeNoMoreThanNineItemsInTheDefaultCategoryOnTheMainPage(String category) {
-        assertTrue(mainPage.isDeviceCategorySizeGreaterThanNine(),
+        assertFalse(mainPage.isDeviceCategorySizeGreaterThanNine(),
                 "The '" + category + "' category has more than 9 items on the page");
     }
 
@@ -70,16 +70,14 @@ public class MainPageSteps extends BaseSteps {
     public void iSeeTheButtonInTheDeviceCategoriesInADefaultColor(String button) {
         String buttonColor = mainPage.getButtonColor(button);
         testContext.set("color", buttonColor);
-
-
     }
 
-    @And("I hover over the {string} in device categories")
+    @And("I hover over the device category {string} button")
     public void iHoverOverTheDeviceCategoryButton(String button) {
         mainPage.hoverOverTheDeviceCategoryButton(button);
     }
 
-    @Then("I see the {string} device categories changed color")
+    @Then("I see the device category {string} button changed color")
     public void iSeeTheDeviceCategoryButtonChangedColor(String button) {
         String colorAfterHover = mainPage.getButtonColor(button);
         String colorBeforeHover = (String) testContext.get("color");
@@ -92,10 +90,27 @@ public class MainPageSteps extends BaseSteps {
         mainPage.clickOnTheOptionOfThePreviewGallery(optionNumber);
     }
 
-    @And("I do not see a previous button in the {string} device category")
+    @Then("I do not see a previous button in the {string} device category")
     public void iDoNotSeeAPreviousButtonInTheDeviceCategories(String category) {
         boolean isPreviousButtonDisplayed = mainPage.isDeviceCategoriesPreviousButtonDisplayed(category);
         assertFalse(isPreviousButtonDisplayed,
-                "Device categories - previous button is displayed on the first page");
+                "Device categories - 'previous' button is displayed on the first page");
+    }
+
+    @And("I go to the last page of the device category")
+    public void iGoToTheLastPageOfTheDeviceCategory() {
+        mainPage.goToTheLastPageOfTheDeviceCategory();
+    }
+
+    @Then("I do not see a next button in the device category")
+    public void iDoNotSeeANextButtonInTheDeviceCategory() {
+        boolean isNextButtonDisplayed = mainPage.isDeviceCategoriesNextButtonDisplayed();
+        assertFalse(isNextButtonDisplayed,
+                "Device categories - 'next' button is displayed on the last page");
+    }
+
+    @Then("I see that the device category has no empty pages")
+    public void iSeeThatTheDeviceCategoryHasNoEmptyPages() {
+        //work in progress
     }
 }
