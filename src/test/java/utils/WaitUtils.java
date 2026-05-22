@@ -99,4 +99,13 @@ public class WaitUtils {
             return null;
         }
     }
+
+    public void waitForStaleness(WebElement element) {
+        try {
+            getRegularWait().until(ExpectedConditions.stalenessOf(element));
+        } catch (Exception e) {
+            log.warn("Element did not become stale. Waited for {} seconds.",
+                    REGULAR_WAIT.getSeconds());
+
+        }
 }
