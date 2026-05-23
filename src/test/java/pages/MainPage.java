@@ -5,17 +5,18 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import utils.DriverUtils;
 
+import java.util.List;
 import java.util.Map;
 
 public class MainPage extends BasePage {
 
-// =======================
-// SELECTORS
-// =======================
+    /* =======================
+       SELECTORS
+       ======================= */
 
     // PREVIEW GALLERY / CAROUSEL
-    /*
-     * Sidenote:
+
+    /* Sidenote:
      * - Only one image is "active" at a time.
      * - After clicking on the next/previous button, the carousel transitions asynchronously - needs time.
      * - The "active" class/state is updated only after the transition is completed.
@@ -47,9 +48,9 @@ public class MainPage extends BasePage {
     private final By deviceCategoriesPreviousButtonID = By.id("prev2");
     private final By deviceCategoriesNextButtonID = By.id("next2");
 
-// =======================
-// MAP (RESOLVER)
-// =======================
+    /* =======================
+       MAP (RESOLVER)
+       ======================= */
 
     private final Map<String, By> deviceCategoriesButtons = Map.of(
             "default", defaultCategoryButtonID,
@@ -58,16 +59,16 @@ public class MainPage extends BasePage {
             "monitors", monitorsCategoryButtonXPath
     );
 
-    // =======================
-// CONSTRUCTOR
-// =======================
+    /* =======================
+       CONSTRUCTOR
+       ======================= */
     public MainPage(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-// =======================
-// METHODS
-// =======================
+    /* =======================
+       METHODS
+       ======================= */
 
     // PREVIEW GALLERY / CAROUSEL
     public boolean isPreviewGalleryImageDisplayed(int slideIndex) {
@@ -111,7 +112,7 @@ public class MainPage extends BasePage {
 
     public boolean isDeviceCategorySizeGreaterThanNine() {
         log.info("Checking if the category has more than 9 items");
-        return driverUtils.getVisibleElements(deviceCategoryTableXPath).size() > 9;
+        return getDeviceCategoryItems().size() > 9;
     }
 
     public void hoverOverTheDeviceCategoryButton(String button) {
@@ -124,8 +125,8 @@ public class MainPage extends BasePage {
         return driverUtils.getCSSValue(getCategoryButton(button), "color");
     }
 
-    public boolean isDeviceCategoriesPreviousButtonDisplayed(String button) {
-        log.info("Checking if the '{}' button in the device categories is displayed", button);
+    public boolean isDeviceCategoriesPreviousButtonDisplayed() {
+        log.info("Checking if the previous button in the device categories is displayed");
         return driverUtils.isElementDisplayed(deviceCategoriesPreviousButtonID);
     }
 
@@ -146,20 +147,25 @@ public class MainPage extends BasePage {
 
     public void goToTheLastPageOfTheDeviceCategory() {
         log.info("Getting to the last page of the device category");
-
         while (isDeviceCategoriesNextButtonDisplayed()) {
-            if (driverUtils.getVisibleElements(deviceCategoryTableXPath).size() < 9) {
+            if (getDeviceCategoryItems().size() < 9) {
                 break;
             }
-            WebElement oldTable = driverUtils.getVisibleElement(deviceCategoryTableXPath);
-            clickOnTheNextDeviceCategoryButton();
-            driverUtils.waitForElementToBecomeStale(oldTable);
+            goToTheNextDeviceCategoryPage();
         }
     }
 
-    public boolean isDeviceCategoryPageEmpty() {
-        log.info("Checking if the device category page is empty");
-        return driverUtils.getVisibleElements(deviceCategoryTableXPath).isEmpty();
+    public boolean isAnyDeviceCategoryPageEmpty() {
+        log.info("Checking if any device category page is empty");
+        while (true) {
+            if (getDeviceCategoryItems().isEmpty()) {
+                return true;
+            }
+            if (!isDeviceCategoriesNextButtonDisplayed()) {
+                return false;
+            }
+            goToTheNextDeviceCategoryPage();
+        }
     }
 
     /* =======================
@@ -174,9 +180,19 @@ public class MainPage extends BasePage {
         return selector;
     }
 
-    // =======================
-// METHODS FOR COMMON BEHAVIOR
-// =======================
+    private void goToTheNextDeviceCategoryPage() {
+        WebElement oldTable = driverUtils.getVisibleElement(deviceCategoryTableXPath);
+        clickOnTheNextDeviceCategoryButton();
+        driverUtils.waitForElementToBecomeStale(oldTable);
+    }
+
+    private List<WebElement> getDeviceCategoryItems() {
+        return driverUtils.getVisibleElements(deviceCategoryTableXPath);
+    }
+
+    /* =======================
+       METHODS FOR COMMON BEHAVIOR
+       ======================= */
     @Override
     public String getPageName() {
         return "'Main'";
