@@ -76,23 +76,23 @@ Feature: Main page functionality
 #      Actual: previous button is displayed on the first page
   Scenario Outline: Verify that "Previous" button - in the device categories - is not displayed on the first page
     And I click on the "<category>" device category on the main page
-    Then I do not see a previous button in the "<category>" device category
+    Then I do not see a previous button in the device category
     Examples:
       | category |
       | Phones   |
       | Laptops  |
       | Monitors |
 
-  @only
+  @bug
 #    Expected: Next button is not seen on the last page
-#    Actual: Next button is seen on the last page
+#    Actual: Next button is seen on the last page ("Phones", "Laptops", "Monitors" categories)
 #    Details: The first page is the last page in this case - max number of items does not reach 9 on the first page.
 #             Max number of items (9) should be displayed for the 'next' button to be seen, and next page available.
 #             Second page does exist, but it shows unrelated items - a different bug.
   Scenario Outline: Verify that "Next" button - in the device categories - is not displayed on the last page
     And I click on the "<category>" device category on the main page
     And I go to the last page of the device category
-    Then I do not see a next button in the device category
+    Then I do not see a next button in the "<category>" device category
     Examples:
       | category |
       | Default  |
@@ -100,9 +100,10 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
-  Scenario Outline:
+  @only
+  Scenario Outline: Verify that device categories have no empty pages
     And I click on the "<category>" device category on the main page
-    Then I see that the device category has no empty pages
+    Then I see that the "<category>" device category has no empty pages
     Examples:
       | category |
       | Default  |
