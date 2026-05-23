@@ -90,9 +90,9 @@ public class MainPageSteps extends BaseSteps {
         mainPage.clickOnTheOptionOfThePreviewGallery(optionNumber);
     }
 
-    @Then("I do not see a previous button in the {string} device category")
-    public void iDoNotSeeAPreviousButtonInTheDeviceCategories(String category) {
-        boolean isPreviousButtonDisplayed = mainPage.isDeviceCategoriesPreviousButtonDisplayed(category);
+    @Then("I do not see a previous button in the device category")
+    public void iDoNotSeeAPreviousButtonInTheDeviceCategories() {
+        boolean isPreviousButtonDisplayed = mainPage.isDeviceCategoriesPreviousButtonDisplayed();
         assertFalse(isPreviousButtonDisplayed,
                 "Device categories - 'previous' button is displayed on the first page");
     }
@@ -102,15 +102,17 @@ public class MainPageSteps extends BaseSteps {
         mainPage.goToTheLastPageOfTheDeviceCategory();
     }
 
-    @Then("I do not see a next button in the device category")
-    public void iDoNotSeeANextButtonInTheDeviceCategory() {
+    @Then("I do not see a next button in the {string} device category")
+    public void iDoNotSeeANextButtonInTheDeviceCategory(String category) {
         boolean isNextButtonDisplayed = mainPage.isDeviceCategoriesNextButtonDisplayed();
         assertFalse(isNextButtonDisplayed,
-                "Device categories - 'next' button is displayed on the last page");
+                "Device categories - '" + category + "' - 'next' button is displayed on the last page");
     }
 
-    @Then("I see that the device category has no empty pages")
-    public void iSeeThatTheDeviceCategoryHasNoEmptyPages() {
-        //work in progress
+    @Then("I see that the {string} device category has no empty pages")
+    public void iSeeThatTheDeviceCategoryHasNoEmptyPages(String category) {
+        boolean isEmptyPageSeen = mainPage.isAnyDeviceCategoryPageEmpty();
+        assertFalse(isEmptyPageSeen,
+                "Device categories - empty page seen in the '" + category + "'device category");
     }
 }
