@@ -113,6 +113,13 @@ public class MainPageSteps extends BaseSteps {
     public void iSeeThatTheDeviceCategoryHasNoEmptyPages(String category) {
         boolean isEmptyPageSeen = mainPage.isAnyDeviceCategoryPageEmpty();
         assertFalse(isEmptyPageSeen,
-                "Device categories - empty page seen in the '" + category + "'device category");
+                "Device categories - empty page seen in the '" + category + "' device category");
+    }
+
+    @And("I see that the {string} device category has no duplicate items across all of its pages")
+    public void iSeeTheDeviceCategoryHasNoDuplicateItemsAcrossItsPages(String category) {
+        boolean hasDuplicateItems = mainPage.hasDeviceCategoryAnyDuplicateItems(category);
+        assertFalse(hasDuplicateItems,
+                "Device categories - duplicates seen in the '" + category + "' device category");
     }
 }
