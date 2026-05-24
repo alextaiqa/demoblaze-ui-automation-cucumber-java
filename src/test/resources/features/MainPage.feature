@@ -100,7 +100,7 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
-  @only
+
   Scenario Outline: Verify that device categories have no empty pages
     And I click on the "<category>" device category on the main page
     Then I see that the "<category>" device category has no empty pages
@@ -111,3 +111,15 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
+  @only
+#      Expected: Duplicates not found across category pages
+#      Actual: Duplicates found across category pages - 'Phones', 'Laptops', 'Monitors' categories
+  Scenario Outline: Verify no duplicate items are present in any device category
+    And I click on the "<category>" device category on the main page
+    And I see that the "<category>" device category has no duplicate items across all of its pages
+    Examples:
+      | category |
+      | Default  |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
