@@ -5,8 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import utils.DriverUtils;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MainPage extends BasePage {
 
@@ -45,6 +44,9 @@ public class MainPage extends BasePage {
     private final By monitorsCategoryButtonXPath =
             By.xpath("//a[@id='cat']/../a[contains(normalize-space(),'Monitors')]");
     private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
+
+    @SuppressWarnings("FieldCanBeLocal") //responsible for multiple item headers in the table via %s
+    private final String DEVICE_CATEGORY_TABLE_ITEM_HEADER = "(//div[@id='tbodyid']//h4/a)[%s]";
     private final By deviceCategoriesPreviousButtonID = By.id("prev2");
     private final By deviceCategoriesNextButtonID = By.id("next2");
 
@@ -166,6 +168,38 @@ public class MainPage extends BasePage {
             }
             goToTheNextDeviceCategoryPage();
         }
+    }
+
+    public boolean hasDeviceCategoryAnyDuplicateItems(String category) {
+        log.info("Checking if the device category '{}' has any duplicate items across its pages", category);
+
+        Set<String> itemHeaders = new HashSet<>();
+        Set<String> itemHeadersDuplicates = new HashSet<>();
+
+        //going through all pages
+        while (true) {
+            int itemCount = getDeviceCategoryItems().size();
+
+            //going through and collecting all item headers on a given page
+            for (int i = 1; i <= itemCount; i++) {
+                String header = driverUtils.getText(
+                        By.xpath(String.format(DEVICE_CATEGORY_TABLE_ITEM_HEADER, i))).trim();
+                if (!itemHeaders.add(header)) { //set returns false if duplicate found -> if false, add to dupes
+                    itemHeadersDuplicates.add(header); //another set - same duplicate is not added twice
+                }
+            }
+
+            if (!isDeviceCategoriesNextButtonDisplayed()) {
+                break;
+            }
+            goToTheNextDeviceCategoryPage();
+        }
+
+        if (!itemHeadersDuplicates.isEmpty()) {
+            log.error("Device category - duplicate items found in the '{}' category - please file a bug", category);
+            log.error("Duplicate headers: {}", itemHeadersDuplicates);
+        }
+        return !itemHeadersDuplicates.isEmpty();
     }
 
     /* =======================
