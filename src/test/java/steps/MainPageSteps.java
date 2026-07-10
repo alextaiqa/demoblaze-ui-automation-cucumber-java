@@ -122,4 +122,19 @@ public class MainPageSteps extends BaseSteps {
         assertFalse(hasDuplicateItems,
                 "Device categories - duplicates seen in the '" + category + "' device category");
     }
+
+    @Then("I see that items on the first page of the {string} device category redirects to a corresponding page")
+    public void iSeeThatItemsOnTheFirstPageOfTheDeviceCategoryRedirectsToACorrespondingPage(String category) {
+        boolean itemsRedirectCorrectly =
+                mainPage.itemsOnFirstPageOfDeviceCategoryRedirectsToCorrespondingPage(category); //too long
+        assertTrue(itemsRedirectCorrectly, "An item in the " + category + " did not redirect to a correct page");
+    }
+
+    @Then("I see that items on the first page of the {string} device category have a correct title on their pages")
+    public void iSeeThatItemsOnTheFirstPageOfTheDeviceCategoryHaveACorrectTitleOnTheirPages(String category) {
+        boolean itemsHaveCorrectTitlesOnTheirPages =
+                mainPage.ItemsOnTheFirstPageOfTheDeviceCategoryHaveACorrectTitleOnTheirPages(category);
+        assertTrue(itemsHaveCorrectTitlesOnTheirPages,
+                "An item in the " + category + " did not redirect to a correct page");
+    }
 }
