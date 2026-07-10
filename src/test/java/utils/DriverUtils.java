@@ -31,6 +31,10 @@ public class DriverUtils {
         getDriver().get(url); // work on this - waiting for page to load
     }
 
+    public void goBack() {
+        getDriver().navigate().back();
+    }
+
     public String getTitle() {
         return getDriver().getTitle();
     }
