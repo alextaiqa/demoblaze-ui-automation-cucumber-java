@@ -111,12 +111,35 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
-  @only
+  @bug
 #      Expected: Duplicates not found across category pages
 #      Actual: Duplicates found across category pages - 'Phones', 'Laptops', 'Monitors' categories
   Scenario Outline: Verify no duplicate items are present in any device category
     And I click on the "<category>" device category on the main page
     And I see that the "<category>" device category has no duplicate items across all of its pages
+    Examples:
+      | category |
+      | Default  |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
+
+  Scenario Outline: Verify that items on the first page of each category redirect to their corresponding pages
+    And I click on the "<category>" device category on the main page
+    Then I see that items on the first page of the "<category>" device category redirects to a corresponding page
+    Examples:
+      | category |
+      | Default  |
+      | Phones   |
+      | Laptops  |
+      | Monitors |
+
+  @bug
+#        Expected:
+#        Actual:
+  Scenario Outline: Verify that items on the first page of each category have correct titles on their pages
+    And I click on the "<category>" device category on the main page
+    Then I see that items on the first page of the "<category>" device category have a correct title on their pages
     Examples:
       | category |
       | Default  |
