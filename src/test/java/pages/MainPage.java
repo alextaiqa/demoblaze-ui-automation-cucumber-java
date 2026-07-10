@@ -205,7 +205,7 @@ public class MainPage extends BasePage {
         return !itemHeadersDuplicates.isEmpty();
     }
 
-    public boolean itemsOnFirstPageOfDeviceCategoryRedirectsToCorrespondingPage(String category) {
+    public boolean itemsOnFirstPageOfDeviceCategoryRedirectToCorrespondingPage(String category) {
         log.info("Checking if items on the first page of the {} device category redirect to a correct page", category);
 
         int counter = 0;
@@ -228,7 +228,8 @@ public class MainPage extends BasePage {
     }
 
     public boolean ItemsOnTheFirstPageOfTheDeviceCategoryHaveACorrectTitleOnTheirPages(String category) {
-        log.info("Checking if items on the first page of the {} device category redirect to a correct page", category);
+        log.info("Checking if items on the first page of the {} device category " +
+                "have a correct title on their pages", category);
         int counter = 0;
 
         List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableXPath); //how many items

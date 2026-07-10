@@ -126,7 +126,7 @@ Feature: Main page functionality
 
   Scenario Outline: Verify that items on the first page of each category redirect to their corresponding pages
     And I click on the "<category>" device category on the main page
-    Then I see that items on the first page of the "<category>" device category redirects to a corresponding page
+    Then I see that items on the first page of the "<category>" device category redirect to a corresponding page
     Examples:
       | category |
       | Default  |
@@ -134,7 +134,7 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
-  @bug
+  @only
 #        Expected:
 #        Actual:
   Scenario Outline: Verify that items on the first page of each category have correct titles on their pages

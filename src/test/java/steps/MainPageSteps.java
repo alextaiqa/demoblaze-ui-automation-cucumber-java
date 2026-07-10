@@ -123,10 +123,10 @@ public class MainPageSteps extends BaseSteps {
                 "Device categories - duplicates seen in the '" + category + "' device category");
     }
 
-    @Then("I see that items on the first page of the {string} device category redirects to a corresponding page")
-    public void iSeeThatItemsOnTheFirstPageOfTheDeviceCategoryRedirectsToACorrespondingPage(String category) {
+    @Then("I see that items on the first page of the {string} device category redirect to a corresponding page")
+    public void iSeeThatItemsOnTheFirstPageOfTheDeviceCategoryRedirectToACorrespondingPage(String category) {
         boolean itemsRedirectCorrectly =
-                mainPage.itemsOnFirstPageOfDeviceCategoryRedirectsToCorrespondingPage(category); //too long
+                mainPage.itemsOnFirstPageOfDeviceCategoryRedirectToCorrespondingPage(category); //too long
         assertTrue(itemsRedirectCorrectly, "An item in the " + category + " did not redirect to a correct page");
     }
 
