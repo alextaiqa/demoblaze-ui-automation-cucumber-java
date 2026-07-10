@@ -46,9 +46,13 @@ public class MainPage extends BasePage {
     private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
 
     @SuppressWarnings("FieldCanBeLocal") //responsible for multiple item headers in the table via %s
-    private final String DEVICE_CATEGORY_TABLE_ITEM_HEADER = "(//div[@id='tbodyid']//h4/a)[%s]";
+    private final String DEVICE_CATEGORY_TABLE_ITEM_HEADER = "(//div[@id='tbodyid']//h4/a)[%s]"; //starts with 1
+
     private final By deviceCategoriesPreviousButtonID = By.id("prev2");
     private final By deviceCategoriesNextButtonID = By.id("next2");
+
+    // A universal selector from the items' pages (any way to get it from the items class? Any reason to create that?)
+    private final By itemNameOnItsPageCSS = By.cssSelector(".name");
 
     /* =======================
        MAP (RESOLVER)
@@ -182,8 +186,7 @@ public class MainPage extends BasePage {
 
             //going through and collecting all item headers on a given page
             for (int i = 1; i <= itemCount; i++) {
-                String header = driverUtils.getText(
-                        By.xpath(String.format(DEVICE_CATEGORY_TABLE_ITEM_HEADER, i))).trim();
+                String header = getDeviceCategoryItemHeader(i);
                 if (!itemHeaders.add(header)) { //set returns false if duplicate found -> if false, add to dupes
                     itemHeadersDuplicates.add(header); //another set - same duplicate is not added twice
                 }
@@ -200,6 +203,50 @@ public class MainPage extends BasePage {
             log.error("Duplicate headers: {}", itemHeadersDuplicates);
         }
         return !itemHeadersDuplicates.isEmpty();
+    }
+
+    public boolean itemsOnFirstPageOfDeviceCategoryRedirectsToCorrespondingPage(String category) {
+        log.info("Checking if items on the first page of the {} device category redirect to a correct page", category);
+
+        int counter = 0;
+        List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableXPath); //how many items
+
+        for (int i = 1; i <= items.size(); i++) {
+            String itemHeaderOnMainPage = getDeviceCategoryItemHeader(i); //gets the text of the header
+            getVisibleDeviceCategoryItem(i).click();
+            String itemHeaderOnItsOwnPage = driverUtils.getText(itemNameOnItsPageCSS).trim();
+
+            if (!itemHeaderOnMainPage.equals(itemHeaderOnItsOwnPage)) {
+                counter++;
+                log.error("Item name is incorrect. \nMain page has '{}'. \nIts own page has '{}'",
+                        itemHeaderOnMainPage, itemHeaderOnItsOwnPage);
+            }
+            driverUtils.goBack();
+        }
+
+        return counter == 0;
+    }
+
+    public boolean ItemsOnTheFirstPageOfTheDeviceCategoryHaveACorrectTitleOnTheirPages(String category) {
+        log.info("Checking if items on the first page of the {} device category redirect to a correct page", category);
+        int counter = 0;
+
+        List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableXPath); //how many items
+
+        for (int i = 1; i <= items.size(); i++) {
+            getVisibleDeviceCategoryItem(i).click();
+            String itemTitle = driverUtils.getTitle().trim().toLowerCase();
+            String itemHeaderOnItsOwnPage = driverUtils.getText(itemNameOnItsPageCSS).trim().toLowerCase();
+
+            if (!itemTitle.equals(itemHeaderOnItsOwnPage)) {
+                counter++;
+                log.error("Item name or item page title is incorrect. \nPage title is '{}'. \nItem Name is '{}'",
+                        itemTitle, itemHeaderOnItsOwnPage);
+            }
+            driverUtils.goBack();
+        }
+
+        return counter == 0;
     }
 
     /* =======================
@@ -222,6 +269,14 @@ public class MainPage extends BasePage {
 
     private List<WebElement> getDeviceCategoryItems() {
         return driverUtils.getVisibleElements(deviceCategoryTableXPath);
+    }
+
+    private WebElement getVisibleDeviceCategoryItem(int itemNum) {
+        return driverUtils.getVisibleElement(By.xpath(String.format(DEVICE_CATEGORY_TABLE_ITEM_HEADER, itemNum)));
+    }
+
+    private String getDeviceCategoryItemHeader(int itemNum) {
+        return getVisibleDeviceCategoryItem(itemNum).getText().trim();
     }
 
     /* =======================
