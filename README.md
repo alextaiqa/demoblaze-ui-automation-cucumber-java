@@ -61,4 +61,4 @@ The framework is actively being developed. Additional test scenarios and improve
 
 ## License & Usage
 
-This project is part of my personal QA Automation portfolio and is provided for demonstration purposes.
+This project is part of my personal QA Automation portfolio and is provided for demonstration purposes only.
