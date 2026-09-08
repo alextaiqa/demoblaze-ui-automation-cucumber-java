@@ -1,3 +1,7 @@
+A UI test automation framework built from scratch for the Demoblaze web application. The project uses Java, Selenium WebDriver, Cucumber, TestNG, and the Page Object Model to automate major user flows and demonstrate a maintainable, reusable approach to web UI testing.
+
+The framework also includes dependency injection with PicoContainer, external test data using YAML, cross-browser execution, logging, screenshots, Allure reporting, and CI integration with Jenkins.
+
 1. <strong>Title</strong>
 2. <strong>Short Description (2–4 sentences)</strong>
 3. <strong>Tech Stack</strong>
