@@ -1,5 +1,6 @@
 package steps.components.modals;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.modals.SignUpModal;
 import steps.BaseSteps;
@@ -27,5 +28,31 @@ public class SignUpModalSteps extends BaseSteps {
         String actualHeader = signUpModal.getHeaderText();
         String expectedHeader = data.get("signUpHeader");
         assertEquals(actualHeader, expectedHeader, "The 'Sign up' modal has an incorrect header");
+    }
+
+    @And("I enter a valid sign up username")
+    public void iEnterAValidSignUpUsername() {
+        signUpModal.enterAValidUsername(); // have to create randomized data - maven faker (?) library? or current time + date? Then put it into a yaml.
+    }
+
+    @And("I enter a valid sign up password")
+    public void iEnterAValidSignUpPassword() {
+//        signUpModal.enterAValidPassword();
+    }
+
+    @And("I enter valid sign up credentials")
+    public void iEnterValidSignUpCredentials() {
+//        signUpModal.enterAValidUsername();
+//        signUpModal.enterAValidPassword();
+    }
+
+    @And("I click on the sign up modal confirmation button")
+    public void iClickOnTheSignUpModalConfirmationButton() {
+        signUpModal.clickOnTheConfirmationButton();
+    }
+
+    @Then("I see successfully signed up message")
+    public void iSeeSuccessfullySignedUpMessage() {
+//        signUpModal.seeSuccessfullySignedUpMessage();
     }
 }

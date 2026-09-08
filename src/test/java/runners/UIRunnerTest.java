@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"hooks", "steps", "context"},
-        tags = "@ui and not @bug",
+        tags = "@ui and @only and not @bug", //@ui and not @bug
         plugin = {"pretty",
                 "html:target/cucumber-ui.html",
                 "json:target/cucumber-ui.json",
