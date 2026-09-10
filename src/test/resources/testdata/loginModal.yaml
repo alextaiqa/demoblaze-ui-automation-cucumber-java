@@ -1,11 +1,31 @@
-#modal header
+#MODAL HEADER
 loginModalHeader: "Log in"
-#username
-correctUsername: "cucumberTesting"
-incorrectUsername: "someUsername12345"
-#password
-correctPassword: "cucumberTestingPassword"
-incorrectPassword: "somePassword12345"
+
+#EXISTING USERS - VALID CREDENTIALS
+user1:
+  username: "cucumberTesting"
+  password: "cucumberTestingPassword"
+
+user2:
+  username: ""
+  password: ""
+
+user3:
+  username: ""
+  password: ""
+
+user4:
+  username: ""
+  password: ""
+
+user5:
+  username: ""
+  password: ""
+
+#incorrect data
+incorrectUsername: "someUsername12345" #should be generated randomly - fix this and other yamls where needed
+incorrectPassword: "somePassword12345" #same as above
+
 #alert messages
 incorrectUsernameOrPasswordAlert: "Incorrect username or password."
 emptyPasswordAndUsernameAlert: "Please fill out Username and Password."
