@@ -40,11 +40,9 @@ public class SignUpModalSteps extends BaseSteps {
 
     @And("I enter a valid sign up password")
     public void iEnterAValidSignUpPassword() {
-        signUpModal.enterAValidPassword(dataGenerator
-                .generatePassword(null, true, true));
+        signUpModal.enterAValidPassword(dataGenerator.generatePassword());
 
-        //create an option for a bdd user to choose if password has numbers &/or special characters? Overload? Useful at all?
-        //any actual reason to use the same username as generated in the actual username in the password? Data match? Why?
+        //there are some issues when running mvn test - take care of those
     }
 
     @And("I enter valid sign up credentials")
@@ -52,6 +50,7 @@ public class SignUpModalSteps extends BaseSteps {
         iEnterAValidSignUpUsername();
         iEnterAValidSignUpPassword();
     }
+
 
     @And("I click on the sign up modal confirmation button")
     public void iClickOnTheSignUpModalConfirmationButton() {
