@@ -32,10 +32,15 @@ public class TestDataGenerator {
         return password;
     }
 
+    public String generateEmail() {
+        String email = "AutoUser" + generateTenRandomLetters() + "@example.com";
+        log.info("Generated an email {}", email);
+        return email;
+    }
+
+
     //HELPERS
     private String generateTenRandomLetters() {
         return RandomStringUtils.insecure().nextAlphabetic(10);
     }
-
-    //generate email??
 }
