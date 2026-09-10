@@ -1,9 +1,11 @@
 package steps.components.modals;
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.modals.SignUpModal;
 import steps.BaseSteps;
+import utils.TestData;
 import utils.TestDataGenerator;
 
 import static org.testng.Assert.*;
@@ -11,6 +13,7 @@ import static org.testng.Assert.*;
 public class SignUpModalSteps extends BaseSteps {
 
     private final SignUpModal signUpModal;
+    private final TestData loginData;
     private final TestDataGenerator dataGenerator;
 
     // =======================
@@ -19,6 +22,7 @@ public class SignUpModalSteps extends BaseSteps {
     public SignUpModalSteps(SignUpModal signUpModal, TestDataGenerator dataGenerator) {
         super("testdata/signUpModal.yaml");
         this.signUpModal = signUpModal;
+        this.loginData = new TestData("testdata/loginModal.yaml");
         this.dataGenerator = dataGenerator;
     }
 
@@ -61,5 +65,21 @@ public class SignUpModalSteps extends BaseSteps {
     public void iSeeSuccessfullySignedUpMessage() {
         boolean isSuccessfulMessageSeen = signUpModal.seeSuccessfullySignedUpMessage();
         assertTrue(isSuccessfulMessageSeen, "Sign up - modal - 'Successfully signed up' message not seen on valid sign up");
+    }
+
+
+    @And("I enter an existing username {int}")
+    public void iEnterAnExistingUsername(int user) {
+        signUpModal.enterAnExistingUsername(loginData.get("user" + user + ".username"));
+    }
+
+    @And("I enter an existing password {int}")
+    public void iEnterAnExistingPassword(int user) {
+
+    }
+
+    @Then("I see a user already exists sign up message")
+    public void iSeeAUserAlreadyExistsSignUpMessage() {
+
     }
 }

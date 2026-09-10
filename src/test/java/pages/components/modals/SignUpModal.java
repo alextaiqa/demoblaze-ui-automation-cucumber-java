@@ -38,6 +38,10 @@ public class SignUpModal extends BaseModal {
         return driverUtils.getAlertText().equals("Sign up successful.");
     }
 
+    private void enterAnExistingUsername() {
+
+    }
+
 
     //methods for common behavior
     @Override
