@@ -34,12 +34,25 @@ public class SignUpModal extends BaseModal {
     }
 
     public boolean seeSuccessfullySignedUpMessage() {
-        log.info("Sign up - modal - verifying if a successful sign up message appears when entering valid credentials");
+        log.info("Sign up - modal - verifying if a successful sign up message " +
+                "appears when entering valid credentials");
         return driverUtils.getAlertText().equals("Sign up successful.");
     }
 
-    private void enterAnExistingUsername() {
+    public void enterAnExistingUsernameFor(String username) {
+        log.info("Sign up - modal - entering an existing username");
+        driverUtils.type(signUpModalUsernameFieldCSS, username);
+    }
 
+    public void enterAnExistingPasswordFor(String password) {
+        log.info("Sign up - modal - entering an existing password");
+        driverUtils.type(signUpModalPasswordFieldCSS, password);
+    }
+
+    public boolean seeAUserAlreadyExistsSignUpMessage() {
+        log.info("Sign up - modal - verifying if a message " +
+                "'This user already exist.' appears when signing up with an existing user");
+        return driverUtils.getAlertText().equals("This user already exist.");
     }
 
 
