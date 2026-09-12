@@ -64,22 +64,25 @@ public class SignUpModalSteps extends BaseSteps {
     @Then("I see successfully signed up message")
     public void iSeeSuccessfullySignedUpMessage() {
         boolean isSuccessfulMessageSeen = signUpModal.seeSuccessfullySignedUpMessage();
-        assertTrue(isSuccessfulMessageSeen, "Sign up - modal - 'Successfully signed up' message not seen on valid sign up");
+        assertTrue(isSuccessfulMessageSeen, "Sign up - modal - " +
+                "'Successfully signed up' message not seen on valid sign up");
     }
 
 
-    @And("I enter an existing username {int}")
-    public void iEnterAnExistingUsername(int user) {
-        signUpModal.enterAnExistingUsername(loginData.get("user" + user + ".username"));
+    @And("I enter an existing username for {string}")
+    public void iEnterAnExistingUsernameFor(String user) {
+        signUpModal.enterAnExistingUsernameFor(loginData.get(user + ".username"));
     }
 
-    @And("I enter an existing password {int}")
-    public void iEnterAnExistingPassword(int user) {
-
+    @And("I enter an existing password for {string}")
+    public void iEnterAnExistingPasswordFor(String user) {
+        signUpModal.enterAnExistingPasswordFor(loginData.get(user + ".password"));
     }
 
     @Then("I see a user already exists sign up message")
     public void iSeeAUserAlreadyExistsSignUpMessage() {
-
+        boolean isExistingUserMessageSeen = signUpModal.seeAUserAlreadyExistsSignUpMessage();
+        assertTrue(isExistingUserMessageSeen, "Sign up - modal - " +
+                "'This user already exist.' message not seen when signing up with an existing account");
     }
 }
