@@ -15,7 +15,7 @@ Feature: "Sign up" modal functionality
 
   Scenario: Verify an existing user cannot sign up with the same credentials
     And I click on the nav bar "sign up" button
-    And I enter an existing username 1
-    And I enter an existing password 1
+    And I enter an existing username for "user1"
+    And I enter an existing password for "user1"
     And I click on the sign up modal confirmation button
     Then I see a user already exists sign up message
