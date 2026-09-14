@@ -100,7 +100,6 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
-
   Scenario Outline: Verify that device categories have no empty pages
     And I click on the "<category>" device category on the main page
     Then I see that the "<category>" device category has no empty pages
@@ -134,9 +133,9 @@ Feature: Main page functionality
       | Laptops  |
       | Monitors |
 
-  @only
-#        Expected:
-#        Actual:
+  @bug
+#        Expected: Each item has a correct page title matching its name
+#        Actual: Each item has an incorrect title "store" on its own page
   Scenario Outline: Verify that items on the first page of each category have correct titles on their pages
     And I click on the "<category>" device category on the main page
     Then I see that items on the first page of the "<category>" device category have a correct title on their pages
