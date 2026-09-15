@@ -7,6 +7,7 @@ Feature: Verify that login modal functionality works correctly
     Given I open the main page
     When I click on the nav bar "log in" button
 
+
   Scenario: Validate a successful log in - valid credentials
     And I enter valid login credentials for "user1"
     And I click on the log in modal confirmation button

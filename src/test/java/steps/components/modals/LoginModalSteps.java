@@ -31,7 +31,7 @@ public class LoginModalSteps extends BaseSteps {
 // =======================
     @And("I log in as {string}")
     public void iLogInAs(String userNum) {
-        authFlow.login(data.get(userNum + ".username"), data.get(userNum + "password"));
+        authFlow.login(data.get(userNum + ".username"), data.get(userNum + ".password"));
     }
 
     @And("I enter valid login credentials for {string}")
@@ -40,14 +40,17 @@ public class LoginModalSteps extends BaseSteps {
         iEnterAValidLoginPassword(userNum);
     }
 
-    @And("I enter a valid login username")
+    @And("I enter a valid login username for {string}")
     public void iEnterAValidLoginUsername(String userNum) {
-        logInModal.enterACorrectUsername(data.get(userNum + "username"));
+        String s = userNum + ".username";
+        String username = data.get(s);
+
+        logInModal.enterACorrectUsername(username);
     }
 
-    @And("I enter a valid login password")
+    @And("I enter a valid login password for {string}")
     public void iEnterAValidLoginPassword(String userNum) {
-        logInModal.enterACorrectPassword(data.get(userNum + "password"));
+        logInModal.enterACorrectPassword(data.get(userNum + ".password"));
     }
 
     @And("I enter invalid login credentials")

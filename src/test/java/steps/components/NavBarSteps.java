@@ -34,7 +34,7 @@ public class NavBarSteps extends BaseSteps {
     @Then("I see a nav bar welcome message for {string}")
     public void iSeeANavBarWelcomeMessageFor(String userNum) {
         String actualResult = navBar.getWelcomeMessage();
-        String expectedResult = "Welcome" + new TestData("testdata/login.yaml").get(userNum + ".username");
+        String expectedResult = "Welcome " + new TestData("testdata/loginModal.yaml").get(userNum + ".username");
         assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
