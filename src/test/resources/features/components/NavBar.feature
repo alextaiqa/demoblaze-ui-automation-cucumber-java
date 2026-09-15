@@ -26,8 +26,8 @@ Feature: Navigational bar functionality
       | logo   | categories container |
 
   Scenario: Verify a user is able to log out
-    And I log in
-    Then I see a nav bar welcome message
+    And I log in as "user1"
+    Then I see a nav bar welcome message for "user1"
     And I click on the nav bar "log out" button
     Then I see a sign up nav bar button
 

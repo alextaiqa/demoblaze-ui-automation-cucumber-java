@@ -3,9 +3,9 @@ package steps.components;
 import context.TestContext;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.components.NavBar;
 import steps.BaseSteps;
+import utils.TestData;
 
 import static org.testng.Assert.*;
 
@@ -31,10 +31,10 @@ public class NavBarSteps extends BaseSteps {
         navBar.clickOnTheButton(button);
     }
 
-    @Then("I see a nav bar welcome message")
-    public void iSeeANavBarWelcomeMessage() {
+    @Then("I see a nav bar welcome message for {string}")
+    public void iSeeANavBarWelcomeMessageFor(String userNum) {
         String actualResult = navBar.getWelcomeMessage();
-        String expectedResult = data.get("logInWelcomeMessage");
+        String expectedResult = "Welcome" + new TestData("testdata/login.yaml").get(userNum + ".username");
         assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 

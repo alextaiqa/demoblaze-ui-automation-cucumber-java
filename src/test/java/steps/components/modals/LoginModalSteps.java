@@ -29,8 +29,8 @@ public class LoginModalSteps extends BaseSteps {
     // =======================
 // METHODS
 // =======================
-    @And("I log in")
-    public void iLogIn(String userNum) {
+    @And("I log in as {string}")
+    public void iLogInAs(String userNum) {
         authFlow.login(data.get(userNum + ".username"), data.get(userNum + "password"));
     }
 

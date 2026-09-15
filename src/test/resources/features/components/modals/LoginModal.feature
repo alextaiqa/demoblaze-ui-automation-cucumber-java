@@ -10,7 +10,7 @@ Feature: Verify that login modal functionality works correctly
   Scenario: Validate a successful log in - valid credentials
     And I enter valid login credentials for "user1"
     And I click on the log in modal confirmation button
-    Then I see a nav bar welcome message
+    Then I see a nav bar welcome message for "user1"
 
   @known_bug @bug
 #    Expected result: "Incorrect username or password."
