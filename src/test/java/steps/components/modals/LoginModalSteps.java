@@ -30,8 +30,8 @@ public class LoginModalSteps extends BaseSteps {
 // METHODS
 // =======================
     @And("I log in")
-    public void iLogInWithValidCredentials(String userNum) {
-        authFlow.loginWithValidCredentials(data.get(userNum + ".username"), data.get(userNum + "password"));
+    public void iLogIn(String userNum) {
+        authFlow.login(data.get(userNum + ".username"), data.get(userNum + "password"));
     }
 
     @And("I enter valid login credentials for {string}")
