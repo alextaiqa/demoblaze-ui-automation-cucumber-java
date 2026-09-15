@@ -30,24 +30,24 @@ public class LoginModalSteps extends BaseSteps {
 // METHODS
 // =======================
     @And("I log in")
-    public void iLogIn() {
-        authFlow.login(data.get("correctUsername"), data.get("correctPassword"));
+    public void iLogInWithValidCredentials(String userNum) {
+        authFlow.loginWithValidCredentials(data.get(userNum + ".username"), data.get(userNum + "password"));
     }
 
-    @And("I enter valid login credentials")
-    public void iEnterValidLoginCredentials() {
-        iEnterAValidLoginUsername();
-        iEnterAValidLoginPassword();
+    @And("I enter valid login credentials for {string}")
+    public void iEnterValidLoginCredentials(String userNum) {
+        iEnterAValidLoginUsername(userNum);
+        iEnterAValidLoginPassword(userNum);
     }
 
     @And("I enter a valid login username")
-    public void iEnterAValidLoginUsername() {
-        logInModal.enterACorrectUsername(data.get("correctUsername"));
+    public void iEnterAValidLoginUsername(String userNum) {
+        logInModal.enterACorrectUsername(data.get(userNum + "username"));
     }
 
     @And("I enter a valid login password")
-    public void iEnterAValidLoginPassword() {
-        logInModal.enterACorrectPassword(data.get("correctPassword"));
+    public void iEnterAValidLoginPassword(String userNum) {
+        logInModal.enterACorrectPassword(data.get(userNum + "password"));
     }
 
     @And("I enter invalid login credentials")
