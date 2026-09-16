@@ -113,7 +113,14 @@ public class MainPage extends BasePage {
 
     public void clickOnTheDeviceCategoryButton(String category) {
         log.info("Clicking on the '{}' device category", category);
-        driverUtils.click(getCategoryButton(category));
+
+        if (category.equalsIgnoreCase("default")) {
+            driverUtils.click(getCategoryButton(category));
+        } else {
+            WebElement defaultElement = driverUtils.getVisibleElement(getCategoryButton("default"));
+            driverUtils.click(getCategoryButton(category));
+            driverUtils.waitForElementToBecomeStale(defaultElement);
+        }
     }
 
     public boolean isDeviceCategorySizeGreaterThanNine() {
