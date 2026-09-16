@@ -34,7 +34,7 @@ public class MainPageSteps extends BaseSteps {
     }
 
     @And("I click on the {string} device category on the main page")
-    public void iClickOnTheCategoryOnTheMainPage(String category) {
+    public void iClickOnTheDeviceCategoryOnTheMainPage(String category) {
         mainPage.clickOnTheDeviceCategoryButton(category);
     }
 

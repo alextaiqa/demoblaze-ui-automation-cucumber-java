@@ -13,6 +13,10 @@ import java.util.List;
 
 public class WaitUtils {
 
+
+//    A QUESTION TO CONSIDER: SHOULD LOGS BE ON THIS LEVEL? THEY ALREADY RETURN A RESULT AND POMs HANDLE THE REST
+//    POMs SHOULD HAVE LOGS LIKE INFO AND WARN, AND THESE STAY CLEAN AS BEHAVIOR DEPENDS?
+
     //global variables
     private final Config config = new Config();
     private final Duration REGULAR_WAIT = config.getRegularWait();
@@ -55,8 +59,6 @@ public class WaitUtils {
         try {
             return getRegularWait().until(ExpectedConditions.visibilityOfElementLocated(selector));
         } catch (TimeoutException e) {
-            log.warn("Element with selector '{}' was not visible. Waited for {} seconds.",
-                    selector, REGULAR_WAIT.getSeconds());
             return null;
         }
     }
