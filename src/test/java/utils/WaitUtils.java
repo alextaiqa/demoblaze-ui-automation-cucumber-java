@@ -103,7 +103,7 @@ public class WaitUtils {
     public void waitForStaleness(WebElement element) {
         try {
             getRegularWait().until(ExpectedConditions.stalenessOf(element));
-        } catch (Exception e) {
+        } catch (Exception e) { // FIX THIS - MAKES TESTS CONTINUE EVEN IF AN OBJECT IS NOT STALE
             log.warn("Element did not become stale. Waited for {} seconds.",
                     REGULAR_WAIT.getSeconds());
 

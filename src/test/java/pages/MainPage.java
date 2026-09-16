@@ -117,9 +117,9 @@ public class MainPage extends BasePage {
         if (category.equalsIgnoreCase("default")) {
             driverUtils.click(getCategoryButton(category));
         } else {
-            WebElement defaultElement = driverUtils.getVisibleElement(getCategoryButton("default"));
+            WebElement oldProduct = getVisibleDeviceCategoryItem(1);
             driverUtils.click(getCategoryButton(category));
-            driverUtils.waitForElementToBecomeStale(defaultElement);
+            driverUtils.waitForElementToBecomeStale(oldProduct);
         }
     }
 
