@@ -10,7 +10,10 @@ public class SignUpModal extends BaseModal {
     private final By signUpModalHeaderCSS = By.id("signInModalLabel");
     private final By signUpModalUsernameFieldCSS = By.id("sign-username");
     private final By signUpModalPasswordFieldCSS = By.id("sign-password"); //should they be called CSS or CSS_ID or???
-    private final By signUpModalConfirmationButtonXPath = By.xpath("//div[@id='signInModal']//button[normalize-space()='Sign up']");
+    private final By signUpModalConfirmationButtonXPath =
+            By.xpath("//div[@id='signInModal']//button[normalize-space()='Sign up']");
+    private final By signUpModalCloseButtonXpath =
+            By.xpath("//div[@id='signInModal']//button[@type='button'][normalize-space()='Close']");
 
     //constructor
     public SignUpModal(DriverUtils driverUtils) {
@@ -53,6 +56,21 @@ public class SignUpModal extends BaseModal {
         log.info("Sign up - modal - verifying if a message " +
                 "'This user already exist.' appears when signing up with an existing user");
         return driverUtils.getAlertText().equals("This user already exist.");
+    }
+
+    public void clickOnTheSignUpModalCloseButton() {
+        log.info("Clicking on the 'Sign up' modal 'cancel' button");
+        driverUtils.click(signUpModalCloseButtonXpath);
+    }
+
+    public boolean isUsernameFieldEmpty() {
+        log.info("Sign up - modal - checking if the username field is empty");
+        return driverUtils.isAttributeEmpty(signUpModalUsernameFieldCSS, "value");
+    }
+
+    public boolean isPasswordFieldEmpty() {
+        log.info("Sign up - modal - checking if the password field is empty");
+        return driverUtils.isAttributeEmpty(signUpModalPasswordFieldCSS, "value");
     }
 
 
