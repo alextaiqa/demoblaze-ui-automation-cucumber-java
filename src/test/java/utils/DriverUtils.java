@@ -48,7 +48,11 @@ public class DriverUtils {
     }
 
     public String getText(By selector) {
-        return waitUtils.getVisibleElement(selector).getText();
+        WebElement element = waitUtils.getVisibleElement(selector);
+        if (element == null) {
+            return "null";
+        }
+        return element.getText();
     }
 
     public List<String> getTextFromMultipleElements(By selector) {
