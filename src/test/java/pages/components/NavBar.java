@@ -87,6 +87,15 @@ public class NavBar {
         return driverUtils.getCSSValue(getButtonSelector(button), "color");
     }
 
+    public String getLogOutButtonText() {
+        log.info("Getting text of the log out button");
+        return driverUtils.getText(logOutButtonID);
+    }
+
+    public void acceptTheAlert() {
+        driverUtils.waitForAlertAndAccept();
+    }
+
     // =======================
 // HELPERS
 // =======================

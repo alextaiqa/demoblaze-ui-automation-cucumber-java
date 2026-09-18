@@ -43,3 +43,13 @@ Feature: "Sign up" modal functionality
     And I click on the nav bar "sign up" button
     Then I see all sign up fields are empty
     Then I see all contact modal fields are empty
+
+  @bug
+#    Expected result: Log out button seen - user is logged in after a successful signup
+#    Actual result: Log out button not seen - user not logged in after a successful signup
+  Scenario: Verify if a user is logged in after a successful signup
+    And I enter a valid sign up username
+    And I enter a valid sign up password
+    And I click on the sign up modal confirmation button
+    And I accept the alert
+    Then I see log out button

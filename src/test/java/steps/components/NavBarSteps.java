@@ -1,6 +1,7 @@
 package steps.components;
 
 import context.TestContext;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.NavBar;
@@ -67,5 +68,17 @@ public class NavBarSteps extends BaseSteps {
         String colorAfterHover = navBar.getButtonColor(button);
         assertNotEquals(colorAfterHover, colorBeforeHover,
                 "Nav bar - " + button + " button - color change on hover is incorrect");
+    }
+
+    @Then("I see log out button")
+    public void iSeeLogOutButton() {
+        String actualButtonText = navBar.getLogOutButtonText();
+        String expectedButtonText = data.get("logOutButtonText");
+        assertEquals(actualButtonText, expectedButtonText, "Nav bar - log out button not seen");
+    }
+
+    @And("I accept the alert")
+    public void iAcceptTheAlert() {
+        navBar.acceptTheAlert();
     }
 }
