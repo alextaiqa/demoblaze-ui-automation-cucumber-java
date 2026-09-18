@@ -11,7 +11,6 @@ import utils.TestDataGenerator;
 import static org.testng.Assert.*;
 
 public class SignUpModalSteps extends BaseSteps {
-
     private final SignUpModal signUpModal;
     private final TestData loginData;
     private final TestDataGenerator dataGenerator;
@@ -45,8 +44,6 @@ public class SignUpModalSteps extends BaseSteps {
     @And("I enter a valid sign up password")
     public void iEnterAValidSignUpPassword() {
         signUpModal.enterAValidPassword(dataGenerator.generatePassword());
-
-        //there are some issues when running mvn test - take care of those
     }
 
     @And("I enter valid sign up credentials")
@@ -84,5 +81,27 @@ public class SignUpModalSteps extends BaseSteps {
         boolean isExistingUserMessageSeen = signUpModal.seeAUserAlreadyExistsSignUpMessage();
         assertTrue(isExistingUserMessageSeen, "Sign up - modal - " +
                 "'This user already exist.' message not seen when signing up with an existing account");
+    }
+
+    @Then("I see sign up empty fields message")
+    public void iSeeSignUpEmptyFieldsMessage() {
+        String actualMessage = signUpModal.getAlertText();
+        String expectedMessage = data.get("emptyFieldsMessage");
+        assertEquals(actualMessage, expectedMessage, "Sign up - modal - " +
+                "'Please fill out Username and Password.' message not seen when signing up with empty fields");
+    }
+
+    @And("I click on the sign up modal close button")
+    public void iClickOnTheSignUpModalCloseButton() {
+        signUpModal.clickOnTheSignUpModalCloseButton();
+    }
+
+
+    //THE PROBLEM HERE IS THAT MULTIPLE MODALS HAVE THE SAME CODE - FIX THIS - BASE CLASS? GET MODAL NAME VIA ABSTRACT?
+    //but all of them have different data for logging and assertions...
+    @Then("I see all sign up fields are empty")
+    public void iSeeAllSignUpFieldsAreEmpty() {
+        assertTrue(signUpModal.isUsernameFieldEmpty(), "'Sign up' modal - name field is not empty");
+        assertTrue(signUpModal.isPasswordFieldEmpty(), "'Sign up' modal - message field is not empty");
     }
 }
