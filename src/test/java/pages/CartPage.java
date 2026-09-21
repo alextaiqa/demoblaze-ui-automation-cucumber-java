@@ -2,8 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import utils.DriverUtils;
+import utils.TestDataGenerator;
 
 public class CartPage extends BasePage {
+
+    //global selector
 
     //selectors
     private final By placeOrderButton = By.cssSelector(".btn.btn-success");
@@ -29,6 +32,41 @@ public class CartPage extends BasePage {
         log.info("Checking if the 'Place Order' modal container is displayed");
         return driverUtils.isElementDisplayed(placeOrderModalContainer);
     }
+
+    public void enterAValidNameInThePlaceOrderModal() {
+//        log.info();
+//        driverUtils.type(, );
+    }
+
+    public void enterAValidCountryInThePlaceOrderModal() {
+//        log.info();
+//        driverUtils.type(, );
+    }
+
+    public void enterAValidCityInThePlaceOrderModal() {
+
+    }
+
+    public void enterAValidCreditCardInThePlaceOrderModal() {
+
+    }
+
+    public void enterAValidMonthInThePlaceOrderModal() {
+
+    }
+
+    public void enterAValidYearInThePlaceOrderModal() {
+
+    }
+
+    public void clickOnThePlaceOrderPurchaseButton() {
+
+    }
+
+    public String getPurchaseConfirmationMessage() {
+        return "";
+    }
+
 
     //getters
     @Override
