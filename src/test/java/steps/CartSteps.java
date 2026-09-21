@@ -1,5 +1,8 @@
 package steps;
 
+import flows.ShoppingFlow;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,10 +13,12 @@ import static org.testng.Assert.*;
 public class CartSteps extends BaseSteps {
 
     private final CartPage cartPage;
+    private final ShoppingFlow shoppingFlow;
 
-    public CartSteps(CartPage cartPage) {
+    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow) {
         super("testdata/cartPage.yaml");
         this.cartPage = cartPage;
+        this.shoppingFlow = shoppingFlow;
     }
 
     @Given("I open the cart page")
@@ -41,5 +46,57 @@ public class CartSteps extends BaseSteps {
     public void iDoNotSeeAPlaceOrderModal() {
         assertFalse(cartPage.isPlaceOrderModalDisplayed(),
                 "Clicking on the 'Place Order' button while the cart is empty opens the 'Place Order' modal");
+    }
+
+    @And("I add the first item in the {string} device category to the cart")
+    public void iAddTheFirstItemInTheDeviceCategoryToTheCart(String deviceCategory) {
+        shoppingFlow.addTheFirstItemInTheDeviceCategoryToTheCart(deviceCategory);
+    }
+
+    @And("I enter a valid name in the place order modal")
+    public void iEnterAValidNameInThePlaceOrderModal() {
+        cartPage.enterAValidNameInThePlaceOrderModal();
+    }
+
+    @And("I enter a valid country in the place order modal")
+    public void iEnterAValidCountryInThePlaceOrderModal() {
+        cartPage.enterAValidCountryInThePlaceOrderModal();
+    }
+
+    @And("I enter a valid city in the place order modal")
+    public void iEnterAValidCityInThePlaceOrderModal() {
+        cartPage.enterAValidCityInThePlaceOrderModal();
+    }
+
+    @And("I enter a valid credit card in the place order modal")
+    public void iEnterAValidCreditCardInThePlaceOrderModal() {
+        cartPage.enterAValidCreditCardInThePlaceOrderModal();
+    }
+
+    @And("I enter a valid month in the place order modal")
+    public void iEnterAValidMonthInThePlaceOrderModal() {
+        cartPage.enterAValidMonthInThePlaceOrderModal();
+    }
+
+    @And("I enter a valid year in the place order modal")
+    public void iEnterAValidYearInThePlaceOrderModal() {
+        cartPage.enterAValidYearInThePlaceOrderModal();
+    }
+
+    @And("I enter valid place order details in the cart modal")
+    public void iEnterValidPlaceOrderDetailsInTheCartModal() {
+        shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal();
+    }
+
+    @And("I click on the place order purchase button")
+    public void iClickOnThePlaceOrderPurchaseButton() {
+        cartPage.clickOnThePlaceOrderPurchaseButton();
+    }
+
+    @Then("I see a purchase confirmation message")
+    public void iSeeAPurchaseConfirmationMessage() {
+        String actualMessage = cartPage.getPurchaseConfirmationMessage(); // //h2[normalize-space()='Thank you for your purchase!']
+        String expectedMessage = "";
+        assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
     }
 }
