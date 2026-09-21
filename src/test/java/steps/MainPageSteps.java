@@ -5,19 +5,23 @@ import io.cucumber.java.en.*;
 import pages.MainPage;
 import utils.DriverUtils;
 
+
 import static org.testng.Assert.*;
 
 public class MainPageSteps extends BaseSteps {
 
+    //    GLOBAL VARIABLES
     private final MainPage mainPage;
     private final TestContext testContext;
 
+    //    CONSTRUCTOR
     public MainPageSteps(DriverUtils driverUtils, TestContext testContext) {
         super("testdata/mainPage.yaml");
         this.mainPage = new MainPage(driverUtils);
         this.testContext = testContext;
      }
 
+    //     METHODS
     @Given("I open the main page")
     public void iOpenTheMainPage(){
         mainPage.open(data.get("homePageURL"));
@@ -136,5 +140,10 @@ public class MainPageSteps extends BaseSteps {
                 mainPage.ItemsOnTheFirstPageOfTheDeviceCategoryHaveACorrectTitleOnTheirPages(category);
         assertTrue(itemsHaveCorrectTitlesOnTheirPages,
                 "An item in the " + category + " did not redirect to a correct page");
+    }
+
+    @And("I click on the first item in the {string} device category")
+    public void iClickOnTheFirstItemInTheDeviceCategory(String deviceCategory) {
+        mainPage.clickOnTheFirstItemInTheDeviceCategory(deviceCategory);
     }
 }

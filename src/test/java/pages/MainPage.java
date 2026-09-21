@@ -158,6 +158,12 @@ public class MainPage extends BasePage {
         driverUtils.click(deviceCategoriesPreviousButtonID);
     }
 
+    public void clickOnTheFirstItemInTheDeviceCategory(String deviceCategory) {
+        log.info("Clicking on the first item in the {} device category", deviceCategory);
+        driverUtils.click(getCategoryButton(deviceCategory));
+        getVisibleDeviceCategoryItem(1).click();
+    }
+
     public void goToTheLastPageOfTheDeviceCategory() {
         log.info("Getting to the last page of the device category");
         while (isDeviceCategoriesNextButtonDisplayed()) {
