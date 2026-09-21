@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CartPage;
+import utils.TestDataGenerator;
 
 import static org.testng.Assert.*;
 
@@ -14,11 +15,13 @@ public class CartSteps extends BaseSteps {
 
     private final CartPage cartPage;
     private final ShoppingFlow shoppingFlow;
+    private final TestDataGenerator testDataGenerator;
 
-    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow) {
+    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow, TestDataGenerator testDataGenerator) {
         super("testdata/cartPage.yaml");
         this.cartPage = cartPage;
         this.shoppingFlow = shoppingFlow;
+        this.testDataGenerator = testDataGenerator;
     }
 
     @Given("I open the cart page")
@@ -55,32 +58,32 @@ public class CartSteps extends BaseSteps {
 
     @And("I enter a valid name in the place order modal")
     public void iEnterAValidNameInThePlaceOrderModal() {
-        cartPage.enterAValidNameInThePlaceOrderModal();
+        cartPage.enterAValidNameInThePlaceOrderModal(testDataGenerator.generateName());
     }
 
     @And("I enter a valid country in the place order modal")
     public void iEnterAValidCountryInThePlaceOrderModal() {
-        cartPage.enterAValidCountryInThePlaceOrderModal();
+        cartPage.enterAValidCountryInThePlaceOrderModal(testDataGenerator.country); //random countries?
     }
 
     @And("I enter a valid city in the place order modal")
     public void iEnterAValidCityInThePlaceOrderModal() {
-        cartPage.enterAValidCityInThePlaceOrderModal();
+        cartPage.enterAValidCityInThePlaceOrderModal(testDataGenerator.city); //random city?
     }
 
     @And("I enter a valid credit card in the place order modal")
     public void iEnterAValidCreditCardInThePlaceOrderModal() {
-        cartPage.enterAValidCreditCardInThePlaceOrderModal();
+        cartPage.enterAValidCreditCardInThePlaceOrderModal(testDataGenerator.generateCreditCardDigits());
     }
 
     @And("I enter a valid month in the place order modal")
     public void iEnterAValidMonthInThePlaceOrderModal() {
-        cartPage.enterAValidMonthInThePlaceOrderModal();
+        cartPage.enterAValidMonthInThePlaceOrderModal(testDataGenerator.generateMonth()); //get current month?
     }
 
     @And("I enter a valid year in the place order modal")
     public void iEnterAValidYearInThePlaceOrderModal() {
-        cartPage.enterAValidYearInThePlaceOrderModal();
+        cartPage.enterAValidYearInThePlaceOrderModal(testDataGenerator.generateYear()); //get current month?
     }
 
     @And("I enter valid place order details in the cart modal")
