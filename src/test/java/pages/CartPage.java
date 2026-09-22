@@ -51,11 +51,11 @@ public class CartPage extends BasePage {
 
     }
 
-    public void enterAValidMonthInThePlaceOrderModal(int month) {
+    public void enterAValidMonthInThePlaceOrderModal(String month) {
 
     }
 
-    public void enterAValidYearInThePlaceOrderModal(int year) {
+    public void enterAValidYearInThePlaceOrderModal(String year) {
 
     }
 

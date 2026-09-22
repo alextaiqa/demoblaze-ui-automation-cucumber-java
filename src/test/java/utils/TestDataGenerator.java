@@ -69,6 +69,11 @@ public class TestDataGenerator {
         return password;
     }
 
+    public String generateMonth() {
+        int randomMonthNum = generateRandomIndex(12) + 1;
+        return addZeroToMonth(randomMonthNum);
+    }
+
     public String generateEmail() {
         String email = standardNameStart + generateTenRandomLetters() + "@example.com";
         log.info("Generated an email {}", email);
@@ -87,5 +92,9 @@ public class TestDataGenerator {
 
     private int generateRandomIndex(int size) { //from 0 to max entered -1
         return (int) (Math.random() * size);
+    }
+
+    private String addZeroToMonth(int monthNumber) {
+        return String.format("%02d", monthNumber);
     }
 }
