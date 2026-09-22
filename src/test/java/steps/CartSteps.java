@@ -1,5 +1,6 @@
 package steps;
 
+import context.TestContext;
 import flows.ShoppingFlow;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
@@ -16,12 +17,15 @@ public class CartSteps extends BaseSteps {
     private final CartPage cartPage;
     private final ShoppingFlow shoppingFlow;
     private final TestDataGenerator testDataGenerator;
+    private final TestContext testContext;
 
-    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow, TestDataGenerator testDataGenerator) {
+    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow, TestDataGenerator testDataGenerator,
+                     TestContext testContext) {
         super("testdata/cartPage.yaml");
         this.cartPage = cartPage;
         this.shoppingFlow = shoppingFlow;
         this.testDataGenerator = testDataGenerator;
+        this.testContext = testContext;
     }
 
     @Given("I open the cart page")
@@ -58,17 +62,20 @@ public class CartSteps extends BaseSteps {
 
     @And("I enter a valid name in the place order modal")
     public void iEnterAValidNameInThePlaceOrderModal() {
-        cartPage.enterAValidNameInThePlaceOrderModal(testDataGenerator.generateName());
+        cartPage.enterAValidNameInThePlaceOrderModal(testDataGenerator.generateFullName());
     }
 
     @And("I enter a valid country in the place order modal")
     public void iEnterAValidCountryInThePlaceOrderModal() {
-        cartPage.enterAValidCountryInThePlaceOrderModal(testDataGenerator.country); //random countries?
+        String randomCountry = testDataGenerator.generateCountry();
+        testContext.set("country", randomCountry);
+        cartPage.enterAValidCountryInThePlaceOrderModal(randomCountry);
     }
 
     @And("I enter a valid city in the place order modal")
     public void iEnterAValidCityInThePlaceOrderModal() {
-        cartPage.enterAValidCityInThePlaceOrderModal(testDataGenerator.city); //random city?
+        cartPage.enterAValidCityInThePlaceOrderModal(testDataGenerator.
+                generateCity(testContext.get("country").toString()));
     }
 
     @And("I enter a valid credit card in the place order modal")
@@ -94,6 +101,11 @@ public class CartSteps extends BaseSteps {
     @And("I click on the place order purchase button")
     public void iClickOnThePlaceOrderPurchaseButton() {
         cartPage.clickOnThePlaceOrderPurchaseButton();
+    }
+
+    @And("I make a purchase of a single item with valid credentials")
+    public void iMakeAPurchaseOfASingleItemWithValidCredentials() {
+        shoppingFlow.makeAPurchaseOfASingleItemWithValidCredentials();
     }
 
     @Then("I see a purchase confirmation message")
