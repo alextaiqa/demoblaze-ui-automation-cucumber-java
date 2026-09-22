@@ -33,29 +33,29 @@ public class CartPage extends BasePage {
         return driverUtils.isElementDisplayed(placeOrderModalContainer);
     }
 
-    public void enterAValidNameInThePlaceOrderModal() {
+    public void enterAValidNameInThePlaceOrderModal(String fullName) {
 //        log.info();
 //        driverUtils.type(, );
     }
 
-    public void enterAValidCountryInThePlaceOrderModal() {
+    public void enterAValidCountryInThePlaceOrderModal(String country) {
 //        log.info();
 //        driverUtils.type(, );
     }
 
-    public void enterAValidCityInThePlaceOrderModal() {
+    public void enterAValidCityInThePlaceOrderModal(String city) {
 
     }
 
-    public void enterAValidCreditCardInThePlaceOrderModal() {
+    public void enterAValidCreditCardInThePlaceOrderModal(String creditCardDigits) {
 
     }
 
-    public void enterAValidMonthInThePlaceOrderModal() {
+    public void enterAValidMonthInThePlaceOrderModal(int month) {
 
     }
 
-    public void enterAValidYearInThePlaceOrderModal() {
+    public void enterAValidYearInThePlaceOrderModal(int year) {
 
     }
 

@@ -33,5 +33,9 @@ public class ShoppingFlow {
 
     }
 
+    public void makeAPurchaseOfASingleItemWithValidCredentials() {
+
+    }
+
 //    HELPERS
 }
