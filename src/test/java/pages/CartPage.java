@@ -33,7 +33,7 @@ public class CartPage extends BasePage {
         return driverUtils.isElementDisplayed(placeOrderModalContainer);
     }
 
-    public void enterAValidNameInThePlaceOrderModal(String fullName) {
+    public void enterAValidFullNameInThePlaceOrderModal(String fullName) {
 //        log.info();
 //        driverUtils.type(, );
     }

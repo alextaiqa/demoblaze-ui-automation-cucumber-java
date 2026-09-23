@@ -60,9 +60,9 @@ public class CartSteps extends BaseSteps {
         shoppingFlow.addTheFirstItemInTheDeviceCategoryToTheCart(deviceCategory);
     }
 
-    @And("I enter a valid name in the place order modal")
-    public void iEnterAValidNameInThePlaceOrderModal() {
-        cartPage.enterAValidNameInThePlaceOrderModal(testDataGenerator.generateFullName());
+    @And("I enter a valid full name in the place order modal")
+    public void iEnterAValidFullNameInThePlaceOrderModal() {
+        cartPage.enterAValidFullNameInThePlaceOrderModal(testDataGenerator.generateFullName());
     }
 
     @And("I enter a valid country in the place order modal")
