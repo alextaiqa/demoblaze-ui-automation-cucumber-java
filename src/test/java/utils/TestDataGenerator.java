@@ -1,5 +1,6 @@
 package utils;
 
+import models.PlaceOrderData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +98,19 @@ public class TestDataGenerator {
         String email = STANDARD_NAME_START + generateTenRandomLetters() + "@example.com";
         log.info("Generated an email {}", email);
         return email;
+    }
+
+    public PlaceOrderData generatePlaceOrderData() {
+        String country = generateCountry();
+
+        return new PlaceOrderData(
+                generateFullName(),
+                country,
+                generateCity(country),
+                generateCreditCardDigits(),
+                generateMonth(),
+                generateYear()
+        );
     }
 
 
