@@ -1,5 +1,6 @@
 package flows;
 
+import models.PlaceOrderData;
 import pages.CartPage;
 import pages.Item;
 import pages.MainPage;
@@ -29,8 +30,8 @@ public class ShoppingFlow {
         navBar.acceptTheAlert();
     }
 
-    public void enterValidPlaceOrderDetailsInTheCartModal() {
-        cartPage.enterAValidNameInThePlaceOrderModal();
+    public void enterValidPlaceOrderDetailsInTheCartModal(PlaceOrderData placeOrderData) {
+        cartPage.enterAValidFullNameInThePlaceOrderModal();
         cartPage.enterAValidCountryInThePlaceOrderModal();
         cartPage.enterAValidCityInThePlaceOrderModal();
         cartPage.enterAValidCreditCardInThePlaceOrderModal();
