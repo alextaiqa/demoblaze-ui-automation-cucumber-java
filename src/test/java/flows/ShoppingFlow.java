@@ -30,7 +30,12 @@ public class ShoppingFlow {
     }
 
     public void enterValidPlaceOrderDetailsInTheCartModal() {
-
+        cartPage.enterAValidNameInThePlaceOrderModal();
+        cartPage.enterAValidCountryInThePlaceOrderModal();
+        cartPage.enterAValidCityInThePlaceOrderModal();
+        cartPage.enterAValidCreditCardInThePlaceOrderModal();
+        cartPage.enterAValidMonthInThePlaceOrderModal();
+        cartPage.enterAValidYearInThePlaceOrderModal();
     }
 
     public void makeAPurchaseOfASingleItemWithValidCredentials() {
