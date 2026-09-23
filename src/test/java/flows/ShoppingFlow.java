@@ -39,16 +39,20 @@ public class ShoppingFlow {
         cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
     }
 
-    public void makeAPurchaseOfASingleItemInTheDeviceCategoryWithValidCredentials(
+    public void makeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(
             String category, PlaceOrderData placeOrderData) {
-        //click on the category
-        //click on the item
-        //click on the "add to cart"
-        //accept the alert
+
+        //should be in a flow "add first item to cart"? Or "add item to cart(int num)"? Or not?
+        mainPage.clickOnTheFirstItemInTheDeviceCategory(category);
+        item.clickOnTheAddToCartButton();
+        navBar.acceptTheAlert(); // should be in a different class?
+
+
+
         //click on the cart
-        //click on the "place order" button
-        //enter valid place order data
-        //click on the "purchase" button
+        cartPage.clickOnThePlaceOrderButton();
+        enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
+        cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
     public void addAnItemToCart(String category, int item) {
