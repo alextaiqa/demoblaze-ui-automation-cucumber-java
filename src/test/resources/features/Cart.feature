@@ -29,6 +29,6 @@ Feature: Cart page functionality
 
   Scenario: Verify a user is able to successfully make a purchase with valid data
     Given I open the main page
-    And I make a purchase of a single item in the "phones" category with valid credentials
+    And I make a purchase of a first item in the "phones" category with valid credentials
     Then I see a purchase confirmation message
 

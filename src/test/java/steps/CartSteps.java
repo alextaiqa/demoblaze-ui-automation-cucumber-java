@@ -103,9 +103,9 @@ public class CartSteps extends BaseSteps {
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
-    @And("I make a purchase of a single item in the {string} category with valid credentials")
-    public void iMakeAPurchaseOfASingleItemInTheDeviceCategoryWithValidCredentials(String category) {
-        shoppingFlow.makeAPurchaseOfASingleItemInTheDeviceCategoryWithValidCredentials(category,
+    @And("I make a purchase of a first item in the {string} category with valid credentials")
+    public void iMakeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(String category) {
+        shoppingFlow.makeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(category,
                 testDataGenerator.generatePlaceOrderData());
     }
 
