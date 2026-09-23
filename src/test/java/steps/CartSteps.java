@@ -95,7 +95,7 @@ public class CartSteps extends BaseSteps {
 
     @And("I enter valid place order details in the cart modal")
     public void iEnterValidPlaceOrderDetailsInTheCartModal() {
-        shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal();
+        shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal(testDataGenerator.generatePlaceOrderData());
     }
 
     @And("I click on the place order purchase button")
@@ -103,9 +103,10 @@ public class CartSteps extends BaseSteps {
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
-    @And("I make a purchase of a single item with valid credentials")
-    public void iMakeAPurchaseOfASingleItemWithValidCredentials() {
-        shoppingFlow.makeAPurchaseOfASingleItemWithValidCredentials();
+    @And("I make a purchase of a single item in the {string} category with valid credentials")
+    public void iMakeAPurchaseOfASingleItemInTheDeviceCategoryWithValidCredentials(String category) {
+        shoppingFlow.makeAPurchaseOfASingleItemInTheDeviceCategoryWithValidCredentials(category,
+                testDataGenerator.generatePlaceOrderData());
     }
 
     @Then("I see a purchase confirmation message")
