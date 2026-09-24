@@ -10,9 +10,7 @@ import java.util.Map;
 
 public class NavBar {
 
-    // =======================
-// SELECTORS
-// =======================
+    /*SELECTORS*/
     private final By navBarCSS = By.cssSelector(".navbar.navbar-toggleable-md.bg-inverse");
     private final By logoID = By.id("nava");
     private final By homeButtonXPath = By.xpath("//div[@id='navbarExample']//a[contains(normalize-space(),'Home')]");
@@ -24,9 +22,7 @@ public class NavBar {
     private final By welcomeMessageID = By.id("nameofuser");
     private final By logOutButtonID = By.id("logout2");
 
-    // =======================
-// MAP(RESOLVER)
-// =======================
+    //MAP(RESOLVER)
     //stores main nav bar buttons
     private final Map<String, By> navBarButtons = Map.of(
             "logo", logoID,
@@ -38,29 +34,22 @@ public class NavBar {
             "log out", logOutButtonID,
             "sign up", signUpButtonID);
 
-    // =======================
-// GLOBAL VARIABLE
-// =======================
+    /*GLOBAL VARIABLES*/
     private final DriverUtils driverUtils;
     private final Logger log;
 
-    // =======================
-// CONSTRUCTOR
-// =======================
+    /*CONSTRUCTOR*/
     public NavBar(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
     }
 
-    // =======================
-// METHODS
-// =======================
+    /*METHODS*/
     public boolean isDisplayed() {
         log.info("Checking if the nav bar is displayed");
         return driverUtils.isElementDisplayed(navBarCSS);
     }
 
-    //KEEP
     public void clickOnTheButton(String button) {
         log.info("Clicking on the '{}' button on the nav bar", button);
         driverUtils.click(getButtonSelector(button));
@@ -96,9 +85,7 @@ public class NavBar {
         driverUtils.waitForAlertAndAccept();
     }
 
-    // =======================
-// HELPERS
-// =======================
+    /*HELPERS*/
     //gets selectors of the main nav bar buttons
     private By getButtonSelector(String button) {
         button = button.toLowerCase();
