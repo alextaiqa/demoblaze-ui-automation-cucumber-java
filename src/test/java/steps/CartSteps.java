@@ -111,8 +111,8 @@ public class CartSteps extends BaseSteps {
 
     @Then("I see a purchase confirmation message")
     public void iSeeAPurchaseConfirmationMessage() {
-        String actualMessage = cartPage.getPurchaseConfirmationMessage(); // //h2[normalize-space()='Thank you for your purchase!']
-        String expectedMessage = "";
+        String actualMessage = cartPage.getPurchaseConfirmationMessage();
+        String expectedMessage = data.get("cartModalThankYouMessage");
         assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
     }
 }

@@ -2,3 +2,4 @@
 cartPageUrl: "https://demoblaze.com/cart.html"
 #page title
 cartPageTitle: "Cart"
+cartModalThankYouMessage: "Thank you for your purchase!"
