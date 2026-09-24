@@ -5,29 +5,31 @@ import pages.CartPage;
 import pages.Item;
 import pages.MainPage;
 import pages.components.NavBar;
+import utils.DriverUtils;
 
 public class ShoppingFlow {
 
-    //    GLOBAL VARIABLES
+    /*GLOBAL VARIABLES*/
     NavBar navBar;
     MainPage mainPage;
     Item item;
     CartPage cartPage;
+    DriverUtils driverUtils;
 
-
-    //    CONSTRUCTOR
-    public ShoppingFlow(NavBar navBar, MainPage mainPage, Item item, CartPage cartPage) {
+    /*CONSTRUCTOR*/
+    public ShoppingFlow(NavBar navBar, MainPage mainPage, Item item, CartPage cartPage, DriverUtils driverUtils) {
         this.navBar = navBar;
         this.mainPage = mainPage;
         this.item = item;
         this.cartPage = cartPage;
+        this.driverUtils = driverUtils;
     }
 
-    //    METHODS
+    /*METHODS*/
     public void addTheFirstItemInTheDeviceCategoryToTheCart(String deviceCategory) {
         mainPage.clickOnTheFirstItemInTheDeviceCategory(deviceCategory);
         item.clickOnTheAddToCartButton();
-        navBar.acceptTheAlert();
+        driverUtils.waitForAlertAndAccept();
     }
 
     public void enterValidPlaceOrderDetailsInTheCartModal(PlaceOrderData placeOrderData) {
@@ -39,28 +41,18 @@ public class ShoppingFlow {
         cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
     }
 
-    public void makeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(
-            String category, PlaceOrderData placeOrderData) {
-
-        //should be in a flow "add first item to cart"? Or "add item to cart(int num)"? Or not?
-        mainPage.clickOnTheFirstItemInTheDeviceCategory(category);
-        item.clickOnTheAddToCartButton();
-        navBar.acceptTheAlert(); // should be in a different class?
-
-
-
-        //click on the cart
+    public void makeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(String category,
+                                                                                 PlaceOrderData placeOrderData) {
+        addTheFirstItemInTheDeviceCategoryToTheCart(category);
+        goToCart();
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
-    public void addAnItemToCart(String category, int item) {
-        //click on the category
-        //click on the item
-        //click on the "add to cart"
-        //accept the alert
-    }
 
-//    HELPERS
+    /*HELPERS*/
+    private void goToCart() {
+        navBar.clickOnTheButton("cart");
+    }
 }
