@@ -2,12 +2,13 @@ package steps;
 
 import context.TestContext;
 import flows.ShoppingFlow;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.datatable.DataTable;
 import pages.CartPage;
+import utils.DataTableConverter;
 import utils.TestDataGenerator;
 
 import static org.testng.Assert.*;
@@ -103,10 +104,10 @@ public class CartSteps extends BaseSteps {
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
-    @And("I make a purchase of a first item in the {string} category with valid credentials")
-    public void iMakeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(String category) {
-        shoppingFlow.makeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(category,
-                testDataGenerator.generatePlaceOrderData());
+    @And("I purchase the {int} item in the {string} category with valid credentials")
+    public void iPurchaseTheItemInTheDeviceCategoryWithValidCredentials(String category, int itemNumber) {
+        shoppingFlow.purchaseTheItemInTheDeviceCategoryWithValidCredentials(category,
+                itemNumber, testDataGenerator.generatePlaceOrderData());
     }
 
     @Then("I see a purchase confirmation message")
@@ -114,5 +115,10 @@ public class CartSteps extends BaseSteps {
         String actualMessage = cartPage.getPurchaseConfirmationMessage();
         String expectedMessage = data.get("cartModalThankYouMessage");
         assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
+    }
+
+    @And("I add the following items to the cart:")
+    public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
+        shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
     }
 }
