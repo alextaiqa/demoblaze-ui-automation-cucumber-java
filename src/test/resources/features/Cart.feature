@@ -33,7 +33,7 @@ Feature: Cart page functionality
 
 #    change the first item step to accept {int} - so it can be used with multiple items as well!!!!!!!!!!!!!!!
 
-    And I make a purchase of a first item in the "phones" category with valid credentials
+    And I purchase the 1 item in the "phones" category with valid credentials
     Then I see a purchase confirmation message
 
   @only
@@ -46,7 +46,12 @@ Feature: Cart page functionality
 #    add a data table here and implement DataTable in the steps, then via shoppingFlow via single item step above
 #    change data table to map of strings in the step and pass it into the flow, consider making a pojo for this
 #    consider making a DataTableConverter class
-
+    And I add the following items to the cart:
+      | category | item |
+      | default  | 3    |
+      | phones   | 1    |
+      | laptops  | 2    |
+      | monitors | 1    |
 
 
     And I add the first item in the "phones" device category to the cart
