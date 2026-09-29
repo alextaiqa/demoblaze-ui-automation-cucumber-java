@@ -7,6 +7,10 @@ import pages.MainPage;
 import pages.components.NavBar;
 import utils.DriverUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class ShoppingFlow {
 
     /*GLOBAL VARIABLES*/
@@ -26,8 +30,8 @@ public class ShoppingFlow {
     }
 
     /*METHODS*/
-    public void addTheFirstItemInTheDeviceCategoryToTheCart(String deviceCategory) {
-        mainPage.clickOnTheFirstItemInTheDeviceCategory(deviceCategory);
+    public void addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, Integer itemNumber) {
+        mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
         item.clickOnTheAddToCartButton();
         driverUtils.waitForAlertAndAccept();
     }
@@ -41,18 +45,39 @@ public class ShoppingFlow {
         cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
     }
 
-    public void makeAPurchaseOfAFirstItemInTheDeviceCategoryWithValidCredentials(String category,
-                                                                                 PlaceOrderData placeOrderData) {
-        addTheFirstItemInTheDeviceCategoryToTheCart(category);
+    public void purchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
+                                                                       int itemNumber,
+                                                                       PlaceOrderData placeOrderData) {
+        addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
         goToCart();
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
+    public void addTheFollowingItemsToTheCart(Map<String, Integer> categoriesAndItems) {
+        List<String> categoriesKeys = new ArrayList<>(categoriesAndItems.keySet());
+
+        for (int i = 0; i < categoriesAndItems.size(); i++) {
+
+            String category = categoriesKeys.get(i);
+            Integer itemNumber = categoriesAndItems.get(category);
+            addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
+
+            if (i == categoriesAndItems.size() - 1) {
+                goToCart();
+                break;
+            }
+            goToMain();
+        }
+    }
 
     /*HELPERS*/
     private void goToCart() {
         navBar.clickOnTheButton("cart");
+    }
+
+    private void goToMain() {
+        navBar.clickOnTheButton("homePageURL");
     }
 }
