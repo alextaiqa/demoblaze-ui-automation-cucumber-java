@@ -65,7 +65,6 @@ public class ShoppingFlow {
             addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
 
             if (i == categoriesAndItems.size() - 1) {
-                goToCart();
                 break;
             }
             goToMain();

@@ -142,8 +142,8 @@ public class MainPageSteps extends BaseSteps {
                 "An item in the " + category + " did not redirect to a correct page");
     }
 
-    @And("I click on the first item in the {string} device category")
-    public void iClickOnTheFirstItemInTheDeviceCategory(String deviceCategory) {
-        mainPage.clickOnTheFirstItemInTheDeviceCategory(deviceCategory);
+    @And("I click on the {int} item in the {string} device category")
+    public void iClickOnAnFirstItemInTheDeviceCategory(String deviceCategory, int itemNumber) {
+        mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
     }
 }

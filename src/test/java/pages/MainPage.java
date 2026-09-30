@@ -160,10 +160,20 @@ public class MainPage extends BasePage {
 
 
     //CHANGE!!!!!!
-    public void clickOnTheFirstItemInTheDeviceCategory(String deviceCategory) {
-        log.info("Clicking on the first item in the {} device category", deviceCategory);
+    public void clickOnAnItemInTheDeviceCategory(String deviceCategory, int itemNumber) {
+        log.info("Clicking on item '{}' in the '{}' device category", itemNumber, deviceCategory);
         driverUtils.click(getCategoryButton(deviceCategory));
-        getVisibleDeviceCategoryItem(1).click();
+
+        int availableItems = getDeviceCategoryItems().size();
+        if (itemNumber < 1 || itemNumber > availableItems) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Invalid item number: %d. Category '%s' contains %d items.",
+                            itemNumber, deviceCategory, availableItems
+                    )
+            );
+        }
+        getVisibleDeviceCategoryItem(itemNumber).click();
     }
 
     public void goToTheLastPageOfTheDeviceCategory() {

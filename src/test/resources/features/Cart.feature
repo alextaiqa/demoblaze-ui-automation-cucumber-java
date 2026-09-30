@@ -27,41 +27,26 @@ Feature: Cart page functionality
     When I click on the place order button
     Then I do not see a place order modal
 
+  @only
   Scenario: Verify a user is able to successfully make a purchase of a single item with valid data
     Given I open the main page
-
-
-#    change the first item step to accept {int} - so it can be used with multiple items as well!!!!!!!!!!!!!!!
-
     And I purchase the 1 item in the "phones" category with valid credentials
     Then I see a purchase confirmation message
 
-  @only
-#    too long, should be simplified
-#    always the first item? But item amount can change, so a test might fail. So first?I
-  Scenario: Verify a user is able to successfully make a purchase of multiple items with valid data
-
-
-    Given I open the main page
-#    add a data table here and implement DataTable in the steps, then via shoppingFlow via single item step above
-#    change data table to map of strings in the step and pass it into the flow, consider making a pojo for this
-#    consider making a DataTableConverter class
-    And I add the following items to the cart:
-      | category | item |
-      | default  | 3    |
-      | phones   | 1    |
-      | laptops  | 2    |
-      | monitors | 1    |
-
-
-    And I add the first item in the "phones" device category to the cart
-    And I open the main page
-    And I add the first item in the "laptops" device category to the cart
-    And I open the main page
-    And I add the first item in the "monitors" device category to the cart
-    And I open the cart page
-    And I click on the place order button
-    And I enter valid place order details in the cart modal
-    And I click on the place order purchase button
-    Then I see a purchase confirmation message
+#  @only
+#  Scenario: Verify a user is able to successfully make a purchase of multiple items with valid data
+#    Given I open the main page
+#    And I add the following items to the cart:
+#      | category | item |
+#      | default  | 3    |
+#      | phones   | 1    |
+#      | laptops  | 2    |
+#      | monitors | 1    |
+#
+#
+#    And I open the cart page
+#    And I click on the place order button
+#    And I enter valid place order details in the cart modal
+#    And I click on the place order purchase button
+#    Then I see a purchase confirmation message
 

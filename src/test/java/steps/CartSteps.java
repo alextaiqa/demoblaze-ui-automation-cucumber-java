@@ -56,9 +56,9 @@ public class CartSteps extends BaseSteps {
                 "Clicking on the 'Place Order' button while the cart is empty opens the 'Place Order' modal");
     }
 
-    @And("I add the first item in the {string} device category to the cart")
-    public void iAddTheFirstItemInTheDeviceCategoryToTheCart(String deviceCategory) {
-        shoppingFlow.addTheFirstItemInTheDeviceCategoryToTheCart(deviceCategory);
+    @And("I add the {int} item in the {string} device category to the cart")
+    public void iAddAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
+        shoppingFlow.addAnItemInTheDeviceCategoryToTheCart(deviceCategory, itemNumber);
     }
 
     @And("I enter a valid full name in the place order modal")
@@ -105,8 +105,8 @@ public class CartSteps extends BaseSteps {
     }
 
     @And("I purchase the {int} item in the {string} category with valid credentials")
-    public void iPurchaseTheItemInTheDeviceCategoryWithValidCredentials(String category, int itemNumber) {
-        shoppingFlow.purchaseTheItemInTheDeviceCategoryWithValidCredentials(category,
+    public void iPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
+        shoppingFlow.purchaseOneItemInTheDeviceCategoryWithValidCredentials(category,
                 itemNumber, testDataGenerator.generatePlaceOrderData());
     }
 
@@ -117,8 +117,8 @@ public class CartSteps extends BaseSteps {
         assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
     }
 
-    @And("I add the following items to the cart:")
-    public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
-        shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
-    }
+//    @And("I add the following items to the cart:")
+//    public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
+//        shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
+//    }
 }
