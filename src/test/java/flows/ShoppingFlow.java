@@ -1,5 +1,7 @@
 package flows;
 
+import io.cucumber.java.it.Ma;
+import io.cucumber.java.sl.In;
 import models.PlaceOrderData;
 import pages.CartPage;
 import pages.Item;
@@ -30,7 +32,7 @@ public class ShoppingFlow {
     }
 
     /*METHODS*/
-    public void addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, Integer itemNumber) {
+    public void addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
         mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
         item.clickOnTheAddToCartButton();
         driverUtils.waitForAlertAndAccept();
@@ -45,7 +47,7 @@ public class ShoppingFlow {
         cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
     }
 
-    public void purchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
+    public void successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
                                                                        int itemNumber,
                                                                        PlaceOrderData placeOrderData) {
         addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
@@ -55,21 +57,26 @@ public class ShoppingFlow {
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
-    public void addTheFollowingItemsToTheCart(Map<String, Integer> categoriesAndItems) {
-        List<String> categoriesKeys = new ArrayList<>(categoriesAndItems.keySet());
+    public void addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) {
 
         for (int i = 0; i < categoriesAndItems.size(); i++) {
 
-            String category = categoriesKeys.get(i);
-            Integer itemNumber = categoriesAndItems.get(category);
+            Map<String, String> row = categoriesAndItems.get(i);
+            String category = row.get("category");
+            int itemNumber = Integer.parseInt(row.get("item"));
+
             addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
 
-            if (i == categoriesAndItems.size() - 1) {
-                break;
+            if (i < categoriesAndItems.size() - 1) {
+                goToMain();
             }
-            goToMain();
         }
     }
+
+    public void successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems) {
+//        NEXT THING TO WORK ON!!!
+    }
+
 
     /*HELPERS*/
     private void goToCart() {
