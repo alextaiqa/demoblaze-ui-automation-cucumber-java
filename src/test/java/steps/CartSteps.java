@@ -57,7 +57,7 @@ public class CartSteps extends BaseSteps {
     }
 
     @And("I add the {int} item in the {string} device category to the cart")
-    public void iAddAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
+    public void iAddAnItemInTheDeviceCategoryToTheCart(int itemNumber, String deviceCategory) {
         shoppingFlow.addAnItemInTheDeviceCategoryToTheCart(deviceCategory, itemNumber);
     }
 
@@ -104,9 +104,9 @@ public class CartSteps extends BaseSteps {
         cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
-    @And("I purchase the {int} item in the {string} category with valid credentials")
-    public void iPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
-        shoppingFlow.purchaseOneItemInTheDeviceCategoryWithValidCredentials(category,
+    @And("I successfully purchase the {int} item in the {string} category with valid credentials")
+    public void iSuccessfullyPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
+        shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(category,
                 itemNumber, testDataGenerator.generatePlaceOrderData());
     }
 
@@ -117,8 +117,14 @@ public class CartSteps extends BaseSteps {
         assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
     }
 
-//    @And("I add the following items to the cart:")
-//    public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
-//        shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
-//    }
+    @And("I add the following items to the cart:")
+    public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
+        shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
+    }
+
+    @And("I successfully purchase the following items with valid credentials:")
+    public void iSuccessfullyPurchaseTheFollowingItemsWithValidCredentials(DataTable dataTable) {
+        shoppingFlow.successfullyPurchaseTheFollowingItemsWithValidCredentials(
+                DataTableConverter.getConvertedDataTable(dataTable));
+    }
 }
