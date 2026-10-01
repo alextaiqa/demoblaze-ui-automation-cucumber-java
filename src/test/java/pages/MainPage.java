@@ -158,10 +158,9 @@ public class MainPage extends BasePage {
         driverUtils.click(deviceCategoriesPreviousButtonID);
     }
 
-
-    //CHANGE!!!!!!
     public void clickOnAnItemInTheDeviceCategory(String deviceCategory, int itemNumber) {
         log.info("Clicking on item '{}' in the '{}' device category", itemNumber, deviceCategory);
+
         driverUtils.click(getCategoryButton(deviceCategory));
 
         int availableItems = getDeviceCategoryItems().size();

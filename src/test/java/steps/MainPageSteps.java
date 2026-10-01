@@ -143,7 +143,7 @@ public class MainPageSteps extends BaseSteps {
     }
 
     @And("I click on the {int} item in the {string} device category")
-    public void iClickOnAnFirstItemInTheDeviceCategory(String deviceCategory, int itemNumber) {
+    public void iClickOnAnFirstItemInTheDeviceCategory(int itemNumber, String deviceCategory) {
         mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
     }
 }
