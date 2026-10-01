@@ -10,6 +10,4 @@ public class DataTableConverter {
     public static List<Map<String, String>> getConvertedDataTable(DataTable dataTable) {
         return dataTable.asMaps(String.class, String.class);
     }
-
-    //make one for string, int
 }
