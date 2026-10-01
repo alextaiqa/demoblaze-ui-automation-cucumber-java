@@ -30,23 +30,20 @@ Feature: Cart page functionality
   @only
   Scenario: Verify a user is able to successfully make a purchase of a single item with valid data
     Given I open the main page
-    And I purchase the 1 item in the "phones" category with valid credentials
+    And I successfully purchase the 1 item in the "phones" category with valid credentials
     Then I see a purchase confirmation message
 
-#  @only
-#  Scenario: Verify a user is able to successfully make a purchase of multiple items with valid data
-#    Given I open the main page
-#    And I add the following items to the cart:
-#      | category | item |
-#      | default  | 3    |
-#      | phones   | 1    |
-#      | laptops  | 2    |
-#      | monitors | 1    |
-#
-#
-#    And I open the cart page
-#    And I click on the place order button
-#    And I enter valid place order details in the cart modal
-#    And I click on the place order purchase button
-#    Then I see a purchase confirmation message
+  @only
+  Scenario: Verify a user is able to successfully make a purchase of multiple items with valid data
+    Given I open the main page
+
+    And I successfully purchase the following items with valid credentials:
+      | category | item |
+      | default  | 3    |
+      | phones   | 1    |
+      | laptops  | 2    |
+      | monitors | 1    |
+    Then I see a purchase confirmation message
+
+
 
