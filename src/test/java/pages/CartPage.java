@@ -1,7 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.DriverUtils;
+
+import java.util.List;
 
 public class CartPage extends BasePage {
 
@@ -20,6 +23,9 @@ public class CartPage extends BasePage {
             By.xpath("//div[@id='orderModal']//button[normalize-space()='Close']");
     private final By modalSweetAlertThankYouMessageXPath =
             By.xpath("//h2[normalize-space()='Thank you for your purchase!']");
+    private final By itemsTableCSS = By.id("tbodyid tr");
+    private final By firstDeleteItem = By.xpath(
+            "(//tbody[@id='tbodyid']//a[@href='#'][normalize-space()='Delete']) [1]");
 
     //constructor
     public CartPage(DriverUtils driverUtils) {
@@ -80,6 +86,14 @@ public class CartPage extends BasePage {
     public String getPurchaseConfirmationMessage() {
         log.info("Cart - 'Place order' modal - getting a purchase confirmation message");
         return driverUtils.getText(modalSweetAlertThankYouMessageXPath);
+    }
+
+    public void makeSureTheCartIsEmpty() {
+        log.info("Cart - making sure it's empty");
+        List<WebElement> items = driverUtils.getVisibleElements(itemsTableCSS);
+        while (!items.isEmpty()) {
+            driverUtils.click(firstDeleteItem);
+        }
     }
 
 
