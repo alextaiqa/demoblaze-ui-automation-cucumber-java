@@ -91,6 +91,6 @@ public class ShoppingFlow {
     }
 
     private void goToMain() {
-        navBar.clickOnTheButton("homePageURL");
+        navBar.clickOnTheButton("home");
     }
 }
