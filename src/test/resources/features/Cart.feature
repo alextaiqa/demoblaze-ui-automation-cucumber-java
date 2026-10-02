@@ -24,6 +24,7 @@ Feature: Cart page functionality
   Scenario: Verify a 'Place Order' modal does not open when the cart is empty
     Given I open the main page
     And I click on the nav bar "cart" button
+    And I make sure the cart is empty
     When I click on the place order button
     Then I do not see a place order modal
 
