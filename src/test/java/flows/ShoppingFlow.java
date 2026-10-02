@@ -51,10 +51,14 @@ public class ShoppingFlow {
                                                                        int itemNumber,
                                                                        PlaceOrderData placeOrderData) {
         addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
-        goToCart();
-        cartPage.clickOnThePlaceOrderButton();
-        enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
-        cartPage.clickOnThePlaceOrderPurchaseButton();
+        goToCartAndSuccessfullyPurchase(placeOrderData);
+
+    }
+
+    public void successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems,
+                                                                          PlaceOrderData placeOrderData) {
+        addTheFollowingItemsToTheCart(categoriesAndItems);
+        goToCartAndSuccessfullyPurchase(placeOrderData);
     }
 
     public void addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) {
@@ -73,8 +77,11 @@ public class ShoppingFlow {
         }
     }
 
-    public void successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems) {
-//        NEXT THING TO WORK ON!!!
+    public void goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
+        goToCart();
+        cartPage.clickOnThePlaceOrderButton();
+        enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
+        cartPage.clickOnThePlaceOrderPurchaseButton();
     }
 
 
