@@ -106,8 +106,8 @@ public class CartSteps extends BaseSteps {
 
     @And("I successfully purchase the {int} item in the {string} category with valid credentials")
     public void iSuccessfullyPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
-        shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(category,
-                itemNumber, testDataGenerator.generatePlaceOrderData());
+        shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(
+                category, itemNumber, testDataGenerator.generatePlaceOrderData());
     }
 
     @Then("I see a purchase confirmation message")
@@ -125,6 +125,11 @@ public class CartSteps extends BaseSteps {
     @And("I successfully purchase the following items with valid credentials:")
     public void iSuccessfullyPurchaseTheFollowingItemsWithValidCredentials(DataTable dataTable) {
         shoppingFlow.successfullyPurchaseTheFollowingItemsWithValidCredentials(
-                DataTableConverter.getConvertedDataTable(dataTable));
+                DataTableConverter.getConvertedDataTable(dataTable), testDataGenerator.generatePlaceOrderData());
+    }
+
+    @And("I make sure the cart is empty")
+    public void iMakeSureTheCartIsEmpty() {
+        cartPage.makeSureTheCartIsEmpty();
     }
 }
