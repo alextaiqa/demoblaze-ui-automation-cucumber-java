@@ -26,7 +26,10 @@ public class Item extends BasePage {
     }
 
     public int getPrice() {
+        String total = driverUtils.getText(itemPriceCSS);
 
+
+        return;
     }
 
     /* =======================

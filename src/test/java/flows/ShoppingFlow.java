@@ -21,7 +21,7 @@ public class ShoppingFlow {
     DriverUtils driverUtils;
 
     /*CONSTRUCTOR*/
-    public ShoppingFlow(NavBar navBar, MainPage mainPage, Item item, CartPage cartPage, DriverUtils driverUtils, PurchaseData) {
+    public ShoppingFlow(NavBar navBar, MainPage mainPage, Item item, CartPage cartPage, DriverUtils driverUtils) {
         this.navBar = navBar;
         this.mainPage = mainPage;
         this.item = item;
@@ -52,15 +52,23 @@ public class ShoppingFlow {
                                                                        PlaceOrderData placeOrderData) {
         int total = addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
         goToCartAndSuccessfullyPurchase(placeOrderData);
+
+        return total;
     }
+
+//    REVIEW ALL OF THESE. A WAY TO COMBINE THINGS?
 
     public int successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems,
                                                                           PlaceOrderData placeOrderData) {
-        addTheFollowingItemsToTheCart(categoriesAndItems);
+        int total = addTheFollowingItemsToTheCart(categoriesAndItems);
         goToCartAndSuccessfullyPurchase(placeOrderData);
+
+        return total;
     }
 
-    public void addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) {
+    public int addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) {
+
+        int total = 0;
 
         for (int i = 0; i < categoriesAndItems.size(); i++) {
 
@@ -68,12 +76,13 @@ public class ShoppingFlow {
             String category = row.get("category");
             int itemNumber = Integer.parseInt(row.get("item"));
 
-            addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
+            total += addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
 
             if (i < categoriesAndItems.size() - 1) {
                 goToMain();
             }
         }
+        return total;
     }
 
     public PurchaseData goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
@@ -81,6 +90,8 @@ public class ShoppingFlow {
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();
+
+        return;
     }
 
 
