@@ -1,8 +1,7 @@
 package flows;
 
-import io.cucumber.java.it.Ma;
-import io.cucumber.java.sl.In;
 import models.PlaceOrderData;
+import models.PurchaseData;
 import pages.CartPage;
 import pages.Item;
 import pages.MainPage;
@@ -23,7 +22,7 @@ public class ShoppingFlow {
     DriverUtils driverUtils;
 
     /*CONSTRUCTOR*/
-    public ShoppingFlow(NavBar navBar, MainPage mainPage, Item item, CartPage cartPage, DriverUtils driverUtils) {
+    public ShoppingFlow(NavBar navBar, MainPage mainPage, Item item, CartPage cartPage, DriverUtils driverUtils, PurchaseData) {
         this.navBar = navBar;
         this.mainPage = mainPage;
         this.item = item;
@@ -52,7 +51,6 @@ public class ShoppingFlow {
                                                                        PlaceOrderData placeOrderData) {
         addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
         goToCartAndSuccessfullyPurchase(placeOrderData);
-
     }
 
     public void successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems,
@@ -77,8 +75,11 @@ public class ShoppingFlow {
         }
     }
 
-    public void goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
+    public PurchaseData goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
         goToCart();
+
+        int total = ;
+
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();
