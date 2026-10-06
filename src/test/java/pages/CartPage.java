@@ -1,9 +1,11 @@
 package pages;
 
+import models.PurchaseData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.DriverUtils;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CartPage extends BasePage {
@@ -23,6 +25,7 @@ public class CartPage extends BasePage {
             By.xpath("//div[@id='orderModal']//button[normalize-space()='Close']");
     private final By modalSweetAlertThankYouMessageXPath =
             By.xpath("//h2[normalize-space()='Thank you for your purchase!']");
+    private final By modalSweetAlertMessageCSS = By.cssSelector(".lead.text-muted");
     private final By itemsTableCSS = By.id("tbodyid tr");
     private final By firstDeleteItem = By.xpath(
             "(//tbody[@id='tbodyid']//a[@href='#'][normalize-space()='Delete']) [1]");
@@ -83,9 +86,17 @@ public class CartPage extends BasePage {
         driverUtils.click(purchaseModalButton);
     }
 
-    public String getPurchaseConfirmationMessage() {
+    public PurchaseData getPurchaseConfirmationMessage() {
         log.info("Cart - 'Place order' modal - getting a purchase confirmation message");
-        return driverUtils.getText(modalSweetAlertThankYouMessageXPath);
+        String purchaseDetails = driverUtils.getText(modalSweetAlertMessageCSS);
+
+        String message = driverUtils.getText(modalSweetAlertThankYouMessageXPath);
+        int total = Integer.parseInt(
+                getPurchaseDetail(purchaseDetails, "Amount").replace(" USD", ""));
+        String cardData = getPurchaseDetail(purchaseDetails, "Card Number");
+        String name = getPurchaseDetail(purchaseDetails, "Name");
+
+        return new PurchaseData(message, total, cardData, name);
     }
 
     public void makeSureTheCartIsEmpty() {
@@ -94,6 +105,15 @@ public class CartPage extends BasePage {
         while (!items.isEmpty()) {
             driverUtils.click(firstDeleteItem);
         }
+    }
+
+    //HELPERS
+    private String getPurchaseDetail(String purchaseData, String detailName) {
+        return Arrays.stream(purchaseData.split("\\R"))
+                .filter(line -> line.startsWith(detailName + ":"))
+                .map(line -> line.substring(line.indexOf(":") + 1).trim())
+                .findFirst()
+                .orElseThrow();
     }
 
 
