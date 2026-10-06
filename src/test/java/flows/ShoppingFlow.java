@@ -8,7 +8,6 @@ import pages.MainPage;
 import pages.components.NavBar;
 import utils.DriverUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,10 +30,12 @@ public class ShoppingFlow {
     }
 
     /*METHODS*/
-    public void addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
+    public int addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
         mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
+        int total = item.getPrice();
         item.clickOnTheAddToCartButton();
         driverUtils.waitForAlertAndAccept();
+        return total;
     }
 
     public void enterValidPlaceOrderDetailsInTheCartModal(PlaceOrderData placeOrderData) {
@@ -46,14 +47,14 @@ public class ShoppingFlow {
         cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
     }
 
-    public void successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
+    public int successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
                                                                        int itemNumber,
                                                                        PlaceOrderData placeOrderData) {
-        addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
+        int total = addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
         goToCartAndSuccessfullyPurchase(placeOrderData);
     }
 
-    public void successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems,
+    public int successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems,
                                                                           PlaceOrderData placeOrderData) {
         addTheFollowingItemsToTheCart(categoriesAndItems);
         goToCartAndSuccessfullyPurchase(placeOrderData);
@@ -77,9 +78,6 @@ public class ShoppingFlow {
 
     public PurchaseData goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
         goToCart();
-
-        int total = ;
-
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();

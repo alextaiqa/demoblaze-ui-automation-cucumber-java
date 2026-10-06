@@ -10,6 +10,7 @@ public class Item extends BasePage {
     //    SELECTORS
     private final By addToCArtButtonXPath = By.xpath("//a[normalize-space()='Add to cart']");
     private final By itemNameHeaderCSS = By.cssSelector(".name");
+    private final By itemPriceCSS = By.cssSelector(".price-container");
 
     //    CONSTRUCTOR
     public Item(DriverUtils driverUtils) {
@@ -22,6 +23,10 @@ public class Item extends BasePage {
 
     public void clickOnTheAddToCartButton() {
         driverUtils.click(addToCArtButtonXPath);
+    }
+
+    public int getPrice() {
+
     }
 
     /* =======================
