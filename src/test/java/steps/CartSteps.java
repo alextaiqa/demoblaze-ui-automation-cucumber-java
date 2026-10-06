@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.datatable.DataTable;
+import models.PurchaseData;
 import pages.CartPage;
 import utils.DataTableConverter;
 import utils.TestDataGenerator;
@@ -96,6 +97,7 @@ public class CartSteps extends BaseSteps {
 
     @And("I enter valid place order details in the cart modal")
     public void iEnterValidPlaceOrderDetailsInTheCartModal() {
+        testContext.set();
         shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal(testDataGenerator.generatePlaceOrderData());
     }
 
@@ -112,9 +114,26 @@ public class CartSteps extends BaseSteps {
 
     @Then("I see a purchase confirmation message")
     public void iSeeAPurchaseConfirmationMessage() {
-        String actualMessage = cartPage.getPurchaseConfirmationMessage();
+
+        PurchaseData actualPurchaseData = cartPage.getPurchaseConfirmationMessage();
+        PurchaseData expectedPurchaseData = (PurchaseData) testContext.get("purchaseData");
+
+        String actualMessage = actualPurchaseData.getMessage();
         String expectedMessage = data.get("cartModalThankYouMessage");
         assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
+
+        int actualAmount = actualPurchaseData.getTotal();
+        int expectedAmount = expectedPurchaseData.getTotal(); //return total that you increment every time an item is added
+        assertEquals(actualAmount, expectedAmount, "Cart - purchase confirmation - amount is not correct");
+
+        String actualCardData = actualPurchaseData.getCardData();
+        String expectedCardData = expectedPurchaseData.getCardData();
+        assertEquals(String.valueOf(actualCardData), String.valueOf(expectedCardData),
+                "Cart - purchase confirmation - card date is not correct");
+
+        String actualName = actualPurchaseData.getName();
+        String expectedName = expectedPurchaseData.getName();
+        assertEquals(actualName, expectedName, "Cart - purchase confirmation - name is not correct");
     }
 
     @And("I add the following items to the cart:")
