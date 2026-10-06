@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.datatable.DataTable;
+import models.PlaceOrderData;
 import models.PurchaseData;
 import pages.CartPage;
 import utils.DataTableConverter;
@@ -97,8 +98,9 @@ public class CartSteps extends BaseSteps {
 
     @And("I enter valid place order details in the cart modal")
     public void iEnterValidPlaceOrderDetailsInTheCartModal() {
-        testContext.set();
-        shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal(testDataGenerator.generatePlaceOrderData());
+        PlaceOrderData placeOrderData = testDataGenerator.generatePlaceOrderData();
+        testContext.set("expectedPurchaseDetails", placeOrderData);
+        shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
     }
 
     @And("I click on the place order purchase button")
@@ -108,31 +110,32 @@ public class CartSteps extends BaseSteps {
 
     @And("I successfully purchase the {int} item in the {string} category with valid credentials")
     public void iSuccessfullyPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
-        shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(
+        int total = shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(
                 category, itemNumber, testDataGenerator.generatePlaceOrderData());
+        testContext.set("expectedTotal", total);
     }
 
     @Then("I see a purchase confirmation message")
     public void iSeeAPurchaseConfirmationMessage() {
 
         PurchaseData actualPurchaseData = cartPage.getPurchaseConfirmationMessage();
-        PurchaseData expectedPurchaseData = (PurchaseData) testContext.get("purchaseData");
+        PlaceOrderData expectedPurchaseData = (PlaceOrderData) testContext.get("expectedPurchaseDetails");
 
         String actualMessage = actualPurchaseData.getMessage();
         String expectedMessage = data.get("cartModalThankYouMessage");
         assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
 
-        int actualAmount = actualPurchaseData.getTotal();
-        int expectedAmount = expectedPurchaseData.getTotal(); //return total that you increment every time an item is added
-        assertEquals(actualAmount, expectedAmount, "Cart - purchase confirmation - amount is not correct");
+        int actualTotal = actualPurchaseData.getTotal();
+        int expectedTotal = (int) testContext.get("expectedTotal"); //return total that you increment every time an item is added
+        assertEquals(actualTotal, expectedTotal, "Cart - purchase confirmation - amount is not correct");
 
-        String actualCardData = actualPurchaseData.getCardData();
-        String expectedCardData = expectedPurchaseData.getCardData();
+        String actualCardData = actualPurchaseData.getCardData(); //SHOULD BE ONLY THE LAST 4 VISIBLE, MAKE IT CHECK
+        String expectedCardData = expectedPurchaseData.getCreditCardDigits();
         assertEquals(String.valueOf(actualCardData), String.valueOf(expectedCardData),
                 "Cart - purchase confirmation - card date is not correct");
 
         String actualName = actualPurchaseData.getName();
-        String expectedName = expectedPurchaseData.getName();
+        String expectedName = expectedPurchaseData.getFullName();
         assertEquals(actualName, expectedName, "Cart - purchase confirmation - name is not correct");
     }
 
