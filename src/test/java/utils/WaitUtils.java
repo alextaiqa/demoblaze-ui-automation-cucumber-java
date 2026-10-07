@@ -13,10 +13,6 @@ import java.util.List;
 
 public class WaitUtils {
 
-
-//    A QUESTION TO CONSIDER: SHOULD LOGS BE ON THIS LEVEL? THEY ALREADY RETURN A RESULT AND POMs HANDLE THE REST
-//    POMs SHOULD HAVE LOGS LIKE INFO AND WARN, AND THESE STAY CLEAN AS BEHAVIOR DEPENDS?
-
     //global variables
     private final Config config = new Config();
     private final Duration REGULAR_WAIT = config.getRegularWait();
@@ -110,5 +106,13 @@ public class WaitUtils {
                     REGULAR_WAIT.getSeconds());
 
         }
+    }
+
+    public String waitForCSSValueToChange(By selector, String cssProperty, String originalValue) {
+        return getRegularWait().until(driver -> {
+            String currentValue = driver.findElement(selector).getCssValue(cssProperty);
+
+            return !currentValue.equals(originalValue) ? currentValue : null;
+        });
     }
 }

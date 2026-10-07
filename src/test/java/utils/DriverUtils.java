@@ -115,6 +115,10 @@ public class DriverUtils {
         action.moveToElement(element).perform();
     }
 
+    public String waitForCSSValueToChange(By buttonSelector, String cssProperty, String originalColor) {
+        return waitUtils.waitForCSSValueToChange(buttonSelector, cssProperty, originalColor);
+    }
+
     public void waitForElementToBecomeStale(WebElement element) {
         waitUtils.waitForStaleness(element);
     }
