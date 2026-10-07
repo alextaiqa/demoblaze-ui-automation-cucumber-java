@@ -27,9 +27,8 @@ public class Item extends BasePage {
 
     public int getPrice() {
         String total = driverUtils.getText(itemPriceCSS);
-
-
-        return;
+        total = total.replace("$", "").replace(" *includes tax", "").trim();
+        return Integer.parseInt(total);
     }
 
     /* =======================
