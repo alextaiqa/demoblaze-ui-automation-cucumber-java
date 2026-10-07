@@ -30,27 +30,15 @@ public class ShoppingFlow {
     }
 
     /*METHODS*/
-    public int addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
-        mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
-        int total = item.getPrice();
-        item.clickOnTheAddToCartButton();
-        driverUtils.waitForAlertAndAccept();
-        return total;
-    }
-
-    public void enterValidPlaceOrderDetailsInTheCartModal(PlaceOrderData placeOrderData) {
-        cartPage.enterAValidFullNameInThePlaceOrderModal(placeOrderData.getFullName());
-        cartPage.enterAValidCountryInThePlaceOrderModal(placeOrderData.getCountry());
-        cartPage.enterAValidCityInThePlaceOrderModal(placeOrderData.getCity());
-        cartPage.enterAValidCreditCardInThePlaceOrderModal(placeOrderData.getCreditCardDigits());
-        cartPage.enterAValidMonthInThePlaceOrderModal(placeOrderData.getMonth());
-        cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
-    }
-
     public int successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
                                                                        int itemNumber,
                                                                        PlaceOrderData placeOrderData) {
         int total = addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
+
+        //a method that checks if gathered total matched total displayed? Maybe that should be a separate TC?
+        // so stop gathering total across pages here? or maybe gather and then sweet alert?
+
+
         goToCartAndSuccessfullyPurchase(placeOrderData);
 
         return total;
@@ -66,7 +54,15 @@ public class ShoppingFlow {
         return total;
     }
 
-    public int addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) {
+    public int addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) { //THIS IS CORRECT
+        mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
+        int total = item.getPrice();
+        item.clickOnTheAddToCartButton();
+        driverUtils.waitForAlertAndAccept();
+        return total;
+    }
+
+    public int addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) { //THIS IS CORRECT
 
         int total = 0;
 
@@ -85,13 +81,20 @@ public class ShoppingFlow {
         return total;
     }
 
-    public PurchaseData goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
+    public void goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
         goToCart();
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();
+    }
 
-        return;
+    public void enterValidPlaceOrderDetailsInTheCartModal(PlaceOrderData placeOrderData) {
+        cartPage.enterAValidFullNameInThePlaceOrderModal(placeOrderData.getFullName());
+        cartPage.enterAValidCountryInThePlaceOrderModal(placeOrderData.getCountry());
+        cartPage.enterAValidCityInThePlaceOrderModal(placeOrderData.getCity());
+        cartPage.enterAValidCreditCardInThePlaceOrderModal(placeOrderData.getCreditCardDigits());
+        cartPage.enterAValidMonthInThePlaceOrderModal(placeOrderData.getMonth());
+        cartPage.enterAValidYearInThePlaceOrderModal(placeOrderData.getYear());
     }
 
 
