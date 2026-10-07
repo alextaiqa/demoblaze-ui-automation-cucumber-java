@@ -28,16 +28,18 @@ Feature: Cart page functionality
     When I click on the place order button
     Then I do not see a place order modal
 
-  @only
+  @bug
+#    Expected: only last 4 digits of a credit card are displayed
+#    Actual: all digits of a credit card are displayed
   Scenario: Verify a user is able to successfully make a purchase of a single item with valid data
     Given I open the main page
     And I successfully purchase the 1 item in the "phones" category with valid credentials
     Then I see a purchase confirmation message
 
-  @only
+  @bug
+#    As above - only last 4 digits of a credit card should be displayed. Not the entire thing
   Scenario: Verify a user is able to successfully make a purchase of multiple items with valid data
     Given I open the main page
-
     And I successfully purchase the following items with valid credentials:
       | category | item |
       | default  | 3    |
