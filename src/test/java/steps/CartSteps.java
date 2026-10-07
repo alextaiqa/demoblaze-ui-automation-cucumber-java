@@ -58,11 +58,6 @@ public class CartSteps extends BaseSteps {
                 "Clicking on the 'Place Order' button while the cart is empty opens the 'Place Order' modal");
     }
 
-    @And("I add the {int} item in the {string} device category to the cart")
-    public void iAddAnItemInTheDeviceCategoryToTheCart(int itemNumber, String deviceCategory) {
-        shoppingFlow.addAnItemInTheDeviceCategoryToTheCart(deviceCategory, itemNumber);
-    }
-
     @And("I enter a valid full name in the place order modal")
     public void iEnterAValidFullNameInThePlaceOrderModal() {
         cartPage.enterAValidFullNameInThePlaceOrderModal(testDataGenerator.generateFullName());
@@ -110,8 +105,21 @@ public class CartSteps extends BaseSteps {
 
     @And("I successfully purchase the {int} item in the {string} category with valid credentials")
     public void iSuccessfullyPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
+        PlaceOrderData placeOrderData = testDataGenerator.generatePlaceOrderData();
+        testContext.set("expectedPurchaseDetails", placeOrderData);
+
         int total = shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(
-                category, itemNumber, testDataGenerator.generatePlaceOrderData());
+                category, itemNumber, placeOrderData);
+        testContext.set("expectedTotal", total);
+    }
+
+    @And("I successfully purchase the following items with valid credentials:")
+    public void iSuccessfullyPurchaseTheFollowingItemsWithValidCredentials(DataTable dataTable) {
+        PlaceOrderData placeOrderData = testDataGenerator.generatePlaceOrderData();
+        testContext.set("expectedPurchaseDetails", placeOrderData);
+
+        int total = shoppingFlow.successfullyPurchaseTheFollowingItemsWithValidCredentials(
+                DataTableConverter.getConvertedDataTable(dataTable), placeOrderData);
         testContext.set("expectedTotal", total);
     }
 
@@ -123,31 +131,37 @@ public class CartSteps extends BaseSteps {
 
         String actualMessage = actualPurchaseData.getMessage();
         String expectedMessage = data.get("cartModalThankYouMessage");
-        assertEquals(actualMessage, expectedMessage, "Cart - purchase confirmation - message is not correct");
+        assertEquals(actualMessage, expectedMessage,
+                "Cart - purchase confirmation - message is not correct");
 
         int actualTotal = actualPurchaseData.getTotal();
-        int expectedTotal = (int) testContext.get("expectedTotal"); //return total that you increment every time an item is added
-        assertEquals(actualTotal, expectedTotal, "Cart - purchase confirmation - amount is not correct");
+        int expectedTotal = (int) testContext.get("expectedTotal");
+        assertEquals(actualTotal, expectedTotal,
+                "Cart - purchase confirmation - amount is not correct");
 
-        String actualCardData = actualPurchaseData.getCardData(); //SHOULD BE ONLY THE LAST 4 VISIBLE, MAKE IT CHECK
+        String actualCardData = actualPurchaseData.getCardData();
         String expectedCardData = expectedPurchaseData.getCreditCardDigits();
-        assertEquals(String.valueOf(actualCardData), String.valueOf(expectedCardData),
-                "Cart - purchase confirmation - card date is not correct");
+        //Should only be the last 4, hence checking it - an assumed requirement from what's usually seen on other apps
+        expectedCardData = expectedCardData.substring(expectedCardData.length() - 4);
+        assertEquals(actualCardData, expectedCardData,
+                "Cart - purchase confirmation - card data is not correct");
 
         String actualName = actualPurchaseData.getName();
         String expectedName = expectedPurchaseData.getFullName();
-        assertEquals(actualName, expectedName, "Cart - purchase confirmation - name is not correct");
+        assertEquals(actualName, expectedName,
+                "Cart - purchase confirmation - name is not correct");
+    }
+
+    @And("I add the {int} item in the {string} device category to the cart")
+    public void iAddAnItemInTheDeviceCategoryToTheCart(int itemNumber, String deviceCategory) {
+        int total = shoppingFlow.addAnItemInTheDeviceCategoryToTheCart(deviceCategory, itemNumber);
+        testContext.set("expectedTotal", total);
     }
 
     @And("I add the following items to the cart:")
     public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
-        shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
-    }
-
-    @And("I successfully purchase the following items with valid credentials:")
-    public void iSuccessfullyPurchaseTheFollowingItemsWithValidCredentials(DataTable dataTable) {
-        shoppingFlow.successfullyPurchaseTheFollowingItemsWithValidCredentials(
-                DataTableConverter.getConvertedDataTable(dataTable), testDataGenerator.generatePlaceOrderData());
+        int total = shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
+        testContext.set("expectedTotal", total);
     }
 
     @And("I make sure the cart is empty")
