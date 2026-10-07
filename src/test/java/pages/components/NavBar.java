@@ -67,8 +67,15 @@ public class NavBar {
 
 
     public void hoverOverTheButton(String button) {
+        By buttonSelector = getButtonSelector(button);
         log.info("Hovering over the '{}' nav bar button", button);
-        driverUtils.hoverOver(getButtonSelector(button)); //!!!!
+        driverUtils.hoverOver(buttonSelector);
+    }
+
+    public String waitForColorToChange(String button, String originalColor) {
+        By buttonSelector = getButtonSelector(button);
+        log.info("Waiting for a color change for element {}", buttonSelector);
+        return driverUtils.waitForCSSValueToChange(buttonSelector, "color", originalColor);
     }
 
     public String getButtonColor(String button) {
