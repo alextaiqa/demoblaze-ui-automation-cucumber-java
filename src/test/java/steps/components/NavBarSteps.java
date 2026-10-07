@@ -54,19 +54,22 @@ public class NavBarSteps extends BaseSteps {
     @And("I see the nav bar {string} button is displayed in default color")
     public void iSeeTheNavBarButtonIsDisplayedInDefaultColor(String button) {
         String color = navBar.getButtonColor(button);
-        testContext.set("color", color);
+        testContext.set("colorBefore", color);
     }
 
     @And("I hover over the nav bar {string} button")
     public void iHoverOverTheNavBarButton(String button) {
+        String colorBeforeHover = (String) testContext.get("colorBefore");
         navBar.hoverOverTheButton(button);
+        String color = navBar.waitForColorToChange(button, colorBeforeHover);
+        testContext.set("colorAfter", color);
     }
 
     @Then("I see a nav bar {string} button changed color")
     public void iSeeANavBarButtonChangedColor(String button) {
-        String colorBeforeHover = (String) testContext.get("color");
-        String colorAfterHover = navBar.getButtonColor(button);
-        assertNotEquals(colorAfterHover, colorBeforeHover,
+        String colorBeforeHover = (String) testContext.get("colorBefore");
+        String colorAfterHover = (String) testContext.get("colorAfter");
+        assertNotEquals(colorBeforeHover, colorAfterHover,
                 "Nav bar - " + button + " button - color change on hover is incorrect");
     }
 

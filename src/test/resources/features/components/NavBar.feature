@@ -5,7 +5,7 @@ Feature: Navigational bar functionality
   Background: The main page is open
     Given I open the main page
 
-  @only
+
   Scenario Outline: Verify that all nav bar modals are displayed on click.
     When I click on the nav bar "<button>" button
     Then I see the <modal> modal with a correct header appears
