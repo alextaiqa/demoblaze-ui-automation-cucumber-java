@@ -23,8 +23,12 @@ public class DriverFactory {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 
+//                chromeOptions.addArguments("--window-size=1920,1080");
+
                 if (headless) {
                     chromeOptions.addArguments("--headless=new");
+
+
                 }
                 WebDriver chromeDriver = new ChromeDriver(chromeOptions);
                 chromeDriver.manage().window().maximize();
@@ -33,6 +37,8 @@ public class DriverFactory {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+//                firefoxOptions.addArguments("--window-size=1920,1080");
 
                 if (headless) {
                     firefoxOptions.addArguments("--headless");
