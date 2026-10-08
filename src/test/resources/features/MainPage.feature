@@ -21,9 +21,14 @@ Feature: Main page functionality
   Scenario: Verify the item preview gallery has a correct amount of images
     Then I see the item preview gallery has a correct amount of images on the main page
 
+  @bug @knownHeadlessIssue
+#    HEADLESS FAILURES START HERE - WORKS IN REGULAR MODE
+#    Expected: Gallery is visible in headless Chrome
+#    Actual: Images load, but the carousel collapses to zero height.
   Scenario: Verify the first item is seen on page load in the item preview gallery
     Then I see the 1 image of the preview gallery on the main page
 
+  @bug @knownHeadlessIssue
   Scenario: Verify that a user is able to navigate through each item in the preview gallery moving forward
     Then I see the 1 image of the preview gallery on the main page
     And I click on the next button of the preview gallery on the main page
@@ -31,6 +36,7 @@ Feature: Main page functionality
     And I click on the next button of the preview gallery on the main page
     Then I see the 3 image of the preview gallery on the main page
 
+  @bug @knownHeadlessIssue
   Scenario: Verify that a user is able to navigate through each item in the preview gallery moving backward
     Then I see the 1 image of the preview gallery on the main page
     And I click on the previous button of the preview gallery on the main page
@@ -38,6 +44,7 @@ Feature: Main page functionality
     And I click on the previous button of the preview gallery on the main page
     Then I see the 2 image of the preview gallery on the main page
 
+  @bug @knownHeadlessIssue
   Scenario: Verify a user is able to navigate to inactive images via preview gallery options
     Then I see the 1 image of the preview gallery on the main page
     And I click on the 2 option of the preview gallery on the main page
@@ -46,6 +53,7 @@ Feature: Main page functionality
     Then I see the 1 image of the preview gallery on the main page
     And I click on the 3 option of the preview gallery on the main page
     Then I see the 3 image of the preview gallery on the main page
+#    HEADLESS FAILURES END HERE
 
 #    ====DEVICE CATEGORIES SECTION====
   Scenario Outline: Verify there are no more than 9 items on the page for each device category
