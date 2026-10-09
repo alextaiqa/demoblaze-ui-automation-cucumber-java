@@ -1,7 +1,6 @@
 package steps.components;
 
 import context.TestContext;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.NavBar;

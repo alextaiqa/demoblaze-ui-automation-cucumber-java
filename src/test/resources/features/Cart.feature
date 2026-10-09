@@ -48,5 +48,28 @@ Feature: Cart page functionality
       | monitors | 1    |
     Then I see a purchase confirmation message
 
+#    Scenario: Verify a total is correct on the cart page and in the successful purchase message
+#      Given I open the main page
+#
+##      step below gathers total
+#      And I add the following items to the cart:
+#        | category | item |
+#        | default  | 3    |
+#        | phones   | 1    |
+#        | laptops  | 2    |
+#        | monitors | 1    |
+#  And I open the cart page
+#
+##      add total on cart page check with gathered total method
+#  Then I see a correct total is displayed
+#
+#
+#  When I click on the place order button
+#  And I enter valid place order details in the cart modal
+#  And I click on the place order purchase button
+#  Then I see a purchase confirmation message
+##      gather total when adding
+##      compare total on the cart page to gathered
+##      compare total on the sweet alert to gathered
 
 
