@@ -11,6 +11,7 @@ import java.util.List;
 public class CartPage extends BasePage {
 
     //selectors
+    private final By totalCSS = By.id("totalp");
     private final By placeOrderButton = By.cssSelector(".btn.btn-success");
     private final By placeOrderModalContainer = By.id("orderModal");
     private final By fullNameModalFieldCSS = By.id("name");
@@ -105,6 +106,10 @@ public class CartPage extends BasePage {
         while (!items.isEmpty()) {
             driverUtils.click(firstDeleteItem);
         }
+    }
+
+    public int getTotal() {
+        return Integer.parseInt(driverUtils.getText(totalCSS));
     }
 
     //HELPERS
