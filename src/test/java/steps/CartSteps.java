@@ -173,15 +173,6 @@ public class CartSteps extends BaseSteps {
                 "Cart - purchase confirmation - amount is not correct");
     }
 
-
-
-
-
-
-
-
-
-
     @And("I add the {int} item in the {string} device category to the cart")
     public void iAddAnItemInTheDeviceCategoryToTheCart(int itemNumber, String deviceCategory) {
         int total = shoppingFlow.addAnItemInTheDeviceCategoryToTheCart(deviceCategory, itemNumber);
