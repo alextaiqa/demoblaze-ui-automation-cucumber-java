@@ -56,7 +56,6 @@ Feature: Cart page functionality
     And I see the purchase confirmation displays the correct card digits
     And I see the purchase confirmation displays the correct purchase total
 
-  @only
   Scenario: Verify a total is correct on the cart page and in the successful purchase message
     Given I open the main page
     And I add the following items to the cart:

@@ -157,7 +157,8 @@ public class CartSteps extends BaseSteps {
 
         String actualCardData = actualPurchaseData.getCardData();
         String expectedCardData = expectedPurchaseData.getCreditCardDigits();
-        //Should only be the last 4, hence checking it - an assumed requirement from what's usually seen on other apps
+//        Should only be the last 4 OR ****-****-****-0000
+//        As there are no requirements, making sure it matches the most common behavior - 4 digits only
         expectedCardData = expectedCardData.substring(expectedCardData.length() - 4);
         assertEquals(actualCardData, expectedCardData,
                 "Cart - purchase confirmation - card data is not correct");
