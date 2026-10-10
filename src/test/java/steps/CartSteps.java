@@ -125,19 +125,35 @@ public class CartSteps extends BaseSteps {
 
     @Then("I see a purchase confirmation message")
     public void iSeeAPurchaseConfirmationMessage() {
-
         PurchaseData actualPurchaseData = cartPage.getPurchaseConfirmationMessage();
-        PlaceOrderData expectedPurchaseData = (PlaceOrderData) testContext.get("expectedPurchaseDetails");
+        testContext.set("actualPurchaseData", actualPurchaseData);
+    }
+
+    @Then("I see the purchase confirmation displays the correct successful purchase message")
+    public void iSeeThePurchaseConfirmationDisplaysTheCorrectSuccessfulPurchaseMessage() {
+        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
 
         String actualMessage = actualPurchaseData.getMessage();
         String expectedMessage = data.get("cartModalThankYouMessage");
         assertEquals(actualMessage, expectedMessage,
                 "Cart - purchase confirmation - message is not correct");
+    }
 
-        int actualTotal = actualPurchaseData.getTotal();
-        int expectedTotal = (int) testContext.get("expectedTotal");
-        assertEquals(actualTotal, expectedTotal,
-                "Cart - purchase confirmation - amount is not correct");
+    @Then("I see the purchase confirmation displays the correct customer name")
+    public void iSeeThePurchaseConfirmationDisplaysTheCorrectCustomerName() {
+        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
+        PlaceOrderData expectedPurchaseData = (PlaceOrderData) testContext.get("expectedPurchaseDetails");
+
+        String actualName = actualPurchaseData.getName();
+        String expectedName = expectedPurchaseData.getFullName();
+        assertEquals(actualName, expectedName,
+                "Cart - purchase confirmation - name is not correct");
+    }
+
+    @And("I see the purchase confirmation displays the correct card digits")
+    public void iSeeThePurchaseConfirmationDisplaysTheCorrectCardDigits() {
+        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
+        PlaceOrderData expectedPurchaseData = (PlaceOrderData) testContext.get("expectedPurchaseDetails");
 
         String actualCardData = actualPurchaseData.getCardData();
         String expectedCardData = expectedPurchaseData.getCreditCardDigits();
@@ -145,12 +161,26 @@ public class CartSteps extends BaseSteps {
         expectedCardData = expectedCardData.substring(expectedCardData.length() - 4);
         assertEquals(actualCardData, expectedCardData,
                 "Cart - purchase confirmation - card data is not correct");
-
-        String actualName = actualPurchaseData.getName();
-        String expectedName = expectedPurchaseData.getFullName();
-        assertEquals(actualName, expectedName,
-                "Cart - purchase confirmation - name is not correct");
     }
+
+    @And("I see the purchase confirmation displays the correct purchase total")
+    public void iSeeThePurchaseConfirmationDisplaysTheCorrectPurchaseTotal() {
+        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
+
+        int actualTotal = actualPurchaseData.getTotal();
+        int expectedTotal = (int) testContext.get("expectedTotal");
+        assertEquals(actualTotal, expectedTotal,
+                "Cart - purchase confirmation - amount is not correct");
+    }
+
+
+
+
+
+
+
+
+
 
     @And("I add the {int} item in the {string} device category to the cart")
     public void iAddAnItemInTheDeviceCategoryToTheCart(int itemNumber, String deviceCategory) {
@@ -167,5 +197,13 @@ public class CartSteps extends BaseSteps {
     @And("I make sure the cart is empty")
     public void iMakeSureTheCartIsEmpty() {
         cartPage.makeSureTheCartIsEmpty();
+    }
+
+    @Then("I see a correct total is displayed")
+    public void iSeeACorrectTotalIsDisplayed() {
+        int actualTotal = cartPage.getTotal();
+        int expectedTotal = (int) testContext.get("expectedTotal");
+        assertEquals(actualTotal, expectedTotal,
+                "Cart - total gathered from all items does not match the total seen on the page");
     }
 }
