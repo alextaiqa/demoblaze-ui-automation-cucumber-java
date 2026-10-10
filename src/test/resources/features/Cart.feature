@@ -34,7 +34,11 @@ Feature: Cart page functionality
   Scenario: Verify a user is able to successfully make a purchase of a single item with valid data
     Given I open the main page
     And I successfully purchase the 1 item in the "phones" category with valid credentials
-    Then I see a purchase confirmation message
+    When I see a purchase confirmation message
+    Then I see the purchase confirmation displays the correct successful purchase message
+    And I see the purchase confirmation displays the correct customer name
+    And I see the purchase confirmation displays the correct card digits
+    And I see the purchase confirmation displays the correct purchase total
 
   @bug
 #    As above - only last 4 digits of a credit card should be displayed. Not the entire thing
@@ -46,30 +50,27 @@ Feature: Cart page functionality
       | phones   | 1    |
       | laptops  | 2    |
       | monitors | 1    |
-    Then I see a purchase confirmation message
+    When I see a purchase confirmation message
+    Then I see the purchase confirmation displays the correct successful purchase message
+    And I see the purchase confirmation displays the correct customer name
+    And I see the purchase confirmation displays the correct card digits
+    And I see the purchase confirmation displays the correct purchase total
 
-#    Scenario: Verify a total is correct on the cart page and in the successful purchase message
-#      Given I open the main page
-#
-##      step below gathers total
-#      And I add the following items to the cart:
-#        | category | item |
-#        | default  | 3    |
-#        | phones   | 1    |
-#        | laptops  | 2    |
-#        | monitors | 1    |
-#  And I open the cart page
-#
-##      add total on cart page check with gathered total method
-#  Then I see a correct total is displayed
-#
-#
-#  When I click on the place order button
-#  And I enter valid place order details in the cart modal
-#  And I click on the place order purchase button
-#  Then I see a purchase confirmation message
-##      gather total when adding
-##      compare total on the cart page to gathered
-##      compare total on the sweet alert to gathered
+  @only
+  Scenario: Verify a total is correct on the cart page and in the successful purchase message
+    Given I open the main page
+    And I add the following items to the cart:
+      | category | item |
+      | default  | 3    |
+      | phones   | 1    |
+      | laptops  | 2    |
+      | monitors | 1    |
+    And I open the cart page
+    Then I see a correct total is displayed
+    When I click on the place order button
+    And I enter valid place order details in the cart modal
+    And I click on the place order purchase button
+    When I see a purchase confirmation message
+    Then I see the purchase confirmation displays the correct purchase total
 
 
