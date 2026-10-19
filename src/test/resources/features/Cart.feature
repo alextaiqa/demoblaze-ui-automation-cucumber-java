@@ -66,10 +66,14 @@ Feature: Cart page functionality
       | monitors | 1    |
     And I open the cart page
     Then I see a correct total is displayed
-    When I click on the place order button
+    Given I click on the place order button
     And I enter valid place order details in the cart modal
     And I click on the place order purchase button
     When I see a purchase confirmation message
     Then I see the purchase confirmation displays the correct purchase total
+
+  Scenario: Verify that a cart clears out after a purchase is made - logged out
+
+  Scenario: Verify that a cart clears out after a purchase is made - logged in
 
 

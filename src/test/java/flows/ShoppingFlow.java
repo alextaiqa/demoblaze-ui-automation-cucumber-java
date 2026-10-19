@@ -1,7 +1,6 @@
 package flows;
 
 import models.PlaceOrderData;
-import models.PurchaseData;
 import pages.CartPage;
 import pages.Item;
 import pages.MainPage;
@@ -33,18 +32,11 @@ public class ShoppingFlow {
     public int successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(String category,
                                                                        int itemNumber,
                                                                        PlaceOrderData placeOrderData) {
+
         int total = addAnItemInTheDeviceCategoryToTheCart(category, itemNumber);
-
-        //a method that checks if gathered total matched total displayed? Maybe that should be a separate TC?
-        // so stop gathering total across pages here? or maybe gather and then sweet alert?
-
-
         goToCartAndSuccessfullyPurchase(placeOrderData);
-
         return total;
     }
-
-//    REVIEW ALL OF THESE. A WAY TO COMBINE THINGS?
 
     public int successfullyPurchaseTheFollowingItemsWithValidCredentials(List<Map<String, String>> categoriesAndItems,
                                                                           PlaceOrderData placeOrderData) {
