@@ -28,6 +28,21 @@ Feature: Cart page functionality
     When I click on the place order button
     Then I do not see a place order modal
 
+
+#    THIS IS CONNECTED
+
+#  DO THIS SECOND!!!!!
+  Scenario: Verify correct items are added to the cart
+    Given I open the main page
+    And I add the following items to the cart:
+      | category | item |
+      | default  | 2    |
+      | phones   | 2    |
+    And I open the cart page
+    Then I see that all items are present
+
+
+
   @bug
 #    Expected: only last 4 digits of a credit card are displayed
 #    Actual: all digits of a credit card are displayed
@@ -72,23 +87,18 @@ Feature: Cart page functionality
     When I see a purchase confirmation message
     Then I see the purchase confirmation displays the correct purchase total
 
+
+
+#    DO THIS FIRST!!!
   Scenario: Verify that a cart clears out after a purchase is made - logged out
     Given I open the main page
-    And I add the following items to the cart:
+    And I successfully purchase the following items with valid credentials:
       | category | item |
       | default  | 2    |
       | phones   | 2    |
     And I open the cart page
-    Then I see that all items are present
-    Given I click on the place order button
-    And I enter valid place order details in the cart modal
-    And I click on the place order purchase button
     And I click on the purchase confirmation ok button
     Then I see that all the cart is cleared out
-
-#    so should this be 2 TCs? Checking if items are added to the cart at all and checking if cart is cleared out?
-#  Total checks totals, but here I should check for name match? Seems like a different TC
-#  So this TC should only check for cleared out cart
 
   Scenario: Verify that a cart clears out after a purchase is made - logged in
 #  log in
