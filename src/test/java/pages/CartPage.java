@@ -27,6 +27,8 @@ public class CartPage extends BasePage {
     private final By modalSweetAlertThankYouMessageXPath =
             By.xpath("//h2[normalize-space()='Thank you for your purchase!']");
     private final By modalSweetAlertMessageCSS = By.cssSelector(".lead.text-muted");
+    private final By modalSweetAlertMessageOkButtonXPath = By.xpath("//button[normalize-space()='OK']");
+
     private final By itemsTableCSS = By.id("tbodyid tr");
     private final By firstDeleteItem = By.xpath(
             "(//tbody[@id='tbodyid']//a[@href='#'][normalize-space()='Delete']) [1]");
@@ -109,7 +111,18 @@ public class CartPage extends BasePage {
     }
 
     public int getTotal() {
+        log.info("Cart - getting the total");
         return Integer.parseInt(driverUtils.getText(totalCSS));
+    }
+
+    public boolean isCartClearedOut() {
+        log.info("Cart - checking if it's cleared out");
+        return driverUtils.getVisibleElements(itemsTableCSS).isEmpty();
+    }
+
+    public void clickOnThePurchaseConfirmationOkButton() {
+        log.info("Cart - clicking on the purchase confirmation message 'ok' button");
+        driverUtils.click(modalSweetAlertMessageOkButtonXPath);
     }
 
     //HELPERS
