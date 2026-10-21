@@ -198,4 +198,15 @@ public class CartSteps extends BaseSteps {
         assertEquals(actualTotal, expectedTotal,
                 "Cart - total gathered from all items does not match the total seen on the page");
     }
+
+    @Then("I see that the cart is cleared out")
+    public void iSeeThatTheCartIsClearedOut() {
+        boolean isCartClear = cartPage.isCartClearedOut();
+        assertTrue(isCartClear, "Cart - not cleared out - items still seen");
+    }
+
+    @And("I click on the purchase confirmation ok button")
+    public void iClickOnThePurchaseConfirmationOkButton() {
+        cartPage.clickOnThePurchaseConfirmationOkButton();
+    }
 }
