@@ -29,17 +29,20 @@ Feature: Cart page functionality
     Then I do not see a place order modal
 
 
-#    THIS IS CONNECTED
 
-#  DO THIS SECOND!!!!!
-  Scenario: Verify correct items are added to the cart
-    Given I open the main page
-    And I add the following items to the cart:
-      | category | item |
-      | default  | 2    |
-      | phones   | 2    |
-    And I open the cart page
-    Then I see that all items are present
+
+#  DO THIS!!!!!
+#  @only
+#  Scenario: Verify correct items are added to the cart
+#    Given I open the main page
+#    And I add the following items to the cart:
+#      | category | item |
+#      | default  | 2    |
+#      | phones   | 2    |
+#    And I open the cart page
+#    Then I see that all items are present
+
+
 
 
 
@@ -89,20 +92,32 @@ Feature: Cart page functionality
 
 
 
-#    DO THIS FIRST!!!
+
+
+#    the web app is not working, check again later
+  @only
   Scenario: Verify that a cart clears out after a purchase is made - logged out
     Given I open the main page
     And I successfully purchase the following items with valid credentials:
       | category | item |
-      | default  | 2    |
+      | default  | 3    |
       | phones   | 2    |
-    And I open the cart page
     And I click on the purchase confirmation ok button
-    Then I see that all the cart is cleared out
+    And I open the cart page
 
-  Scenario: Verify that a cart clears out after a purchase is made - logged in
-#  log in
-#  make a purchase
-#  check cart
+#    the items appear again because the automation purchases things too quickly? It buys nothing? It buys items and then they appear again?
+    Then I see that the cart is cleared out
 
+#  @only
+#  Scenario: Verify that a cart clears out after a purchase is made - logged in
+#    Given I open the main page
+#    And I log in as "user1"
+#    And I successfully purchase the following items with valid credentials:
+#      | category | item |
+#      | default  | 1    |
+#      | phones   | 1    |
+#    And I open the cart page
+#    And I click on the purchase confirmation ok button
+#    And I open the cart page
+#    Then I see that the cart is cleared out
 

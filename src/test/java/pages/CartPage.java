@@ -102,6 +102,7 @@ public class CartPage extends BasePage {
         return new PurchaseData(message, total, cardData, name);
     }
 
+    //  does this return null when cart is empty? Check and work on this!!
     public void makeSureTheCartIsEmpty() {
         log.info("Cart - making sure it's empty");
         List<WebElement> items = driverUtils.getVisibleElements(itemsTableCSS);
