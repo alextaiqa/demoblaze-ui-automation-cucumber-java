@@ -46,7 +46,10 @@ public class ShoppingFlow {
         return total;
     }
 
-    public int addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) { //THIS IS CORRECT
+    public int addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
+
+        //have to wait for the items to show up after log in??
+//        mainPage.waitForDeviceCategories();
         mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
         int total = item.getPrice();
         item.clickOnTheAddToCartButton();
@@ -54,7 +57,7 @@ public class ShoppingFlow {
         return total;
     }
 
-    public int addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) { //THIS IS CORRECT
+    public int addTheFollowingItemsToTheCart(List<Map<String, String>> categoriesAndItems) {
 
         int total = 0;
 
@@ -75,6 +78,7 @@ public class ShoppingFlow {
 
     public void goToCartAndSuccessfullyPurchase(PlaceOrderData placeOrderData) {
         goToCart();
+        cartPage.waitForItemsToDisplay();
         cartPage.clickOnThePlaceOrderButton();
         enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
         cartPage.clickOnThePlaceOrderPurchaseButton();
