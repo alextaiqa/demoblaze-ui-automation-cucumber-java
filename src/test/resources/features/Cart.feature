@@ -94,8 +94,8 @@ Feature: Cart page functionality
 
 
 
-#    the web app is not working, check again later
-  @only
+#    this is taking a bit too long. Any way to shorten that? Why is it happening?
+#  @only
   Scenario: Verify that a cart clears out after a purchase is made - logged out
     Given I open the main page
     And I successfully purchase the following items with valid credentials:
@@ -104,8 +104,6 @@ Feature: Cart page functionality
       | phones   | 2    |
     And I click on the purchase confirmation ok button
     And I open the cart page
-
-#    the items appear again because the automation purchases things too quickly? It buys nothing? It buys items and then they appear again?
     Then I see that the cart is cleared out
 
 #  @only
@@ -116,7 +114,6 @@ Feature: Cart page functionality
 #      | category | item |
 #      | default  | 1    |
 #      | phones   | 1    |
-#    And I open the cart page
 #    And I click on the purchase confirmation ok button
 #    And I open the cart page
 #    Then I see that the cart is cleared out
