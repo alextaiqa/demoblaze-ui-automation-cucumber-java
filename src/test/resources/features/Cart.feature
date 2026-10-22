@@ -104,6 +104,8 @@ Feature: Cart page functionality
       | phones   | 2    |
     And I click on the purchase confirmation ok button
     And I open the cart page
+
+#    should this also wait for the cart to get empty? Just in case it need that extra second or two?
     Then I see that the cart is cleared out
 
 #  @only
