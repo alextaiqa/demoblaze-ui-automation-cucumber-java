@@ -118,7 +118,7 @@ public class CartPage extends BasePage {
 
     public boolean isCartClearedOut() {
         log.info("Cart - checking if it's cleared out");
-        return driverUtils.getVisibleElements(itemsTableCSS) == null;
+        return driverUtils.areElementsInvisible(itemsTableCSS);
     }
 
     public void clickOnThePurchaseConfirmationOkButton() {

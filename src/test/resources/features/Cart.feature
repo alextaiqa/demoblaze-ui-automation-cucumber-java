@@ -91,21 +91,18 @@ Feature: Cart page functionality
     Then I see the purchase confirmation displays the correct purchase total
 
 
-
-
-
-#    this is taking a bit too long. Any way to shorten that? Why is it happening?
-#  @only
+  @only
   Scenario: Verify that a cart clears out after a purchase is made - logged out
     Given I open the main page
+
+#    once on the cart getVisibleElements() is still loading even though the items are already visible.
+#    That takes extra time. Check what's up with that.
     And I successfully purchase the following items with valid credentials:
       | category | item |
       | default  | 3    |
       | phones   | 2    |
     And I click on the purchase confirmation ok button
     And I open the cart page
-
-#    should this also wait for the cart to get empty? Just in case it need that extra second or two?
     Then I see that the cart is cleared out
 
 #  @only
