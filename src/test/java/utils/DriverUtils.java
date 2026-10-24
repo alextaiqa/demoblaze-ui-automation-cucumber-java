@@ -93,6 +93,10 @@ public class DriverUtils {
         return waitUtils.isElementInvisible(selector);
     }
 
+    public boolean areElementsInvisible(By selector) {
+        return waitUtils.areElementsInvisible(selector);
+    }
+
     public WebElement getVisibleElement(By selector) {
         return waitUtils.getVisibleElement(selector);
     }
