@@ -79,11 +79,24 @@ public class WaitUtils {
         }
     }
 
-    public Boolean isElementInvisible(By selector) {
+    public boolean isElementInvisible(By selector) {
         try {
             return getRegularWait().until(ExpectedConditions.invisibilityOfElementLocated(selector));
         } catch (Exception e) {
-            log.warn("Element with selector '{}' was visible. Waited for {} seconds.",
+            log.warn("Element with selector '{}' was still visible. Waited for {} seconds.",
+                    selector, REGULAR_WAIT.getSeconds());
+            return false;
+        }
+    }
+
+    public boolean areElementsInvisible(By selector) {
+        try {
+            return getRegularWait().until(driver ->
+                    driver.findElements(selector)
+                            .stream()
+                            .noneMatch(WebElement::isDisplayed));
+        } catch (Exception e) {
+            log.warn("Elements with selector '{}' were still visible. Waited for {} seconds.",
                     selector, REGULAR_WAIT.getSeconds());
             return false;
         }
