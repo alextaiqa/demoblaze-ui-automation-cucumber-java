@@ -16,7 +16,6 @@ public class AuthFlow {
         this.loginModal = loginModal;
     }
 
-
     //methods
     public void login(String username, String password) {
         navBar.clickOnTheButton("log in");

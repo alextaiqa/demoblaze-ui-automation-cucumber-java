@@ -47,9 +47,6 @@ public class ShoppingFlow {
     }
 
     public int addAnItemInTheDeviceCategoryToTheCart(String deviceCategory, int itemNumber) {
-
-        //have to wait for the items to show up after log in??
-//        mainPage.waitForDeviceCategories();
         mainPage.clickOnAnItemInTheDeviceCategory(deviceCategory, itemNumber);
         int total = item.getPrice();
         item.clickOnTheAddToCartButton();

@@ -43,6 +43,8 @@ public class LoginModal extends BaseModal {
     public void clickOnTheLogInButton() {
         log.info("Log in modal - clicking on the log in confirmation button");
         driverUtils.click(logInButtonCSS);
+
+        waitForClosure();
     }
 
     public void clickOnTheClosingButton() {
@@ -58,6 +60,17 @@ public class LoginModal extends BaseModal {
     public boolean isPasswordFieldEmpty() {
         log.info("Log in modal - checking if the password field is empty");
         return driverUtils.isAttributeEmpty(passwordCSS, "value");
+    }
+
+    //    helpers
+    private void waitForClosure() {
+
+//        ALL MODALS MIGHT HAVE THIS ISSUE. CONSIDER MOVING THIS TO MODAL BASE AND ADDING TO ALL
+
+        log.info("Log in modal - waiting for it to close");
+        if (!driverUtils.isElementInvisible(loginModalContainerCSS)) {
+            throw new IllegalStateException("Login modal did not close.");
+        }
     }
 
     //getters for common methods
