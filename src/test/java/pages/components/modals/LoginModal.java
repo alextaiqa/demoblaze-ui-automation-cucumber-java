@@ -63,15 +63,7 @@ public class LoginModal extends BaseModal {
     }
 
     //    helpers
-    private void waitForClosure() {
 
-//        ALL MODALS MIGHT HAVE THIS ISSUE. CONSIDER MOVING THIS TO MODAL BASE AND ADDING TO ALL
-
-        log.info("Log in modal - waiting for it to close");
-        if (!driverUtils.isElementInvisible(loginModalContainerCSS)) {
-            throw new IllegalStateException("Login modal did not close.");
-        }
-    }
 
     //getters for common methods
     @Override

@@ -83,12 +83,12 @@ public class CartSteps extends BaseSteps {
 
     @And("I enter a valid month in the place order modal")
     public void iEnterAValidMonthInThePlaceOrderModal() {
-        cartPage.enterAValidMonthInThePlaceOrderModal(testDataGenerator.generateMonth()); //get current month?
+        cartPage.enterAValidMonthInThePlaceOrderModal(testDataGenerator.generateMonth());
     }
 
     @And("I enter a valid year in the place order modal")
     public void iEnterAValidYearInThePlaceOrderModal() {
-        cartPage.enterAValidYearInThePlaceOrderModal(testDataGenerator.generateYear()); //get current month?
+        cartPage.enterAValidYearInThePlaceOrderModal(testDataGenerator.generateYear());
     }
 
     @And("I enter valid place order details in the cart modal")

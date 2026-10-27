@@ -91,12 +91,9 @@ Feature: Cart page functionality
     Then I see the purchase confirmation displays the correct purchase total
 
 
-
+#@only
   Scenario: Verify that a cart clears out after a purchase is made - logged out
     Given I open the main page
-
-#    once on the cart getVisibleElements() is still loading even though the items are already visible.
-#    That takes extra time. Check what's up with that.
     And I successfully purchase the following items with valid credentials:
       | category | item |
       | default  | 3    |
@@ -105,7 +102,7 @@ Feature: Cart page functionality
     And I open the cart page
     Then I see that the cart is cleared out
 
-
+#@only
   Scenario: Verify that a cart clears out after a purchase is made - logged in
     Given I open the main page
     And I log in as "user1"
