@@ -52,4 +52,14 @@ public abstract class BaseModal {
         log.info("Getting a {} modal alert message", getModalName());
         return driverUtils.getAlertText().trim();
     }
+
+    protected void waitForClosure() {
+
+//        ALL MODALS MIGHT HAVE THIS ISSUE. CONSIDER MOVING THIS TO MODAL BASE AND ADDING TO ALL
+
+        log.info("{} modal - waiting for it to close", getModalName());
+        if (!driverUtils.isElementInvisible(getModalContainer())) {
+            throw new IllegalStateException(getModalName() + " modal did not close.");
+        }
+    }
 }
