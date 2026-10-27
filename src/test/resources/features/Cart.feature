@@ -103,6 +103,10 @@ Feature: Cart page functionality
     Then I see that the cart is cleared out
 
 #@only
+
+#  wait for something else, but also invisible isn't good. It has to wait for like 2 seconds minimum as items can load later
+#  since this is a specific issue with cart only seen in Selenium, maybe make custom wait like getVisible up to 3-4 seconds?
+#  that's for after the purchase, but the issue is with before the purchase. What can I wait for there?
   Scenario: Verify that a cart clears out after a purchase is made - logged in
     Given I open the main page
     And I log in as "user1"
