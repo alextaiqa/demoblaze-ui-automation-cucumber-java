@@ -2,10 +2,7 @@ package steps;
 
 import context.TestContext;
 import flows.ShoppingFlow;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import io.cucumber.datatable.DataTable;
 import models.PlaceOrderData;
 import models.PurchaseData;

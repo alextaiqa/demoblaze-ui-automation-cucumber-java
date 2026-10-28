@@ -13,6 +13,11 @@ public class CartPage extends BasePage {
     //selectors
     private final By totalCSS = By.id("totalp");
     private final By placeOrderButton = By.cssSelector(".btn.btn-success");
+    private final By itemsTableCSS = By.cssSelector("#tbodyid tr"); // functional
+    private final By firstDeleteItem = By.xpath(
+            "(//tbody[@id='tbodyid']//a[@href='#'][normalize-space()='Delete']) [1]");
+
+    //    'Place order' modal
     private final By placeOrderModalContainer = By.id("orderModal");
     private final By fullNameModalFieldCSS = By.id("name");
     private final By countryModalFieldCSS = By.id("country");
@@ -28,19 +33,6 @@ public class CartPage extends BasePage {
             By.xpath("//h2[normalize-space()='Thank you for your purchase!']");
     private final By modalSweetAlertMessageCSS = By.cssSelector(".lead.text-muted");
     private final By modalSweetAlertMessageOkButtonXPath = By.xpath("//button[normalize-space()='OK']");
-
-
-    //    private final By itemsTableCSS = By.cssSelector("tbodyid tr");
-    private final By itemsTableCSS = By.cssSelector("#tbodyid tr"); // functional
-
-
-
-
-
-
-
-    private final By firstDeleteItem = By.xpath(
-            "(//tbody[@id='tbodyid']//a[@href='#'][normalize-space()='Delete']) [1]");
 
     //constructor
     public CartPage(DriverUtils driverUtils) {
@@ -125,17 +117,8 @@ public class CartPage extends BasePage {
         return Integer.parseInt(driverUtils.getText(totalCSS));
     }
 
-
-    //  still not good. invisible passes, items show up later
-//  getVisible waits for too long but makes sure cart is cleared
-//  the cause is higher - when cart page opens up, getVisible waits briefly and goes on,
-//  but something in the app doesn't register the items and makes an empty purchase
-//  and after purchase items show up.
-//  In a real app, empty purchase would be fixed and this wouldn't exist
-//  so what's the correct approach here?
     public boolean isCartClearedOut() {
         log.info("Cart - checking if it's cleared out");
-//        return driverUtils.getVisibleElements(itemsTableCSS).isEmpty();
         return driverUtils.areElementsInvisible(itemsTableCSS);
     }
 
