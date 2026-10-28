@@ -91,7 +91,12 @@ Feature: Cart page functionality
     Then I see the purchase confirmation displays the correct purchase total
 
 
-#@only
+  @bug
+#    Bug: Cart appears to be ready before the application/backend is actually ready to process the purchase correctly.
+#    Actual: After a purchase the cart still has the same items in it.The cart shows items Before the purchase
+#    Actual: The cart doesn't seem to process items internally. Possibly an empty purchase is made.
+#    Actual: The "before" purchase state needs 9s to be ready. Issue is not seen with manual as it takes longer.
+#    Expected: The cart is ready for purchase when items become visible. Cart clears after purchase.
   Scenario: Verify that a cart clears out after a purchase is made - logged out
     Given I open the main page
     And I successfully purchase the following items with valid credentials:
@@ -102,11 +107,10 @@ Feature: Cart page functionality
     And I open the cart page
     Then I see that the cart is cleared out
 
-#@only
-
-#  wait for something else, but also invisible isn't good. It has to wait for like 2 seconds minimum as items can load later
-#  since this is a specific issue with cart only seen in Selenium, maybe make custom wait like getVisible up to 3-4 seconds?
-#  that's for after the purchase, but the issue is with before the purchase. What can I wait for there?
+  @bug
+#    Bug: Same as above
+#    Actual: Cart is internally Not ready when items become visible. Cart does Not clear after a purchase.
+#    Expected: Cart is internally ready when items become visible. Cart clears after a purchase.
   Scenario: Verify that a cart clears out after a purchase is made - logged in
     Given I open the main page
     And I log in as "user1"
