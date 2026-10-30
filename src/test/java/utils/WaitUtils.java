@@ -114,13 +114,14 @@ public class WaitUtils {
         }
     }
 
+    //  This wait could lead to false positives. But still, those would have 40-second waits as well as log warnings.
+//  Hence, there is currently no need for an aggressive pass or fail staleness wait.
     public void waitForStaleness(WebElement element) {
         try {
             getRegularWait().until(ExpectedConditions.stalenessOf(element));
-        } catch (Exception e) { // FIX THIS - MAKES TESTS CONTINUE EVEN IF AN OBJECT IS NOT STALE
+        } catch (TimeoutException e) {
             log.warn("Element did not become stale. Waited for {} seconds.",
                     REGULAR_WAIT.getSeconds());
-
         }
     }
 
