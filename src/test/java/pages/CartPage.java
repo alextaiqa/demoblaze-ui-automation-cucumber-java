@@ -105,10 +105,10 @@ public class CartPage extends BasePage {
 
     public void makeSureTheCartIsEmpty() {
         log.info("Cart - making sure it's empty");
-        List<WebElement> items = driverUtils.getVisibleElements(itemsTableCSS);
+        List<WebElement> items = driverUtils.getVisibleElementsWithShortWait(itemsTableCSS);
         while (items != null && !items.isEmpty()) {
             driverUtils.click(firstDeleteItem);
-            items = driverUtils.getVisibleElements(itemsTableCSS);
+            items = driverUtils.getVisibleElementsWithShortWait(itemsTableCSS);
         }
     }
 
@@ -129,7 +129,7 @@ public class CartPage extends BasePage {
 
     public void waitForItemsToDisplay() {
         log.info("Cart - waiting for the items to load and appear on the page");
-        driverUtils.getVisibleElements(itemsTableCSS);
+        driverUtils.getVisibleElementsWithShortWait(itemsTableCSS);
     }
 
     //HELPERS
