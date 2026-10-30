@@ -132,7 +132,7 @@ public class WaitUtils {
         });
     }
 
-    //  private overloaded methods
+    //  private methods
     private List<WebElement> getVisibleElementsWithDifferentWaits(WebDriverWait waitTime,
                                                                   Duration timeout,
                                                                   By selector) {
