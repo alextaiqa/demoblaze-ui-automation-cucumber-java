@@ -3,4 +3,5 @@ browserFirefox: "firefox"
 headless: "true"
 baseUrl: "https://demoblaze.com/index.html"
 explicit.regular.wait: 10
+explicit.short.wait: 3
 explicit.alert.wait: 2

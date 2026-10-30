@@ -23,6 +23,10 @@ public class Config {
         return Duration.ofSeconds(Integer.parseInt(data.get("explicit.regular.wait")));
     }
 
+    public Duration getShortWait() {
+        return Duration.ofSeconds(Integer.parseInt(data.get("explicit.short.wait")));
+    }
+
     public Duration getAlertWait() {
         return Duration.ofSeconds(Integer.parseInt(data.get("explicit.alert.wait")));
     }
