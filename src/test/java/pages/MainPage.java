@@ -43,7 +43,7 @@ public class MainPage extends BasePage {
             By.xpath("//a[@id='cat']/../a[contains(normalize-space(),'Laptops')]");
     private final By monitorsCategoryButtonXPath =
             By.xpath("//a[@id='cat']/../a[contains(normalize-space(),'Monitors')]");
-    private final By deviceCategoryTableXPath = By.xpath("//div[@id='tbodyid']/div");
+    private final By deviceCategoryTableItemsXPath = By.xpath("//div[@id='tbodyid']/div");
 
     @SuppressWarnings("FieldCanBeLocal") //responsible for multiple item headers in the table via %s
     private final String DEVICE_CATEGORY_TABLE_ITEM_HEADER = "(//div[@id='tbodyid']//h4/a)[%s]"; //starts with 1
@@ -233,7 +233,7 @@ public class MainPage extends BasePage {
         log.info("Checking if items on the first page of the {} device category redirect to a correct page", category);
 
         int counter = 0;
-        List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableXPath); //how many items
+        List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableItemsXPath); //how many items
 
         for (int i = 1; i <= items.size(); i++) {
             String itemHeaderOnMainPage = getDeviceCategoryItemHeader(i); //gets the text of the header
@@ -256,7 +256,7 @@ public class MainPage extends BasePage {
                 "have a correct title on their pages", category);
         int counter = 0;
 
-        List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableXPath); //how many items
+        List<WebElement> items = driverUtils.getVisibleElements(deviceCategoryTableItemsXPath); //how many items
 
         for (int i = 1; i <= items.size(); i++) {
             getVisibleDeviceCategoryItem(i).click();
@@ -287,13 +287,13 @@ public class MainPage extends BasePage {
     }
 
     private void goToTheNextDeviceCategoryPage() {
-        WebElement oldTable = driverUtils.getVisibleElement(deviceCategoryTableXPath);
+        WebElement oldTable = driverUtils.getVisibleElement(deviceCategoryTableItemsXPath);
         clickOnTheNextDeviceCategoryButton();
         driverUtils.waitForElementToBecomeStale(oldTable);
     }
 
     private List<WebElement> getDeviceCategoryItems() {
-        return driverUtils.getVisibleElements(deviceCategoryTableXPath);
+        return driverUtils.getVisibleElements(deviceCategoryTableItemsXPath);
     }
 
     private WebElement getVisibleDeviceCategoryItem(int itemNum) {
