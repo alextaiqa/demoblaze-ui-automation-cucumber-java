@@ -102,7 +102,11 @@ public class DriverUtils {
     }
 
     public List<WebElement> getVisibleElements(By selector) {
-        return waitUtils.getVisibleElements(selector);
+        return waitUtils.getVisibleElementsWithRegularWait(selector);
+    }
+
+    public List<WebElement> getVisibleElementsWithShortWait(By selector) {
+        return waitUtils.getVisibleElementsWithShortWait(selector);
     }
 
     public List<WebElement> getPresentElements(By selector) {

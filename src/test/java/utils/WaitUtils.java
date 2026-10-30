@@ -16,6 +16,7 @@ public class WaitUtils {
     //global variables
     private final Config config = new Config();
     private final Duration REGULAR_WAIT = config.getRegularWait();
+    private final Duration SHORT_WAIT = config.getShortWait();
     private final Duration ALERT_WAIT = config.getAlertWait();
     private final Logger log;
 
@@ -35,6 +36,10 @@ public class WaitUtils {
 
     private WebDriverWait getRegularWait() { //a wait method with 'regular' timing
         return getWait(REGULAR_WAIT);
+    }
+
+    private WebDriverWait getShortWait() {
+        return getWait(SHORT_WAIT);
     }
 
     private WebDriverWait getAlertWait() { //a wait method with 'alert' timing
@@ -59,14 +64,12 @@ public class WaitUtils {
         }
     }
 
-    public List<WebElement> getVisibleElements(By selector) {
-        try {
-            return getRegularWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
-        } catch (TimeoutException e) {
-            log.warn("Elements with a selector '{}' were not visible. Waited for {} seconds.",
-                    selector, REGULAR_WAIT.getSeconds());
-            return null;
-        }
+    public List<WebElement> getVisibleElementsWithRegularWait(By selector) {
+        return getVisibleElementsWithDifferentWaits(getRegularWait(), REGULAR_WAIT, selector);
+    }
+
+    public List<WebElement> getVisibleElementsWithShortWait(By selector) {
+        return getVisibleElementsWithDifferentWaits(getShortWait(), SHORT_WAIT, selector);
     }
 
     public List<WebElement> getPresentElements(By selector) {
@@ -127,5 +130,18 @@ public class WaitUtils {
 
             return !currentValue.equals(originalValue) ? currentValue : null;
         });
+    }
+
+    //  private overloaded methods
+    private List<WebElement> getVisibleElementsWithDifferentWaits(WebDriverWait waitTime,
+                                                                  Duration timeout,
+                                                                  By selector) {
+        try {
+            return waitTime.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
+        } catch (TimeoutException e) {
+            log.warn("Elements with a selector '{}' were not visible. Waited for {} seconds.",
+                    selector, timeout.getSeconds());
+            return null;
+        }
     }
 }
