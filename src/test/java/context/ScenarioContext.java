@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class ScenarioContext {
 
-    //I don't get any of this
+    //switch used in TCs test context. It should be scenario context as test context is for framework-level objects
+    //like drivers, utils. It is a manual dependency container. Also, I have Pico, so TestContext can be deleted if not needed in hooks
 
     private Map<String, Object> data = new HashMap<>();
 

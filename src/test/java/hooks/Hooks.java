@@ -35,7 +35,7 @@ public class Hooks {
     public void setup(Scenario scenario) {
         WebDriver driver = driverFactory.createDriver();
         DriverManager.setDriver(driver);
-        testContext.setDriver(driver);
+        testContext.setDriver(driver); // work on this, and figure out if it's actually needed. quitDriver does its work via DriverManager anyway
     }
 
     @After
