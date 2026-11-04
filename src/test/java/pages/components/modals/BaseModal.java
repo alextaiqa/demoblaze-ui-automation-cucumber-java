@@ -53,10 +53,14 @@ public abstract class BaseModal {
         return driverUtils.getAlertText().trim();
     }
 
-    protected void waitForClosure() {
 
-//        ALL MODALS MIGHT HAVE THIS ISSUE. CONSIDER MOVING THIS TO MODAL BASE AND ADDING TO ALL
+    // create commonly used methods here to reduce dupes
+    protected void clickOnModalButton(By modalButtonSelector, String modalName, String modalButtonName) {
+        log.info("{} modal - clicking on a '{}' button", modalName, modalButtonName);
+        driverUtils.click(modalButtonSelector);
+    }
 
+    private void waitForClosure() {
         log.info("{} modal - waiting for it to close", getModalName());
         if (!driverUtils.isElementInvisible(getModalContainer())) {
             throw new IllegalStateException(getModalName() + " modal did not close.");
