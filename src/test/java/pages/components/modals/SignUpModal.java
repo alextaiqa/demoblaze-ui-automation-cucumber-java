@@ -6,7 +6,7 @@ import utils.DriverUtils;
 public class SignUpModal extends BaseModal {
 
     //selectors
-    private final By signUpModalContainerCSS = By.id("signInModal");
+    private final By modalContainer = By.id("signInModal");
     private final By signUpModalHeaderCSS = By.id("signInModalLabel");
     private final By signUpModalUsernameFieldCSS = By.id("sign-username");
     private final By signUpModalPasswordFieldCSS = By.id("sign-password"); //should they be called CSS or CSS_ID or???
@@ -58,9 +58,8 @@ public class SignUpModal extends BaseModal {
         return driverUtils.getAlertText().equals("This user already exist.");
     }
 
-    public void clickOnTheSignUpModalCloseButton() {
-        log.info("Clicking on the 'Sign up' modal 'cancel' button");
-        driverUtils.click(signUpModalCloseButtonXpath);
+    public void clickCloseButton() {
+        clickOnModalButton(signUpModalCloseButtonXpath, getModalName(), "Cancel");
     }
 
     public boolean isUsernameFieldEmpty() {
@@ -77,7 +76,7 @@ public class SignUpModal extends BaseModal {
     //methods for common behavior
     @Override
     protected By getModalContainer() {
-        return signUpModalContainerCSS;
+        return modalContainer;
     }
 
     @Override

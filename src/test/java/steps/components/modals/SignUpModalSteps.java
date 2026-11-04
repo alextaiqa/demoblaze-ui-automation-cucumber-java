@@ -93,9 +93,12 @@ public class SignUpModalSteps extends BaseSteps {
 
     @And("I click on the sign up modal close button")
     public void iClickOnTheSignUpModalCloseButton() {
-        signUpModal.clickOnTheSignUpModalCloseButton();
+        signUpModal.clickCloseButton();
     }
 
+
+    //rename things - shorten them
+    //send more things to their Bases
 
     //THE PROBLEM HERE IS THAT MULTIPLE MODALS HAVE THE SAME CODE - FIX THIS - BASE CLASS? GET MODAL NAME VIA ABSTRACT?
     //but all of them have different data for logging and assertions...
