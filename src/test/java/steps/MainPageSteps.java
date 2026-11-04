@@ -1,6 +1,6 @@
 package steps;
 
-import context.TestContext;
+import context.ScenarioContext;
 import io.cucumber.java.en.*;
 import pages.MainPage;
 import utils.DriverUtils;
@@ -12,13 +12,13 @@ public class MainPageSteps extends BaseSteps {
 
     //    GLOBAL VARIABLES
     private final MainPage mainPage;
-    private final TestContext testContext;
+    private final ScenarioContext scenarioContext;
 
     //    CONSTRUCTOR
-    public MainPageSteps(DriverUtils driverUtils, TestContext testContext) {
+    public MainPageSteps(DriverUtils driverUtils, ScenarioContext scenarioContext) {
         super("testdata/mainPage.yaml");
         this.mainPage = new MainPage(driverUtils);
-        this.testContext = testContext;
+        this.scenarioContext = scenarioContext;
      }
 
     //     METHODS
@@ -73,7 +73,7 @@ public class MainPageSteps extends BaseSteps {
     @And("I see the {string} in the device categories in a default color")
     public void iSeeTheButtonInTheDeviceCategoriesInADefaultColor(String button) {
         String buttonColor = mainPage.getButtonColor(button);
-        testContext.set("color", buttonColor);
+        scenarioContext.set("color", buttonColor);
     }
 
     @And("I hover over the device category {string} button")
@@ -84,7 +84,7 @@ public class MainPageSteps extends BaseSteps {
     @Then("I see the device category {string} button changed color")
     public void iSeeTheDeviceCategoryButtonChangedColor(String button) {
         String colorAfterHover = mainPage.getButtonColor(button);
-        String colorBeforeHover = (String) testContext.get("color");
+        String colorBeforeHover = (String) scenarioContext.get("color");
         assertNotEquals(colorAfterHover, colorBeforeHover,
                 "Device categories - hover over button '" + button + "' - color did not change");
     }

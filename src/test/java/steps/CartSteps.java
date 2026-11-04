@@ -1,6 +1,6 @@
 package steps;
 
-import context.TestContext;
+import context.ScenarioContext;
 import flows.ShoppingFlow;
 import io.cucumber.java.en.*;
 import io.cucumber.datatable.DataTable;
@@ -17,15 +17,15 @@ public class CartSteps extends BaseSteps {
     private final CartPage cartPage;
     private final ShoppingFlow shoppingFlow;
     private final TestDataGenerator testDataGenerator;
-    private final TestContext testContext;
+    private final ScenarioContext scenarioContext;
 
-    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow, TestDataGenerator testDataGenerator,
-                     TestContext testContext) {
+    public CartSteps(CartPage cartPage, ShoppingFlow shoppingFlow,
+                     TestDataGenerator testDataGenerator, ScenarioContext scenarioContext) {
         super("testdata/cartPage.yaml");
         this.cartPage = cartPage;
         this.shoppingFlow = shoppingFlow;
         this.testDataGenerator = testDataGenerator;
-        this.testContext = testContext;
+        this.scenarioContext = scenarioContext;
     }
 
     @Given("I open the cart page")
@@ -63,14 +63,14 @@ public class CartSteps extends BaseSteps {
     @And("I enter a valid country in the place order modal")
     public void iEnterAValidCountryInThePlaceOrderModal() {
         String randomCountry = testDataGenerator.generateCountry();
-        testContext.set("country", randomCountry);
+        scenarioContext.set("country", randomCountry);
         cartPage.enterAValidCountryInThePlaceOrderModal(randomCountry);
     }
 
     @And("I enter a valid city in the place order modal")
     public void iEnterAValidCityInThePlaceOrderModal() {
         cartPage.enterAValidCityInThePlaceOrderModal(testDataGenerator.
-                generateCity(testContext.get("country").toString()));
+                generateCity(scenarioContext.get("country").toString()));
     }
 
     @And("I enter a valid credit card in the place order modal")
@@ -91,7 +91,7 @@ public class CartSteps extends BaseSteps {
     @And("I enter valid place order details in the cart modal")
     public void iEnterValidPlaceOrderDetailsInTheCartModal() {
         PlaceOrderData placeOrderData = testDataGenerator.generatePlaceOrderData();
-        testContext.set("expectedPurchaseDetails", placeOrderData);
+        scenarioContext.set("expectedPurchaseDetails", placeOrderData);
         shoppingFlow.enterValidPlaceOrderDetailsInTheCartModal(placeOrderData);
     }
 
@@ -103,32 +103,32 @@ public class CartSteps extends BaseSteps {
     @And("I successfully purchase the {int} item in the {string} category with valid credentials")
     public void iSuccessfullyPurchaseTheItemInTheDeviceCategoryWithValidCredentials(int itemNumber, String category) {
         PlaceOrderData placeOrderData = testDataGenerator.generatePlaceOrderData();
-        testContext.set("expectedPurchaseDetails", placeOrderData);
+        scenarioContext.set("expectedPurchaseDetails", placeOrderData);
 
         int total = shoppingFlow.successfullyPurchaseOneItemInTheDeviceCategoryWithValidCredentials(
                 category, itemNumber, placeOrderData);
-        testContext.set("expectedTotal", total);
+        scenarioContext.set("expectedTotal", total);
     }
 
     @And("I successfully purchase the following items with valid credentials:")
     public void iSuccessfullyPurchaseTheFollowingItemsWithValidCredentials(DataTable dataTable) {
         PlaceOrderData placeOrderData = testDataGenerator.generatePlaceOrderData();
-        testContext.set("expectedPurchaseDetails", placeOrderData);
+        scenarioContext.set("expectedPurchaseDetails", placeOrderData);
 
         int total = shoppingFlow.successfullyPurchaseTheFollowingItemsWithValidCredentials(
                 DataTableConverter.getConvertedDataTable(dataTable), placeOrderData);
-        testContext.set("expectedTotal", total);
+        scenarioContext.set("expectedTotal", total);
     }
 
     @Then("I see a purchase confirmation message")
     public void iSeeAPurchaseConfirmationMessage() {
         PurchaseData actualPurchaseData = cartPage.getPurchaseConfirmationMessage();
-        testContext.set("actualPurchaseData", actualPurchaseData);
+        scenarioContext.set("actualPurchaseData", actualPurchaseData);
     }
 
     @Then("I see the purchase confirmation displays the correct successful purchase message")
     public void iSeeThePurchaseConfirmationDisplaysTheCorrectSuccessfulPurchaseMessage() {
-        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
+        PurchaseData actualPurchaseData = (PurchaseData) scenarioContext.get("actualPurchaseData");
 
         String actualMessage = actualPurchaseData.getMessage();
         String expectedMessage = data.get("cartModalThankYouMessage");
@@ -138,8 +138,8 @@ public class CartSteps extends BaseSteps {
 
     @Then("I see the purchase confirmation displays the correct customer name")
     public void iSeeThePurchaseConfirmationDisplaysTheCorrectCustomerName() {
-        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
-        PlaceOrderData expectedPurchaseData = (PlaceOrderData) testContext.get("expectedPurchaseDetails");
+        PurchaseData actualPurchaseData = (PurchaseData) scenarioContext.get("actualPurchaseData");
+        PlaceOrderData expectedPurchaseData = (PlaceOrderData) scenarioContext.get("expectedPurchaseDetails");
 
         String actualName = actualPurchaseData.getName();
         String expectedName = expectedPurchaseData.getFullName();
@@ -149,8 +149,8 @@ public class CartSteps extends BaseSteps {
 
     @And("I see the purchase confirmation displays the correct card digits")
     public void iSeeThePurchaseConfirmationDisplaysTheCorrectCardDigits() {
-        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
-        PlaceOrderData expectedPurchaseData = (PlaceOrderData) testContext.get("expectedPurchaseDetails");
+        PurchaseData actualPurchaseData = (PurchaseData) scenarioContext.get("actualPurchaseData");
+        PlaceOrderData expectedPurchaseData = (PlaceOrderData) scenarioContext.get("expectedPurchaseDetails");
 
         String actualCardData = actualPurchaseData.getCardData();
         String expectedCardData = expectedPurchaseData.getCreditCardDigits();
@@ -163,10 +163,10 @@ public class CartSteps extends BaseSteps {
 
     @And("I see the purchase confirmation displays the correct purchase total")
     public void iSeeThePurchaseConfirmationDisplaysTheCorrectPurchaseTotal() {
-        PurchaseData actualPurchaseData = (PurchaseData) testContext.get("actualPurchaseData");
+        PurchaseData actualPurchaseData = (PurchaseData) scenarioContext.get("actualPurchaseData");
 
         int actualTotal = actualPurchaseData.getTotal();
-        int expectedTotal = (int) testContext.get("expectedTotal");
+        int expectedTotal = (int) scenarioContext.get("expectedTotal");
         assertEquals(actualTotal, expectedTotal,
                 "Cart - purchase confirmation - amount is not correct");
     }
@@ -174,13 +174,13 @@ public class CartSteps extends BaseSteps {
     @And("I add the {int} item in the {string} device category to the cart")
     public void iAddAnItemInTheDeviceCategoryToTheCart(int itemNumber, String deviceCategory) {
         int total = shoppingFlow.addAnItemInTheDeviceCategoryToTheCart(deviceCategory, itemNumber);
-        testContext.set("expectedTotal", total);
+        scenarioContext.set("expectedTotal", total);
     }
 
     @And("I add the following items to the cart:")
     public void iAddTheFollowingItemsToTheCart(DataTable dataTable) {
         int total = shoppingFlow.addTheFollowingItemsToTheCart(DataTableConverter.getConvertedDataTable(dataTable));
-        testContext.set("expectedTotal", total);
+        scenarioContext.set("expectedTotal", total);
     }
 
     @And("I make sure the cart is empty")
@@ -191,7 +191,7 @@ public class CartSteps extends BaseSteps {
     @Then("I see a correct total is displayed")
     public void iSeeACorrectTotalIsDisplayed() {
         int actualTotal = cartPage.getTotal();
-        int expectedTotal = (int) testContext.get("expectedTotal");
+        int expectedTotal = (int) scenarioContext.get("expectedTotal");
         assertEquals(actualTotal, expectedTotal,
                 "Cart - total gathered from all items does not match the total seen on the page");
     }

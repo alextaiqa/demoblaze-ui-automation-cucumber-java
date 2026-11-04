@@ -1,6 +1,6 @@
 package steps.components;
 
-import context.TestContext;
+import context.ScenarioContext;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.components.NavBar;
@@ -12,15 +12,15 @@ import static org.testng.Assert.*;
 public class NavBarSteps extends BaseSteps {
 
     private final NavBar navBar;
-    private final TestContext testContext;
+    private final ScenarioContext scenarioContext;
 
     // =======================
 // CONSTRUCTOR
 // =======================
-    public NavBarSteps(NavBar navBar, TestContext testContext) {
+    public NavBarSteps(NavBar navBar, ScenarioContext scenarioContext) {
         super("testdata/navBar.yaml");
         this.navBar = navBar;
-        this.testContext = testContext;
+        this.scenarioContext = scenarioContext;
     }
 
     // =======================
@@ -53,21 +53,21 @@ public class NavBarSteps extends BaseSteps {
     @And("I see the nav bar {string} button is displayed in default color")
     public void iSeeTheNavBarButtonIsDisplayedInDefaultColor(String button) {
         String color = navBar.getButtonColor(button);
-        testContext.set("colorBefore", color);
+        scenarioContext.set("colorBefore", color);
     }
 
     @And("I hover over the nav bar {string} button")
     public void iHoverOverTheNavBarButton(String button) {
-        String colorBeforeHover = (String) testContext.get("colorBefore");
+        String colorBeforeHover = (String) scenarioContext.get("colorBefore");
         navBar.hoverOverTheButton(button);
         String color = navBar.waitForColorToChange(button, colorBeforeHover);
-        testContext.set("colorAfter", color);
+        scenarioContext.set("colorAfter", color);
     }
 
     @Then("I see a nav bar {string} button changed color")
     public void iSeeANavBarButtonChangedColor(String button) {
-        String colorBeforeHover = (String) testContext.get("colorBefore");
-        String colorAfterHover = (String) testContext.get("colorAfter");
+        String colorBeforeHover = (String) scenarioContext.get("colorBefore");
+        String colorAfterHover = (String) scenarioContext.get("colorAfter");
         assertNotEquals(colorBeforeHover, colorAfterHover,
                 "Nav bar - " + button + " button - color change on hover is incorrect");
     }
