@@ -18,10 +18,6 @@ public class ScenarioContext {
         return data.get(key);
     }
 
-    public <T> T get(String key, Class<T> type){
-        return type.cast(data.get(key));
-    }
-
     public void clear(){
         data.clear();
     }
