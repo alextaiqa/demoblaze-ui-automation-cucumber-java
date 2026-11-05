@@ -7,12 +7,12 @@ public class SignUpModal extends BaseModal {
 
     //selectors
     private final By modalContainer = By.id("signInModal");
-    private final By signUpModalHeaderCSS = By.id("signInModalLabel");
-    private final By signUpModalUsernameFieldCSS = By.id("sign-username");
-    private final By signUpModalPasswordFieldCSS = By.id("sign-password"); //should they be called CSS or CSS_ID or???
-    private final By signUpModalConfirmationButtonXPath =
+    private final By modalHeader = By.id("signInModalLabel");
+    private final By usernameField = By.id("sign-username");
+    private final By passwordField = By.id("sign-password"); //should they be called CSS or CSS_ID or???
+    private final By confirmationButton =
             By.xpath("//div[@id='signInModal']//button[normalize-space()='Sign up']");
-    private final By signUpModalCloseButtonXpath =
+    private final By closeButton =
             By.xpath("//div[@id='signInModal']//button[@type='button'][normalize-space()='Close']");
 
     //constructor
@@ -21,19 +21,19 @@ public class SignUpModal extends BaseModal {
     }
 
     //methods
-    public void enterAValidUsername(String username) {
-        log.info("Sign up - modal - entering a username");
-        driverUtils.type(signUpModalUsernameFieldCSS, username);
+    public void enterValidUsername(String username) {
+        enterFieldValue(usernameField, username,
+                getModalName(), "username");
     }
 
-    public void enterAValidPassword(String password) {
-        log.info("Sign up - modal - entering a password");
-        driverUtils.type(signUpModalPasswordFieldCSS, password);
+    public void enterValidPassword(String password) {
+        enterFieldValue(passwordField, password,
+                getModalName(), "password");
     }
 
     public void clickOnTheConfirmationButton() {
-        log.info("Sign up - modal - clicking on the 'Sign up' button");
-        driverUtils.click(signUpModalConfirmationButtonXPath);
+        clickOnButton(confirmationButton,
+                getModalName(), "Sign up");
     }
 
     public boolean seeSuccessfullySignedUpMessage() {
@@ -43,13 +43,13 @@ public class SignUpModal extends BaseModal {
     }
 
     public void enterAnExistingUsernameFor(String username) {
-        log.info("Sign up - modal - entering an existing username");
-        driverUtils.type(signUpModalUsernameFieldCSS, username);
+        enterFieldValue(usernameField, username,
+                getModalName(), "existing username");
     }
 
     public void enterAnExistingPasswordFor(String password) {
-        log.info("Sign up - modal - entering an existing password");
-        driverUtils.type(signUpModalPasswordFieldCSS, password);
+        enterFieldValue(passwordField, password,
+                getModalName(), "existing password");
     }
 
     public boolean seeAUserAlreadyExistsSignUpMessage() {
@@ -59,17 +59,15 @@ public class SignUpModal extends BaseModal {
     }
 
     public void clickCloseButton() {
-        clickOnModalButton(signUpModalCloseButtonXpath, getModalName(), "Cancel");
+        clickOnButton(closeButton, getModalName(), "Cancel");
     }
 
     public boolean isUsernameFieldEmpty() {
-        log.info("Sign up - modal - checking if the username field is empty");
-        return driverUtils.isAttributeEmpty(signUpModalUsernameFieldCSS, "value");
+        return isFieldEmpty(usernameField, getModalName(), "username");
     }
 
     public boolean isPasswordFieldEmpty() {
-        log.info("Sign up - modal - checking if the password field is empty");
-        return driverUtils.isAttributeEmpty(signUpModalPasswordFieldCSS, "value");
+        return isFieldEmpty(passwordField, getModalName(), "password");
     }
 
 
@@ -81,7 +79,7 @@ public class SignUpModal extends BaseModal {
 
     @Override
     protected By getHeaderLocator() {
-        return signUpModalHeaderCSS;
+        return modalHeader;
     }
 
     @Override
