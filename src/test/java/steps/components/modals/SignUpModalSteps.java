@@ -38,12 +38,12 @@ public class SignUpModalSteps extends BaseSteps {
 
     @And("I enter a valid sign up username")
     public void iEnterAValidSignUpUsername() {
-        signUpModal.enterAValidUsername(dataGenerator.generateUsername());
+        signUpModal.enterValidUsername(dataGenerator.generateUsername());
     }
 
     @And("I enter a valid sign up password")
     public void iEnterAValidSignUpPassword() {
-        signUpModal.enterAValidPassword(dataGenerator.generatePassword());
+        signUpModal.enterValidPassword(dataGenerator.generatePassword());
     }
 
     @And("I enter valid sign up credentials")
