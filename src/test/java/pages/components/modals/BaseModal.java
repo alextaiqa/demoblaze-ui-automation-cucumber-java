@@ -55,9 +55,20 @@ public abstract class BaseModal {
 
 
     // create commonly used methods here to reduce dupes
-    protected void clickOnModalButton(By modalButtonSelector, String modalName, String modalButtonName) {
-        log.info("{} modal - clicking on a '{}' button", modalName, modalButtonName);
-        driverUtils.click(modalButtonSelector);
+
+    protected void enterFieldValue(By selector, String value, String modalName, String valueName) {
+        log.info("{} modal - entering {}", modalName, valueName);
+        driverUtils.type(selector, value);
+    }
+
+    protected void clickOnButton(By selector, String modalName, String modalButtonName) {
+        log.info("{} modal - clicking on '{}' button", modalName, modalButtonName);
+        driverUtils.click(selector);
+    }
+
+    protected boolean isFieldEmpty(By selector, String modalName, String fieldName) {
+        log.info("{} - modal - checking if the {} field is empty", modalName, fieldName);
+        return driverUtils.isAttributeEmpty(selector, "value");
     }
 
     private void waitForClosure() {
