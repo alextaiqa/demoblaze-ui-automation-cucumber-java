@@ -9,7 +9,7 @@ public class SignUpModal extends BaseModal {
     private final By modalContainer = By.id("signInModal");
     private final By modalHeader = By.id("signInModalLabel");
     private final By usernameField = By.id("sign-username");
-    private final By passwordField = By.id("sign-password"); //should they be called CSS or CSS_ID or???
+    private final By passwordField = By.id("sign-password");
     private final By confirmationButton =
             By.xpath("//div[@id='signInModal']//button[normalize-space()='Sign up']");
     private final By closeButton =
@@ -36,24 +36,23 @@ public class SignUpModal extends BaseModal {
                 getModalName(), "Sign up");
     }
 
-    public boolean seeSuccessfullySignedUpMessage() {
-        log.info("Sign up - modal - verifying if a successful sign up message " +
-                "appears when entering valid credentials");
-        return driverUtils.getAlertText().equals("Sign up successful.");
+    public String getSuccessfullySignedUpMessage() {
+        log.info("Sign up modal - getting a successful sign up message");
+        return driverUtils.getAlertText();
     }
 
-    public void enterAnExistingUsernameFor(String username) {
+    public void enterExistingUsernameFor(String username) {
         enterFieldValue(usernameField, username,
                 getModalName(), "existing username");
     }
 
-    public void enterAnExistingPasswordFor(String password) {
+    public void enterExistingPasswordFor(String password) {
         enterFieldValue(passwordField, password,
                 getModalName(), "existing password");
     }
 
-    public boolean seeAUserAlreadyExistsSignUpMessage() {
-        log.info("Sign up - modal - verifying if a message " +
+    public boolean seeUserAlreadyExistsMessage() {
+        log.info("Sign up modal - verifying if a message " +
                 "'This user already exist.' appears when signing up with an existing user");
         return driverUtils.getAlertText().equals("This user already exist.");
     }
