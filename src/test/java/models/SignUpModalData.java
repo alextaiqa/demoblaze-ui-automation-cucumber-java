@@ -2,16 +2,17 @@ package models;
 
 public class SignUpModalData {
 
-    private String signUpHeader;
+    private String header;
     private String successfulSignUpMessage;
+    private String userAlreadyExistsMessage;
     private String emptyFieldsMessage;
 
-    public String getSignUpHeader() {
-        return signUpHeader;
+    public String getHeader() {
+        return header;
     }
 
-    public void setSignUpHeader(String signUpHeader) {
-        this.signUpHeader = signUpHeader;
+    public void setHeader(String signUpHeader) {
+        this.header = signUpHeader;
     }
 
     public String getSuccessfulSignUpMessage() {
@@ -20,6 +21,14 @@ public class SignUpModalData {
 
     public void setSuccessfulSignUpMessage(String successfulSignUpMessage) {
         this.successfulSignUpMessage = successfulSignUpMessage;
+    }
+
+    public String getUserAlreadyExistsMessage() {
+        return userAlreadyExistsMessage;
+    }
+
+    public void setUserAlreadyExistsMessage(String userAlreadyExistsMessage) {
+        this.userAlreadyExistsMessage = userAlreadyExistsMessage;
     }
 
     public String getEmptyFieldsMessage() {
