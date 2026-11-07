@@ -1,4 +1,5 @@
 #modal header
-signUpHeader: "Sign up"
+header: "Sign up"
 successfulSignUpMessage: "Sign up successful."
+userAlreadyExistsMessage: "This user already exist."
 emptyFieldsMessage: "Please fill out Username and Password."
