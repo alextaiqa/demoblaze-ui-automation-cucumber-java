@@ -19,12 +19,12 @@ public class AboutUsModal extends BaseModal {
 
     //getters for common methods
     @Override
-    protected By getModalContainer() {
+    protected By getContainerSelector() {
         return aboutUsModalContainerCSS;
     }
 
     @Override
-    protected By getHeaderLocator() {
+    protected By getHeaderSelector() {
         return aboutUSModalHeaderCSS;
     }
 

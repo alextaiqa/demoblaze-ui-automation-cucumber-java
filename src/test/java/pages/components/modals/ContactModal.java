@@ -96,12 +96,12 @@ public class ContactModal extends BaseModal {
 
     //getters for base methods
     @Override
-    protected By getModalContainer() {
+    protected By getContainerSelector() {
         return contactModalID;
     }
 
     @Override
-    protected By getHeaderLocator() {
+    protected By getHeaderSelector() {
         return contactModalHeaderCSS;
     }
 

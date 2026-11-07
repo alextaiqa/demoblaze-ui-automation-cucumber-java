@@ -67,12 +67,12 @@ public class LoginModal extends BaseModal {
 
     //getters for common methods
     @Override
-    protected By getModalContainer() {
+    protected By getContainerSelector() {
         return loginModalContainerCSS;
     }
 
     @Override
-    protected By getHeaderLocator() {
+    protected By getHeaderSelector() {
         return loginModalHeaderCSS;
     }
 
