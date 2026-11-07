@@ -1,17 +1,15 @@
 package steps.components.modals;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
+import io.cucumber.java.en.*;
 import models.login.LoginModalData;
 import models.SignUpModalData;
 import pages.components.modals.SignUpModal;
-import steps.BaseSteps;
 import data.TestDataProvider;
 import utils.TestDataGenerator;
 
 import static org.testng.Assert.*;
 
-public class SignUpModalSteps extends BaseSteps {
+public class SignUpModalSteps {
     private final SignUpModal signUpModal;
     private final SignUpModalData signUpModalData;
     private final LoginModalData loginModalData;
@@ -20,16 +18,14 @@ public class SignUpModalSteps extends BaseSteps {
     // =======================
 // CONSTRUCTOR
 // =======================
-    public SignUpModalSteps(SignUpModal signUpModal, TestDataGenerator dataGenerator, TestDataProvider testDataProvider) {
-
-
-        super("testdata/signUpModal.yaml"); //REMOVE FROM BASE, THEN HERE when finished with other steps
-
+    public SignUpModalSteps(SignUpModal signUpModal,
+                            TestDataGenerator dataGenerator,
+                            TestDataProvider testDataProvider) {
 
         this.signUpModal = signUpModal;
+        this.signUpModalData = testDataProvider.getSignUpModalData();
         this.loginModalData = testDataProvider.getLoginModalData();
         this.dataGenerator = dataGenerator;
-        this.signUpModalData = testDataProvider.getSignUpModalData();
     }
 
     // =======================
@@ -39,8 +35,8 @@ public class SignUpModalSteps extends BaseSteps {
     public void iSeeTheSignUpModalWithACorrectHeaderAppears() {
         assertTrue(signUpModal.isDisplayed(), "The 'Sign up' modal is not displayed");
 
-        String actualHeader = signUpModal.getHeaderText();
-        String expectedHeader = signUpModalData.getSignUpHeader();
+        String actualHeader = signUpModal.getHeader();
+        String expectedHeader = signUpModalData.getHeader();
         assertEquals(actualHeader, expectedHeader, "The 'Sign up' modal has an incorrect header");
     }
 
@@ -89,14 +85,15 @@ public class SignUpModalSteps extends BaseSteps {
 
     @Then("I see a user already exists sign up message")
     public void iSeeAUserAlreadyExistsSignUpMessage() {
-        boolean isExistingUserMessageSeen = signUpModal.seeUserAlreadyExistsMessage();
-        assertTrue(isExistingUserMessageSeen, "Sign up modal - " +
+        String actualMessage = signUpModal.getUserExistsMessage();
+        String expectedMessage = signUpModalData.getUserAlreadyExistsMessage();
+        assertEquals(actualMessage, expectedMessage, "Sign up modal - " +
                 "'This user already exist.' message not seen when signing up with an existing account");
     }
 
     @Then("I see sign up empty fields message")
     public void iSeeSignUpEmptyFieldsMessage() {
-        String actualMessage = signUpModal.getAlertText();
+        String actualMessage = signUpModal.getEmptyFieldsMessage();
         String expectedMessage = signUpModalData.getEmptyFieldsMessage();
         assertEquals(actualMessage, expectedMessage, "Sign up modal - " +
                 "'Please fill out Username and Password.' message not seen when signing up with empty fields");
