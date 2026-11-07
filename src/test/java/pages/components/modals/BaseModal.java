@@ -24,10 +24,9 @@ public abstract class BaseModal {
     // =======================
 // GETTERS FOR COMMON METHODS
 // =======================
-    protected abstract By getModalContainer();
+    protected abstract By getContainerSelector();
 
-    protected abstract By getHeaderLocator();
-
+    protected abstract By getHeaderSelector();
     protected abstract String getModalName(); //for logs
 
     // =======================
@@ -35,45 +34,43 @@ public abstract class BaseModal {
 // =======================
     public boolean isDisplayed() {
         log.info("Checking if the {} modal is displayed", getModalName());
-        return driverUtils.isElementDisplayed(getModalContainer());
+        return driverUtils.isElementDisplayed(getContainerSelector());
     }
 
     public boolean isNotDisplayed() {
         log.info("Checking if the {} modal is not displayed", getModalName());
-        return driverUtils.isElementInvisible(getModalContainer());
+        return driverUtils.isElementInvisible(getContainerSelector());
     }
 
-    public String getHeaderText() {
+    public String getHeader() {
         log.info("Getting the actual header of the {} modal", getModalName());
-        return driverUtils.getText(getHeaderLocator());
+        return driverUtils.getText(getHeaderSelector());
     }
 
-    public String getAlertText() {
-        log.info("Getting a {} modal alert message", getModalName());
+    protected String getAlertMessage(String message) {
+        log.info("{} modal - getting a {} message", getModalName(), message);
         return driverUtils.getAlertText().trim();
     }
 
-
-    // create commonly used methods here to reduce dupes
-
-    protected void enterFieldValue(By selector, String value, String modalName, String valueName) {
-        log.info("{} modal - entering {}", modalName, valueName);
+    protected void enterFieldValue(By selector, String value, String valueName) {
+        log.info("{} modal - entering {}", getModalName(), valueName);
         driverUtils.type(selector, value);
     }
 
-    protected void clickOnButton(By selector, String modalName, String modalButtonName) {
-        log.info("{} modal - clicking on '{}' button", modalName, modalButtonName);
+    protected void clickOnButton(By selector, String modalButtonName) {
+        log.info("{} modal - clicking on '{}' button", getModalName(), modalButtonName);
         driverUtils.click(selector);
+//        waitForClosure(); but what if there is an alert? or what if it's like a cart place order modal?
     }
 
-    protected boolean isFieldEmpty(By selector, String modalName, String fieldName) {
-        log.info("{} - modal - checking if the {} field is empty", modalName, fieldName);
+    protected boolean isFieldEmpty(By selector, String fieldName) {
+        log.info("{} - modal - checking if the {} field is empty", getModalName(), fieldName);
         return driverUtils.isAttributeEmpty(selector, "value");
     }
 
-    private void waitForClosure() {
+    protected void waitForClosure() {
         log.info("{} modal - waiting for it to close", getModalName());
-        if (!driverUtils.isElementInvisible(getModalContainer())) {
+        if (!driverUtils.isElementInvisible(getContainerSelector())) {
             throw new IllegalStateException(getModalName() + " modal did not close.");
         }
     }
