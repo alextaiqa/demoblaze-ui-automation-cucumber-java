@@ -22,62 +22,57 @@ public class SignUpModal extends BaseModal {
 
     //methods
     public void enterValidUsername(String username) {
-        enterFieldValue(usernameField, username,
-                getModalName(), "username");
+        enterFieldValue(usernameField, username, "username");
     }
 
     public void enterValidPassword(String password) {
-        enterFieldValue(passwordField, password,
-                getModalName(), "password");
-    }
-
-    public void clickOnTheConfirmationButton() {
-        clickOnButton(confirmationButton,
-                getModalName(), "Sign up");
-    }
-
-    public String getSuccessfullySignedUpMessage() {
-        log.info("Sign up modal - getting a successful sign up message");
-        return driverUtils.getAlertText();
+        enterFieldValue(passwordField, password, "password");
     }
 
     public void enterExistingUsernameFor(String username) {
-        enterFieldValue(usernameField, username,
-                getModalName(), "existing username");
+        enterFieldValue(usernameField, username, "existing username");
     }
 
     public void enterExistingPasswordFor(String password) {
-        enterFieldValue(passwordField, password,
-                getModalName(), "existing password");
+        enterFieldValue(passwordField, password, "existing password");
     }
 
-    public boolean seeUserAlreadyExistsMessage() {
-        log.info("Sign up modal - verifying if a message " +
-                "'This user already exist.' appears when signing up with an existing user");
-        return driverUtils.getAlertText().equals("This user already exist.");
+    public String getSuccessfullySignedUpMessage() {
+        return getAlertMessage("successful sign up");
+    }
+
+    public String getUserExistsMessage() {
+        return getAlertMessage("user exists");
+    }
+
+    public String getEmptyFieldsMessage() {
+        return getAlertMessage("empty fields");
+    }
+
+    public void clickOnTheConfirmationButton() {
+        clickOnButton(confirmationButton, "Sign up");
     }
 
     public void clickCloseButton() {
-        clickOnButton(closeButton, getModalName(), "Cancel");
+        clickOnButton(closeButton, "Cancel");
     }
 
     public boolean isUsernameFieldEmpty() {
-        return isFieldEmpty(usernameField, getModalName(), "username");
+        return isFieldEmpty(usernameField, "username");
     }
 
     public boolean isPasswordFieldEmpty() {
-        return isFieldEmpty(passwordField, getModalName(), "password");
+        return isFieldEmpty(passwordField, "password");
     }
 
-
-    //methods for common behavior
+    //    methods for common behavior
     @Override
-    protected By getModalContainer() {
+    protected By getContainerSelector() {
         return modalContainer;
     }
 
     @Override
-    protected By getHeaderLocator() {
+    protected By getHeaderSelector() {
         return modalHeader;
     }
 
