@@ -2,11 +2,17 @@ package models;
 
 public class SignUpModalData {
 
+    /*=========================
+        FIELDS
+    =========================*/
     private String header;
     private String successfulSignUpMessage;
     private String userAlreadyExistsMessage;
     private String emptyFieldsMessage;
 
+    /*=========================
+        GETTERS & SETTERS
+    =========================*/
     public String getHeader() {
         return header;
     }

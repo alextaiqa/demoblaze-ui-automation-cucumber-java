@@ -7,25 +7,25 @@ import static org.testng.Assert.assertEquals;
 
 public class BaseSteps {
 
-    // =======================
-// GLOBAL VARIABLES
-// =======================
+    /*=========================
+        GLOBAL VARIABLES
+    =========================*/
     protected final TestData data;
 
-    // =======================
-// CONSTRUCTOR
-// =======================
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public BaseSteps(String filePath) {
         this.data = new TestData(filePath);
     }
 
-// =======================
-// METHODS
-// =======================
+    /*=========================
+        METHODS
+    =========================*/
 
-    // =======================
-// HELPER METHODS
-// =======================
+    /*=========================
+        HELPERS
+    =========================*/
     public void assertPageTitle(BasePage page, String pageName, String expectedTitle) {
         String actualTitle = page.getTitle();
         assertEquals(actualTitle, expectedTitle, "'" + pageName + "' page title is not correct");

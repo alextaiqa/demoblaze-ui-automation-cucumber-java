@@ -15,9 +15,9 @@ public class SignUpModalSteps {
     private final LoginModalData loginModalData;
     private final TestDataGenerator dataGenerator;
 
-    // =======================
-// CONSTRUCTOR
-// =======================
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public SignUpModalSteps(SignUpModal signUpModal,
                             TestDataGenerator dataGenerator,
                             TestDataProvider testDataProvider) {
@@ -28,9 +28,9 @@ public class SignUpModalSteps {
         this.dataGenerator = dataGenerator;
     }
 
-    // =======================
-// METHODS
-// =======================
+    /*=========================
+        METHODS
+    =========================*/
     @Then("I see the sign up modal with a correct header appears")
     public void iSeeTheSignUpModalWithACorrectHeaderAppears() {
         assertTrue(signUpModal.isDisplayed(), "The 'Sign up' modal is not displayed");
@@ -59,14 +59,14 @@ public class SignUpModalSteps {
 
     @And("I click on the sign up modal confirmation button")
     public void iClickOnTheSignUpModalConfirmationButton() {
-        signUpModal.clickOnTheConfirmationButton();
+        signUpModal.clickConfirmationButton();
     }
 
     @Then("I see successfully signed up message")
     public void iSeeSuccessfullySignedUpMessage() {
         String actualMessage = signUpModal.getSuccessfullySignedUpMessage();
         String expectedMessage = signUpModalData.getSuccessfulSignUpMessage();
-        assertEquals(actualMessage, expectedMessage, "Sign up - modal - " +
+        assertEquals(actualMessage, expectedMessage, "Sign up modal - " +
                 "'Successfully signed up' message not seen on valid sign up");
     }
 
@@ -74,13 +74,13 @@ public class SignUpModalSteps {
     @And("I enter an existing username for {string}")
     public void iEnterAnExistingUsernameFor(String user) {
         String username = loginModalData.getUser(user).getUsername();
-        signUpModal.enterExistingUsernameFor(username);
+        signUpModal.enterExistingUsername(username);
     }
 
     @And("I enter an existing password for {string}")
     public void iEnterAnExistingPasswordFor(String user) {
         String password = loginModalData.getUser(user).getPassword();
-        signUpModal.enterExistingPasswordFor(password);
+        signUpModal.enterExistingPassword(password);
     }
 
     @Then("I see a user already exists sign up message")

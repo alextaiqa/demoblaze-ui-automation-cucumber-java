@@ -7,31 +7,32 @@ import utils.DriverUtils;
 
 public abstract class BaseModal {
 
-    // =======================
-// GLOBAL VARIABLES
-// =======================
+    /*=========================
+        FIELDS
+    =========================*/
     protected final DriverUtils driverUtils;
     protected final Logger log;
 
-    // =======================
-// CONSTRUCTOR
-// =======================
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public BaseModal(DriverUtils driverUtils) {
         this.driverUtils = driverUtils;
         this.log = LoggerFactory.getLogger(this.getClass());
     }
 
-    // =======================
-// GETTERS FOR COMMON METHODS
-// =======================
+    /*=========================
+     GETTERS FOR COMMON METHODS
+    =========================*/
     protected abstract By getContainerSelector();
 
     protected abstract By getHeaderSelector();
+
     protected abstract String getModalName(); //for logs
 
-    // =======================
-// METHODS
-// =======================
+    /*=========================
+        METHODS
+    =========================*/
     public boolean isDisplayed() {
         log.info("Checking if the {} modal is displayed", getModalName());
         return driverUtils.isElementDisplayed(getContainerSelector());
@@ -57,7 +58,7 @@ public abstract class BaseModal {
         driverUtils.type(selector, value);
     }
 
-    protected void clickOnButton(By selector, String modalButtonName) {
+    protected void clickButton(By selector, String modalButtonName) {
         log.info("{} modal - clicking on '{}' button", getModalName(), modalButtonName);
         driverUtils.click(selector);
 //        waitForClosure(); but what if there is an alert? or what if it's like a cart place order modal?
