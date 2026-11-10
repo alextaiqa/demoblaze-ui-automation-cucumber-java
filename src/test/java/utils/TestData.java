@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class TestData {
 
+    //TO BE REMOVED AS YAML READER FILLS UP POJOS NOW
     private final Map<String, Object> data;
 
     public TestData(String path) {
