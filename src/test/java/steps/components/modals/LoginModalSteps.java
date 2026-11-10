@@ -76,7 +76,7 @@ public class LoginModalSteps extends BaseSteps {
 
     @Then("I see a wrong username or password login message")
     public void iSeeAWrongUsernameOrPasswordLoginMessage() {
-        String actualAlertMessage = logInModal.getAlertText();
+        String actualAlertMessage = logInModal.getIncorrectFieldsMessage();
         String expectedAlertMessage = data.get("incorrectUsernameOrPasswordAlert");
         assertEquals(actualAlertMessage, expectedAlertMessage,
                 "Login modal - incorrect username or password - alert doesn't have a right message");
@@ -84,7 +84,7 @@ public class LoginModalSteps extends BaseSteps {
 
     @Then("I see a missing username and password login message")
     public void iSeeAMissingUsernameAndPasswordLoginMessage() {
-        String actualAlertMessage = logInModal.getAlertText();
+        String actualAlertMessage = logInModal.getEmptyFieldsMessage();
         String expectedAlertMessage = data.get("emptyPasswordAndUsernameAlert");
         assertEquals(actualAlertMessage, expectedAlertMessage,
                 "Login modal - wrong alert message for an empty username and password");
@@ -93,7 +93,7 @@ public class LoginModalSteps extends BaseSteps {
     @Then("I see the login modal with a correct header appears")
     public void iSeeTheLoginModalWithACorrectHeaderAppears() {
         assertTrue(logInModal.isDisplayed(), "The 'Log in' modal is not displayed");
-        String actualHeader = logInModal.getHeaderText();
+        String actualHeader = logInModal.getHeader();
         String expectedHeader = data.get("loginModalHeader");
         assertEquals(actualHeader, expectedHeader, "The 'Log in' modal has an incorrect header");
     }

@@ -62,7 +62,13 @@ public class LoginModal extends BaseModal {
         return driverUtils.isAttributeEmpty(passwordCSS, "value");
     }
 
-    //    helpers
+    public String getIncorrectFieldsMessage() {
+        return getAlertMessage("wrong username or password");
+    }
+
+    public String getEmptyFieldsMessage() {
+        return getAlertMessage("empty username and password");
+    }
 
 
     //getters for common methods
