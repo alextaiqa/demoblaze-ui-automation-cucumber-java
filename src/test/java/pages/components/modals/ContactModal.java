@@ -94,6 +94,22 @@ public class ContactModal extends BaseModal {
         return driverUtils.isAttributeEmpty(contactModalMessageID, "value");
     }
 
+    public String getSuccessfullySentMessage() {
+        return getAlertMessage("successfully sent");
+    }
+
+    public String getIncorrectEmailMessage() {
+        return getAlertMessage("incorrect email");
+    }
+
+    public String getIncorrectNameMessage() {
+        return getAlertMessage("incorrect name");
+    }
+
+    public String getTooManyCharactersMessage() {
+        return getAlertMessage("too many characters");
+    }
+
     //getters for base methods
     @Override
     protected By getContainerSelector() {
