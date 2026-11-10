@@ -29,11 +29,11 @@ public class SignUpModal extends BaseModal {
         enterFieldValue(passwordField, password, "password");
     }
 
-    public void enterExistingUsernameFor(String username) {
+    public void enterExistingUsername(String username) {
         enterFieldValue(usernameField, username, "existing username");
     }
 
-    public void enterExistingPasswordFor(String password) {
+    public void enterExistingPassword(String password) {
         enterFieldValue(passwordField, password, "existing password");
     }
 
@@ -49,12 +49,12 @@ public class SignUpModal extends BaseModal {
         return getAlertMessage("empty fields");
     }
 
-    public void clickOnTheConfirmationButton() {
-        clickOnButton(confirmationButton, "Sign up");
+    public void clickConfirmationButton() {
+        clickButton(confirmationButton, "Sign up");
     }
 
     public void clickCloseButton() {
-        clickOnButton(closeButton, "Cancel");
+        clickButton(closeButton, "Cancel");
     }
 
     public boolean isUsernameFieldEmpty() {
