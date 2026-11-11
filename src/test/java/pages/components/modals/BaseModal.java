@@ -53,6 +53,10 @@ public abstract class BaseModal {
         return driverUtils.getAlertText().trim();
     }
 
+    public String getEmptyFieldsMessage() {
+        return getAlertMessage("empty fields");
+    }
+
     protected void enterFieldValue(By selector, String value, String valueName) {
         log.info("{} modal - entering {}", getModalName(), valueName);
         driverUtils.type(selector, value);
