@@ -64,7 +64,7 @@ public class SignUpModalSteps {
 
     @Then("I see successfully signed up message")
     public void iSeeSuccessfullySignedUpMessage() {
-        String actualMessage = signUpModal.getSuccessfullySignedUpMessage();
+        String actualMessage = signUpModal.getSuccessfulAlert();
         String expectedMessage = signUpModalData.getSuccessfulSignUpMessage();
         assertEquals(actualMessage, expectedMessage, "Sign up modal - " +
                 "'Successfully signed up' message not seen on valid sign up");
@@ -85,7 +85,7 @@ public class SignUpModalSteps {
 
     @Then("I see a user already exists sign up message")
     public void iSeeAUserAlreadyExistsSignUpMessage() {
-        String actualMessage = signUpModal.getUserExistsMessage();
+        String actualMessage = signUpModal.getUserExistsAlert();
         String expectedMessage = signUpModalData.getUserAlreadyExistsMessage();
         assertEquals(actualMessage, expectedMessage, "Sign up modal - " +
                 "'This user already exist.' message not seen when signing up with an existing account");
@@ -93,7 +93,7 @@ public class SignUpModalSteps {
 
     @Then("I see sign up empty fields message")
     public void iSeeSignUpEmptyFieldsMessage() {
-        String actualMessage = signUpModal.getEmptyFieldsMessage();
+        String actualMessage = signUpModal.getEmptyFieldsAlert();
         String expectedMessage = signUpModalData.getEmptyFieldsMessage();
         assertEquals(actualMessage, expectedMessage, "Sign up modal - " +
                 "'Please fill out Username and Password.' message not seen when signing up with empty fields");

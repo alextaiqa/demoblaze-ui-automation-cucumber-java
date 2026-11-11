@@ -87,19 +87,19 @@ public class ContactModal extends BaseModal {
         return isFieldEmpty(messageField, "message");
     }
 
-    public String getSuccessfulMessage() {
+    public String getSuccessfulAlert() {
         return getAlertMessage("successfully sent");
     }
 
-    public String getIncorrectEmailMessage() {
+    public String getInvalidEmailAlert() {
         return getAlertMessage("incorrect email");
     }
 
-    public String getIncorrectNameMessage() {
+    public String getInvalidNameAlert() {
         return getAlertMessage("incorrect name");
     }
 
-    public String getTooManyCharactersMessage() {
+    public String getTooManyCharactersAlert() {
         return getAlertMessage("too many characters");
     }
 

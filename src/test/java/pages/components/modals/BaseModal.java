@@ -53,7 +53,7 @@ public abstract class BaseModal {
         return driverUtils.getAlertText().trim();
     }
 
-    public String getEmptyFieldsMessage() {
+    public String getEmptyFieldsAlert() {
         return getAlertMessage("empty fields");
     }
 

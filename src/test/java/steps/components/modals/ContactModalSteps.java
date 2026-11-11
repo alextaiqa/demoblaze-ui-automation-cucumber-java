@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.ContactModalData;
 import pages.components.modals.ContactModal;
-import steps.BaseSteps;
 
 import static org.testng.Assert.*;
 
@@ -71,7 +70,7 @@ public class ContactModalSteps {
 
     @Then("I see a successfully sent contact message")
     public void iSeeASuccessfullySentContactMessage() {
-        String actualResult = contactModal.getSuccessfulMessage();
+        String actualResult = contactModal.getSuccessfulAlert();
         String expectedResult = contactModalData.getSuccessfulMessage();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - valid credentials - successful alert message is not correct");
@@ -86,7 +85,7 @@ public class ContactModalSteps {
 
     @Then("I see an invalid email contact message")
     public void iSeeAnInvalidEmailContactMessage() {
-        String actualResult = contactModal.getIncorrectEmailMessage();
+        String actualResult = contactModal.getInvalidEmailAlert();
         String expectedResult = contactModalData.getInvalidEmailAlert();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - invalid email - no domain - incorrect alert message");
@@ -100,7 +99,7 @@ public class ContactModalSteps {
 
     @Then("I see an invalid name contact message")
     public void iSeeAnInvalidNameContactMessage() {
-        String actualResult = contactModal.getIncorrectNameMessage();
+        String actualResult = contactModal.getInvalidNameAlert();
         String expectedResult = contactModalData.getInvalidNameAlert();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - invalid name - special characters - incorrect alert message");
@@ -125,7 +124,7 @@ public class ContactModalSteps {
 
     @Then("I see a message field has too many characters contact message")
     public void iSeeAMessageFieldHasTooManyCharactersContactMessage() {
-        String actualResult = contactModal.getTooManyCharactersMessage();
+        String actualResult = contactModal.getTooManyCharactersAlert();
         String expectedResult = contactModalData.getMessageBoundaryAlert();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - message field - boundary testing - too many characters");

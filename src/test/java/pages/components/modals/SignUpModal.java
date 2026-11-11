@@ -43,11 +43,11 @@ public class SignUpModal extends BaseModal {
         enterFieldValue(passwordField, password, "existing password");
     }
 
-    public String getSuccessfullySignedUpMessage() {
+    public String getSuccessfulAlert() {
         return getAlertMessage("successful sign up");
     }
 
-    public String getUserExistsMessage() {
+    public String getUserExistsAlert() {
         return getAlertMessage("user exists");
     }
 
