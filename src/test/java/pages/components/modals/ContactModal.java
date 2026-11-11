@@ -87,7 +87,7 @@ public class ContactModal extends BaseModal {
         return isFieldEmpty(messageField, "message");
     }
 
-    public String getSuccessfullySentMessage() {
+    public String getSuccessfulMessage() {
         return getAlertMessage("successfully sent");
     }
 
