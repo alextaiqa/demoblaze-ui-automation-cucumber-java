@@ -5,93 +5,86 @@ import utils.DriverUtils;
 
 public class ContactModal extends BaseModal {
 
-    //selectors
-    private final By contactModalID = By.id("exampleModal");
-    private final By contactModalHeaderCSS = By.cssSelector("#exampleModalLabel");
-    private final By contactModalEmailID = By.id("recipient-email");
-    private final By contactModalNameID = By.id("recipient-name");
-    private final By contactModalMessageID = By.id("message-text");
-    private final By contactModalConfirmationButtonCSS = By.cssSelector("button[onclick='send()']");
-    private final By contactModalClosingButtonXPath =
+    /*=========================
+        LOCATORS
+    =========================*/
+    private final By container = By.id("exampleModal");
+    private final By header = By.cssSelector("#exampleModalLabel");
+    private final By emailField = By.id("recipient-email");
+    private final By nameField = By.id("recipient-name");
+    private final By messageField = By.id("message-text");
+    private final By confirmationButton = By.cssSelector("button[onclick='send()']");
+    private final By closeButton =
             By.xpath("//div[@id='exampleModal']//button[normalize-space()='Close']");
-    private final By contactModalClosingXButtonXPath =
+    private final By xButton =
             By.xpath("//div[@id='exampleModal']//span[normalize-space()='×']");
 
-    //constructor
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public ContactModal(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-    //methods
-    public void enterAValidEmail(String data) {
-        log.info("Entering a valid email in the 'Contact' modal");
-        driverUtils.type(contactModalEmailID, data);
+    /*=========================
+        METHODS
+    =========================*/
+    public void enterValidEmail(String data) {
+        enterFieldValue(emailField, data, "valid email");
     }
 
-    public void enterAValidName(String data) {
-        log.info("Entering a valid name in the 'Contact' modal");
-        driverUtils.type(contactModalNameID, data);
+    public void enterValidName(String data) {
+        enterFieldValue(nameField, data, "valid name");
     }
 
-    public void enterAValidMessage(String data) {
-        log.info("Entering a valid message in the 'Contact' modal");
-        driverUtils.type(contactModalMessageID, data);
+    public void enterValidMessage(String data) {
+        enterFieldValue(messageField, data, "valid message");
     }
 
-    public void clickOnTheConfirmationButton() {
-        log.info("Clicking on the 'Contact' modal confirmation button");
-        driverUtils.click(contactModalConfirmationButtonCSS);
+    public void enterInvalidNameWithSpecialCharacters(String data) {
+        enterFieldValue(nameField, data, "invalid name - with special characters");
     }
 
-    public void enterAnInvalidEmailWithoutDomain(String data) {
-        log.info("Entering an invalid email - with no domain");
-        driverUtils.type(contactModalEmailID, data);
+    public void enterInvalidNameWithNumbers(String data) {
+        enterFieldValue(nameField, data, "invalid name - with numbers");
     }
 
-    public void enterAnInvalidNameWithSpecialCharacters(String data) {
-        log.info("Entering an invalid name - with special characters");
-        driverUtils.type(contactModalNameID, data);
+    public void enterInvalidEmailWithoutDomain(String data) {
+        enterFieldValue(emailField, data, "invalid email - no domain");
     }
 
-    public void enterAnInvalidNameWithNumbers(String data) {
-        log.info("Entering an invalid name - with numbers");
-        driverUtils.type(contactModalNameID, data);
+    public void enterInvalidEmailWithIncorrectDomain(String data) {
+        enterFieldValue(emailField, data, "invalid email - with incorrect domain");
     }
 
-    public void enterAnInvalidEmailWithIncorrectDomain(String data) {
-        log.info("Entering an invalid email - with incorrect domain");
-        driverUtils.type(contactModalEmailID, data);
-    }
-
-    public void enterTwoHundredCharactersIntoTheMessageField() {
-        log.info("Entering 200 characters into the message field");
+    public void enterTwoHundredCharsIntoMessageField() {
         String data = "12345678910";
-        driverUtils.type(contactModalMessageID, data.repeat(20));
+        enterFieldValue(messageField, data.repeat(20),
+                "200 characters into the message field");
     }
 
-    public void clickOnTheClosingButton() {
-        log.info("Clicking on the closing button");
-        driverUtils.click(contactModalClosingButtonXPath);
+    public void clickConfirmationButton() {
+        clickButton(confirmationButton, "Send message");
     }
 
-    public void clickOnTheClosingXButton() {
-        log.info("Clicking on the closing 'X' button");
-        driverUtils.click(contactModalClosingXButtonXPath);
+    public void clickCloseButton() {
+        clickButton(closeButton, "Close");
+    }
+
+    public void clickXButton() {
+        clickButton(xButton, "X");
     }
 
     public boolean isEmailFieldEmpty() {
-        log.info("Checking if the email field is empty");
-        return driverUtils.isAttributeEmpty(contactModalEmailID, "value");
+        return isFieldEmpty(emailField, "email");
     }
 
     public boolean isNameFieldEmpty() {
-        log.info("Checking if the name field is empty");
-        return driverUtils.isAttributeEmpty(contactModalNameID, "value");
+        return isFieldEmpty(nameField, "name");
     }
 
     public boolean isMessageFieldEmpty() {
-        log.info("Checking if the message field is empty");
-        return driverUtils.isAttributeEmpty(contactModalMessageID, "value");
+        return isFieldEmpty(messageField, "message");
     }
 
     public String getSuccessfullySentMessage() {
@@ -113,12 +106,12 @@ public class ContactModal extends BaseModal {
     //getters for base methods
     @Override
     protected By getContainerSelector() {
-        return contactModalID;
+        return container;
     }
 
     @Override
     protected By getHeaderSelector() {
-        return contactModalHeaderCSS;
+        return header;
     }
 
     @Override
