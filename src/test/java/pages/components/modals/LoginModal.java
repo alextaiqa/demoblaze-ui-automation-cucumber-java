@@ -5,7 +5,9 @@ import utils.DriverUtils;
 
 public class LoginModal extends BaseModal {
 
-    //selectors
+    /*=========================
+        LOCATORS
+    =========================*/
     private final By loginModalContainerCSS = By.cssSelector("#logInModal");
     private final By loginModalHeaderCSS = By.cssSelector("#logInModalLabel");
     private final By usernameCSS = By.cssSelector("#loginusername");
@@ -14,12 +16,16 @@ public class LoginModal extends BaseModal {
     private final By closeButtonXPath =
             By.xpath("//div[@id='logInModal']//button[normalize-space()='Close']");
 
-    //constructor
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public LoginModal(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-    //methods
+    /*=========================
+        METHODS
+    =========================*/
     public void enterACorrectUsername(String correctUsername) {
         log.info("Log in modal - entering a correct username: {}", correctUsername);
         driverUtils.type(usernameCSS, correctUsername);
@@ -66,12 +72,10 @@ public class LoginModal extends BaseModal {
         return getAlertMessage("wrong username or password");
     }
 
-    public String getEmptyFieldsMessage() {
-        return getAlertMessage("empty username and password");
-    }
 
-
-    //getters for common methods
+    /*=========================
+     GETTERS FOR COMMON METHODS
+    =========================*/
     @Override
     protected By getContainerSelector() {
         return loginModalContainerCSS;
