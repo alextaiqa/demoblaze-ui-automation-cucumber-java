@@ -13,13 +13,17 @@ public class ContactModalSteps extends BaseSteps {
     //access to POM
     private final ContactModal contactModal;
 
-    //constructor
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public ContactModalSteps(ContactModal contactModal) {
         super("testdata/contactModal.yaml");
         this.contactModal = contactModal;
     }
 
-    //methods
+    /*=========================
+        METHODS
+    =========================*/
 
     // This method repeats in other nav bar modalSteps.
     // I could abstract it in a BaseModalSteps class, but I'm keeping as is for now. Seems to be better for readability.
@@ -33,17 +37,17 @@ public class ContactModalSteps extends BaseSteps {
 
     @And("I enter a valid contact email")
     public void iEnterAValidContactEmail() {
-        contactModal.enterAValidEmail(data.get("validContactEmail"));
+        contactModal.enterValidEmail(data.get("validContactEmail"));
     }
 
     @And("I enter a valid contact name")
     public void iEnterAValidContactName() {
-        contactModal.enterAValidName(data.get("validContactName"));
+        contactModal.enterValidName(data.get("validContactName"));
     }
 
     @And("I enter a valid contact message")
     public void iEnterAValidContactMessage() {
-        contactModal.enterAValidMessage(data.get("validContactMessage"));
+        contactModal.enterValidMessage(data.get("validContactMessage"));
     }
 
     @And("I enter valid contact credentials")
@@ -55,7 +59,7 @@ public class ContactModalSteps extends BaseSteps {
 
     @When("I click on the contact modal confirmation button")
     public void iClickOnTheContactModalConfirmationButton() {
-        contactModal.clickOnTheConfirmationButton();
+        contactModal.clickConfirmationButton();
     }
 
     @Then("I see a successfully sent contact message")
@@ -69,7 +73,7 @@ public class ContactModalSteps extends BaseSteps {
 
     @And("I enter an invalid contact email without domain")
     public void iEnterAnInvalidContactEmailWithoutDomain() {
-        contactModal.enterAnInvalidEmailWithoutDomain(data.get("invalidContactEmailNoDomain"));
+        contactModal.enterInvalidEmailWithoutDomain(data.get("invalidContactEmailNoDomain"));
     }
 
     @Then("I see an invalid email contact message")
@@ -82,7 +86,7 @@ public class ContactModalSteps extends BaseSteps {
 
     @And("I enter an invalid contact name with special characters")
     public void iEnterAnInvalidContactNameWithSpecialCharacters() {
-        contactModal.enterAnInvalidNameWithSpecialCharacters(data.get("invalidContactNameWithSpecialCharacters"));
+        contactModal.enterInvalidNameWithSpecialCharacters(data.get("invalidContactNameWithSpecialCharacters"));
     }
 
     @Then("I see an invalid name contact message")
@@ -95,17 +99,17 @@ public class ContactModalSteps extends BaseSteps {
 
     @And("I enter an invalid contact name with numbers")
     public void iEnterAnInvalidContactNameWithNumbers() {
-        contactModal.enterAnInvalidNameWithNumbers(data.get("invalidContactNameWithNumbers"));
+        contactModal.enterInvalidNameWithNumbers(data.get("invalidContactNameWithNumbers"));
     }
 
     @And("I enter an invalid contact email with incorrect domain")
     public void iEnterAnInvalidContactEmailWithIncorrectDomain() {
-        contactModal.enterAnInvalidEmailWithIncorrectDomain(data.get("invalidContactEmailWithIncorrectDomain"));
+        contactModal.enterInvalidEmailWithIncorrectDomain(data.get("invalidContactEmailWithIncorrectDomain"));
     }
 
     @And("I enter two hundred characters into the message field of the contact modal")
     public void iEnterTwoHundredCharactersIntoTheMessageFieldOfTheContactModal() {
-        contactModal.enterTwoHundredCharactersIntoTheMessageField();
+        contactModal.enterTwoHundredCharsIntoMessageField();
     }
 
     @Then("I see a message field has too many characters contact message")
@@ -118,12 +122,12 @@ public class ContactModalSteps extends BaseSteps {
 
     @When("I click on the contact modal closing button")
     public void iClickOnTheContactModalClosingButton() {
-        contactModal.clickOnTheClosingButton();
+        contactModal.clickCloseButton();
     }
 
     @When("I click on the contact modal closing X button")
     public void iClickOnTheContactModalClosingXButton() {
-        contactModal.clickOnTheClosingXButton();
+        contactModal.clickXButton();
     }
 
     @Then("I do not see a contact modal container")
