@@ -5,9 +5,11 @@ import utils.DriverUtils;
 
 public class SignUpModal extends BaseModal {
 
-    //selectors
-    private final By modalContainer = By.id("signInModal");
-    private final By modalHeader = By.id("signInModalLabel");
+    /*=========================
+        LOCATORS
+    =========================*/
+    private final By container = By.id("signInModal");
+    private final By header = By.id("signInModalLabel");
     private final By usernameField = By.id("sign-username");
     private final By passwordField = By.id("sign-password");
     private final By confirmationButton =
@@ -15,12 +17,16 @@ public class SignUpModal extends BaseModal {
     private final By closeButton =
             By.xpath("//div[@id='signInModal']//button[@type='button'][normalize-space()='Close']");
 
-    //constructor
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public SignUpModal(DriverUtils driverUtils) {
         super(driverUtils);
     }
 
-    //methods
+    /*=========================
+        METHODS
+    =========================*/
     public void enterValidUsername(String username) {
         enterFieldValue(usernameField, username, "username");
     }
@@ -45,10 +51,6 @@ public class SignUpModal extends BaseModal {
         return getAlertMessage("user exists");
     }
 
-    public String getEmptyFieldsMessage() {
-        return getAlertMessage("empty fields");
-    }
-
     public void clickConfirmationButton() {
         clickButton(confirmationButton, "Sign up");
     }
@@ -65,15 +67,17 @@ public class SignUpModal extends BaseModal {
         return isFieldEmpty(passwordField, "password");
     }
 
-    //    methods for common behavior
+    /*=========================
+     GETTERS FOR COMMON METHODS
+    =========================*/
     @Override
     protected By getContainerSelector() {
-        return modalContainer;
+        return container;
     }
 
     @Override
     protected By getHeaderSelector() {
-        return modalHeader;
+        return header;
     }
 
     @Override
