@@ -1,24 +1,27 @@
 package steps.components.modals;
 
+import data.TestDataProvider;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import models.ContactModalData;
 import pages.components.modals.ContactModal;
 import steps.BaseSteps;
 
 import static org.testng.Assert.*;
 
-public class ContactModalSteps extends BaseSteps {
+public class ContactModalSteps {
 
     //access to POM
     private final ContactModal contactModal;
+    private final ContactModalData contactModalData;
 
     /*=========================
         CONSTRUCTOR
     =========================*/
-    public ContactModalSteps(ContactModal contactModal) {
-        super("testdata/contactModal.yaml");
+    public ContactModalSteps(ContactModal contactModal, TestDataProvider testDataProvider) {
         this.contactModal = contactModal;
+        this.contactModalData = testDataProvider.getContactModalData();
     }
 
     /*=========================
@@ -30,24 +33,28 @@ public class ContactModalSteps extends BaseSteps {
     @Then("I see the contact modal with a correct header appears")
     public void iSeeTheContactModalWithACorrectHeaderAppears() {
         assertTrue(contactModal.isDisplayed(), "The 'Contact' modal is not displayed");
+
         String actualHeader = contactModal.getHeader();
-        String expectedHeader = data.get("contactModalHeader");
+        String expectedHeader = contactModalData.getHeader();
         assertEquals(actualHeader, expectedHeader, "The 'Contact' modal has an incorrect header");
     }
 
     @And("I enter a valid contact email")
     public void iEnterAValidContactEmail() {
-        contactModal.enterValidEmail(data.get("validContactEmail"));
+        String validEmail = contactModalData.getValidEmail();
+        contactModal.enterValidEmail(validEmail);
     }
 
     @And("I enter a valid contact name")
     public void iEnterAValidContactName() {
-        contactModal.enterValidName(data.get("validContactName"));
+        String validName = contactModalData.getValidName();
+        contactModal.enterValidName(validName);
     }
 
     @And("I enter a valid contact message")
     public void iEnterAValidContactMessage() {
-        contactModal.enterValidMessage(data.get("validContactMessage"));
+        String validMessage = contactModalData.getValidMessage();
+        contactModal.enterValidMessage(validMessage);
     }
 
     @And("I enter valid contact credentials")
@@ -64,8 +71,8 @@ public class ContactModalSteps extends BaseSteps {
 
     @Then("I see a successfully sent contact message")
     public void iSeeASuccessfullySentContactMessage() {
-        String actualResult = contactModal.getSuccessfullySentMessage();
-        String expectedResult = data.get("successfulMessage");
+        String actualResult = contactModal.getSuccessfulMessage();
+        String expectedResult = contactModalData.getSuccessfulMessage();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - valid credentials - successful alert message is not correct");
 
@@ -73,38 +80,42 @@ public class ContactModalSteps extends BaseSteps {
 
     @And("I enter an invalid contact email without domain")
     public void iEnterAnInvalidContactEmailWithoutDomain() {
-        contactModal.enterInvalidEmailWithoutDomain(data.get("invalidContactEmailNoDomain"));
+        String invalidEmail = contactModalData.getInvalidEmailNoDomain();
+        contactModal.enterInvalidEmailWithoutDomain(invalidEmail);
     }
 
     @Then("I see an invalid email contact message")
     public void iSeeAnInvalidEmailContactMessage() {
         String actualResult = contactModal.getIncorrectEmailMessage();
-        String expectedResult = data.get("invalidEmailAlert");
+        String expectedResult = contactModalData.getInvalidEmailAlert();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - invalid email - no domain - incorrect alert message");
     }
 
     @And("I enter an invalid contact name with special characters")
     public void iEnterAnInvalidContactNameWithSpecialCharacters() {
-        contactModal.enterInvalidNameWithSpecialCharacters(data.get("invalidContactNameWithSpecialCharacters"));
+        String invalidEmail = contactModalData.getInvalidNameWithSpecialCharacters();
+        contactModal.enterInvalidNameWithSpecialCharacters(invalidEmail);
     }
 
     @Then("I see an invalid name contact message")
     public void iSeeAnInvalidNameContactMessage() {
         String actualResult = contactModal.getIncorrectNameMessage();
-        String expectedResult = data.get("invalidNameAlert");
+        String expectedResult = contactModalData.getInvalidNameAlert();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - invalid name - special characters - incorrect alert message");
     }
 
     @And("I enter an invalid contact name with numbers")
     public void iEnterAnInvalidContactNameWithNumbers() {
-        contactModal.enterInvalidNameWithNumbers(data.get("invalidContactNameWithNumbers"));
+        String invalidName = contactModalData.getInvalidNameWithNumbers();
+        contactModal.enterInvalidNameWithNumbers(invalidName);
     }
 
     @And("I enter an invalid contact email with incorrect domain")
     public void iEnterAnInvalidContactEmailWithIncorrectDomain() {
-        contactModal.enterInvalidEmailWithIncorrectDomain(data.get("invalidContactEmailWithIncorrectDomain"));
+        String invalidEmail = contactModalData.getInvalidEmailWithIncorrectDomain();
+        contactModal.enterInvalidEmailWithIncorrectDomain(invalidEmail);
     }
 
     @And("I enter two hundred characters into the message field of the contact modal")
@@ -115,7 +126,7 @@ public class ContactModalSteps extends BaseSteps {
     @Then("I see a message field has too many characters contact message")
     public void iSeeAMessageFieldHasTooManyCharactersContactMessage() {
         String actualResult = contactModal.getTooManyCharactersMessage();
-        String expectedResult = data.get("messageBoundaryAlert");
+        String expectedResult = contactModalData.getMessageBoundaryAlert();
         assertEquals(actualResult, expectedResult,
                 "Contact modal - message field - boundary testing - too many characters");
     }
