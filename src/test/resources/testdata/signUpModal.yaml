@@ -1,5 +1,7 @@
 #modal header
 header: "Sign up"
+
+#alert messages
 successfulSignUpMessage: "Sign up successful."
 userAlreadyExistsMessage: "This user already exist."
 emptyFieldsMessage: "Please fill out Username and Password."
