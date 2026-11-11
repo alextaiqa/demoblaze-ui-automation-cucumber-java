@@ -1,17 +1,18 @@
 #modal header
-contactModalHeader: "New message"
+header: "New message"
 #email
-validContactEmail: "cucumberTestingEmail@gmail.com"
-invalidContactEmailNoDomain: "cucumberTestingEmail"
-invalidContactEmailWithIncorrectDomain: "cucumberTestingEmail@test.test"
+validEmail: "cucumberTestingEmail@gmail.com"
 #name
-validContactName: "cucumberTestingName"
-invalidContactNameWithSpecialCharacters: "*!cucumber&%TestingName?/"
-invalidContactNameWithNumbers: "cucumberTestingName12345"
+validName: "cucumberTestingName"
 #message
-validContactMessage: "I am a message"
+validMessage: "I am a message"
 #alert messages
 successfulMessage: "Thanks for the message!!"
+messageBoundaryAlert: "Message field has too many characters"
 invalidEmailAlert: "Incorrect email entered"
 invalidNameAlert: "Incorrect name entered"
-messageBoundaryAlert: "Message field has too many characters"
+invalidEmailNoDomain: "cucumberTestingEmail"
+invalidEmailWithIncorrectDomain: "cucumberTestingEmail@test.test"
+invalidNameWithSpecialCharacters: "*!cucumber&%TestingName?/"
+invalidNameWithNumbers: "cucumberTestingName12345"
+
