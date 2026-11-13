@@ -19,7 +19,7 @@ public class AuthFlow {
     //methods
     public void login(String username, String password) {
         navBar.clickOnTheButton("log in");
-        loginModal.enterACorrectUsername(username);
+        loginModal.enterValidUsername(username);
         loginModal.enterACorrectPassword(password);
         loginModal.clickOnTheLogInButton();
     }

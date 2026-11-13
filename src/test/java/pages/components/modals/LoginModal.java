@@ -26,9 +26,9 @@ public class LoginModal extends BaseModal {
     /*=========================
         METHODS
     =========================*/
-    public void enterACorrectUsername(String correctUsername) {
-        log.info("Log in modal - entering a correct username: {}", correctUsername);
-        driverUtils.type(usernameCSS, correctUsername);
+    public void enterValidUsername(String validUsername) {
+        log.info("Log in modal - entering a correct username: {}", validUsername);
+        driverUtils.type(usernameCSS, validUsername);
     }
 
     public void enterACorrectPassword(String correctPassword) {
