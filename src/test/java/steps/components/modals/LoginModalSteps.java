@@ -1,29 +1,33 @@
 package steps.components.modals;
 
+import data.TestDataProvider;
 import flows.AuthFlow;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import models.login.LoginModalData;
 import pages.components.modals.LoginModal;
 import steps.BaseSteps;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class LoginModalSteps extends BaseSteps {
+public class LoginModalSteps {
 
     // =======================
 // GLOBAL VARIABLES
 // =======================
     private final LoginModal logInModal;
     private final AuthFlow authFlow;
+    private final LoginModalData loginModalData;
 
     // =======================
 // CONSTRUCTOR
 // =======================
-    public LoginModalSteps(LoginModal logInModal, AuthFlow authFlow) {
-        super("testdata/loginModal.yaml");
+    public LoginModalSteps(LoginModal logInModal, AuthFlow authFlow, TestDataProvider testDataProvider) {
+//        super("testdata/loginModal.yaml");
         this.logInModal = logInModal;
         this.authFlow = authFlow;
+        this.loginModalData = testDataProvider.getLoginModalData();
     }
 
     // =======================
@@ -45,7 +49,7 @@ public class LoginModalSteps extends BaseSteps {
         String s = userNum + ".username";
         String username = data.get(s);
 
-        logInModal.enterACorrectUsername(username);
+        logInModal.enterValidUsername(username);
     }
 
     @And("I enter a valid login password for {string}")
