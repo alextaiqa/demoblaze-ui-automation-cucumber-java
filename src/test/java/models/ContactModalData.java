@@ -4,7 +4,7 @@ public class ContactModalData {
 
     /*=========================
     FIELDS
-=========================*/
+    =========================*/
     private String header;
     private String validEmail;
     private String validName;
