@@ -8,12 +8,12 @@ public class LoginModal extends BaseModal {
     /*=========================
         LOCATORS
     =========================*/
-    private final By loginModalContainerCSS = By.cssSelector("#logInModal");
-    private final By loginModalHeaderCSS = By.cssSelector("#logInModalLabel");
-    private final By usernameCSS = By.cssSelector("#loginusername");
-    private final By passwordCSS = By.cssSelector("#loginpassword");
-    private final By logInButtonCSS = By.cssSelector("button[onclick='logIn()']");
-    private final By closeButtonXPath =
+    private final By container = By.cssSelector("#logInModal");
+    private final By header = By.cssSelector("#logInModalLabel");
+    private final By username = By.cssSelector("#loginusername");
+    private final By password = By.cssSelector("#loginpassword");
+    private final By logInButton = By.cssSelector("button[onclick='logIn()']");
+    private final By closeButton =
             By.xpath("//div[@id='logInModal']//button[normalize-space()='Close']");
 
     /*=========================
@@ -27,63 +27,52 @@ public class LoginModal extends BaseModal {
         METHODS
     =========================*/
     public void enterValidUsername(String validUsername) {
-        log.info("Log in modal - entering a correct username: {}", validUsername);
-        driverUtils.type(usernameCSS, validUsername);
+        enterFieldValue(username, validUsername, "valid username");
     }
 
-    public void enterValidPassword(String correctPassword) {
-        log.info("Log in modal - entering a correct password: {}", correctPassword);
-        driverUtils.type(passwordCSS, correctPassword);
+    public void enterValidPassword(String validPassword) {
+        enterFieldValue(password, validPassword, "correct password");
     }
 
-    public void enterInvalidUsername(String incorrectUsername) {
-        log.info("Log in modal - entering an incorrect username: {}", incorrectUsername);
-        driverUtils.type(usernameCSS, incorrectUsername);
+    public void enterInvalidUsername(String invalidUsername) {
+        enterFieldValue(username, invalidUsername, "invalid username");
     }
 
-    public void enterInvalidPassword(String incorrectPassword) {
-        log.info("Log in modal - entering an incorrect password: {}", incorrectPassword);
-        driverUtils.type(passwordCSS, incorrectPassword);
+    public void enterInvalidPassword(String invalidPassword) {
+        enterFieldValue(password, invalidPassword, "invalid password");
     }
 
     public void clickLoginButton() {
-        log.info("Log in modal - clicking on the log in confirmation button");
-        driverUtils.click(logInButtonCSS);
-
-        waitForClosure();
+        clickButton(logInButton, "Log in");
     }
 
     public void clickClosingButton() {
-        log.info("Log in modal - clicking on the closing button");
-        driverUtils.click(closeButtonXPath);
+        clickButton(closeButton, "Close");
     }
 
     public boolean isUsernameFieldEmpty() {
-        log.info("Log in modal - checking if the username field is empty");
-        return driverUtils.isAttributeEmpty(usernameCSS, "value");
+        return isFieldEmpty(username, "username");
     }
 
     public boolean isPasswordFieldEmpty() {
-        log.info("Log in modal - checking if the password field is empty");
-        return driverUtils.isAttributeEmpty(passwordCSS, "value");
+        return isFieldEmpty(password, "password");
     }
 
     public String getInvalidFieldsMessage() {
         return getAlertMessage("wrong username or password");
     }
 
-
     /*=========================
      GETTERS FOR COMMON METHODS
     =========================*/
     @Override
     protected By getContainerSelector() {
-        return loginModalContainerCSS;
+        return container;
     }
 
     @Override
     protected By getHeaderSelector() {
-        return loginModalHeaderCSS;
+        return header;
     }
 
     @Override
