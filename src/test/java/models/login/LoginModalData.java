@@ -22,7 +22,7 @@ public class LoginModalData {
     /*=========================
         GETTERS AND SETTERS
     =========================*/
-    public String geHeader() {
+    public String getHeader() {
         return header;
     }
 

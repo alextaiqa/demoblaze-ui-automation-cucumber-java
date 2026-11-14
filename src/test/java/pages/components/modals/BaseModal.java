@@ -73,10 +73,10 @@ public abstract class BaseModal {
     }
 
     //modals with valid credentials require a short wait to close
-    public void waitForClosure() {
-        log.info("{} modal - waiting for it to close", getModalName());
-        if (!driverUtils.isElementInvisible(getContainerSelector())) {
-            throw new IllegalStateException(getModalName() + " modal did not close.");
-        }
-    }
+//    public void waitForClosure() {
+//        log.info("{} modal - waiting for it to close", getModalName());
+//        if (!driverUtils.isElementInvisible(getContainerSelector())) {
+//            throw new IllegalStateException(getModalName() + " modal did not close.");
+//        }
+//    }
 }

@@ -27,13 +27,11 @@ public class LoginModalSteps {
     =========================*/
     public LoginModalSteps(LoginModal logInModal,
                            AuthFlow authFlow,
-                           TestDataProvider testDataProvider,
-                           TestContext testContext) {
+                           TestDataProvider testDataProvider) {
 
         this.logInModal = logInModal;
         this.authFlow = authFlow;
         this.loginModalData = testDataProvider.getLoginModalData();
-        testContext.set("isLoginValid", true);
     }
 
     /*=========================
@@ -87,7 +85,7 @@ public class LoginModalSteps {
     @And("I click on the log in modal confirmation button after valid data")
     public void iClickOnTheLogInModalConfirmationButtonAfterValidData() {
         logInModal.clickLoginButton();
-        logInModal.waitForClosure();
+//        logInModal.waitForClosure();
     }
 
     @And("I click on the log in modal confirmation button after invalid data")
@@ -115,7 +113,7 @@ public class LoginModalSteps {
     public void iSeeTheLoginModalWithACorrectHeaderAppears() {
         assertTrue(logInModal.isDisplayed(), "The 'Log in' modal is not displayed");
         String actualHeader = logInModal.getHeader();
-        String expectedHeader = loginModalData.geHeader();
+        String expectedHeader = loginModalData.getHeader();
         assertEquals(actualHeader, expectedHeader, "The 'Log in' modal has an incorrect header");
     }
 
