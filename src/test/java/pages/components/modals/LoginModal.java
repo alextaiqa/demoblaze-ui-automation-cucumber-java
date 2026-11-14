@@ -31,29 +31,29 @@ public class LoginModal extends BaseModal {
         driverUtils.type(usernameCSS, validUsername);
     }
 
-    public void enterACorrectPassword(String correctPassword) {
+    public void enterValidPassword(String correctPassword) {
         log.info("Log in modal - entering a correct password: {}", correctPassword);
         driverUtils.type(passwordCSS, correctPassword);
     }
 
-    public void enterAnIncorrectUsername(String incorrectUsername) {
+    public void enterInvalidUsername(String incorrectUsername) {
         log.info("Log in modal - entering an incorrect username: {}", incorrectUsername);
         driverUtils.type(usernameCSS, incorrectUsername);
     }
 
-    public void enterAnIncorrectPassword(String incorrectPassword) {
+    public void enterInvalidPassword(String incorrectPassword) {
         log.info("Log in modal - entering an incorrect password: {}", incorrectPassword);
         driverUtils.type(passwordCSS, incorrectPassword);
     }
 
-    public void clickOnTheLogInButton() {
+    public void clickLoginButton() {
         log.info("Log in modal - clicking on the log in confirmation button");
         driverUtils.click(logInButtonCSS);
 
         waitForClosure();
     }
 
-    public void clickOnTheClosingButton() {
+    public void clickClosingButton() {
         log.info("Log in modal - clicking on the closing button");
         driverUtils.click(closeButtonXPath);
     }
@@ -68,7 +68,7 @@ public class LoginModal extends BaseModal {
         return driverUtils.isAttributeEmpty(passwordCSS, "value");
     }
 
-    public String getInvalidFieldsAlert() {
+    public String getInvalidFieldsMessage() {
         return getAlertMessage("wrong username or password");
     }
 

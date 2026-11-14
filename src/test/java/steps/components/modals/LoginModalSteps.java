@@ -27,7 +27,6 @@ public class LoginModalSteps {
                            AuthFlow authFlow,
                            TestDataProvider testDataProvider) {
 
-//        super("testdata/loginModal.yaml");
         this.logInModal = logInModal;
         this.authFlow = authFlow;
         this.loginModalData = testDataProvider.getLoginModalData();
@@ -60,7 +59,7 @@ public class LoginModalSteps {
     @And("I enter a valid login password for {string}")
     public void iEnterAValidLoginPassword(String userNum) {
         String password = loginModalData.getUser(userNum).getPassword();
-        logInModal.enterACorrectPassword(password);
+        logInModal.enterValidPassword(password);
     }
 
     @And("I enter invalid login credentials")
@@ -72,23 +71,23 @@ public class LoginModalSteps {
     @And("I enter an invalid login username")
     public void iEnterAnInvalidLoginUsername() {
         String invalidUsername = loginModalData.getInvalidUsername();
-        logInModal.enterAnIncorrectUsername(invalidUsername);
+        logInModal.enterInvalidUsername(invalidUsername);
     }
 
     @And("I enter an invalid login password")
     public void iEnterAnInvalidLoginPassword() {
         String invalidPassword = loginModalData.getInvalidPassword();
-        logInModal.enterAnIncorrectPassword(invalidPassword);
+        logInModal.enterInvalidPassword(invalidPassword);
     }
 
     @And("I click on the log in modal confirmation button")
     public void iClickOnTheLogInModalConfirmationButton(){
-        logInModal.clickOnTheLogInButton();
+        logInModal.clickLoginButton();
     }
 
     @Then("I see a wrong username or password login message")
     public void iSeeAWrongUsernameOrPasswordLoginMessage() {
-        String actualMessage = logInModal.getInvalidFieldsAlert();
+        String actualMessage = logInModal.getInvalidFieldsMessage();
         String expectedMessage = loginModalData.getInvalidCredentialsAlert();
         assertEquals(actualMessage, expectedMessage,
                 "Login modal - incorrect username or password - alert doesn't have a right message");
@@ -112,7 +111,7 @@ public class LoginModalSteps {
 
     @And("I click on the login modal closing button")
     public void iClickOnTheLoginModalClosingButton() {
-        logInModal.clickOnTheClosingButton();
+        logInModal.clickClosingButton();
     }
 
     @Then("I see all login modal fields are empty")
