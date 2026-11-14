@@ -1,11 +1,12 @@
 package steps.components;
 
 import context.ScenarioContext;
+import data.TestDataProvider;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import models.login.LoginModalData;
 import pages.components.NavBar;
 import steps.BaseSteps;
-import utils.TestData;
 
 import static org.testng.Assert.*;
 
@@ -13,14 +14,19 @@ public class NavBarSteps extends BaseSteps {
 
     private final NavBar navBar;
     private final ScenarioContext scenarioContext;
+    private final LoginModalData loginModalData;
 
     // =======================
 // CONSTRUCTOR
 // =======================
-    public NavBarSteps(NavBar navBar, ScenarioContext scenarioContext) {
+    public NavBarSteps(NavBar navBar,
+                       ScenarioContext scenarioContext,
+                       TestDataProvider testDataProvider) {
+
         super("testdata/navBar.yaml");
         this.navBar = navBar;
         this.scenarioContext = scenarioContext;
+        this.loginModalData = testDataProvider.getLoginModalData();
     }
 
     // =======================
@@ -34,7 +40,7 @@ public class NavBarSteps extends BaseSteps {
     @Then("I see a nav bar welcome message for {string}")
     public void iSeeANavBarWelcomeMessageFor(String userNum) {
         String actualResult = navBar.getWelcomeMessage();
-        String expectedResult = "Welcome " + new TestData("testdata/loginModal.yaml").get(userNum + ".username");
+        String expectedResult = "Welcome " + loginModalData.getUser(userNum).getUsername();
         assertEquals(actualResult, expectedResult, "Welcome log in message incorrect");
     }
 
