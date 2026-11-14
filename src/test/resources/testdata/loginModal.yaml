@@ -1,5 +1,5 @@
 #MODAL HEADER
-loginModalHeader: "Log in"
+header: "Log in"
 
 #EXISTING USERS - VALID CREDENTIALS
 users:
@@ -24,9 +24,9 @@ users:
     password: ""
 
 #incorrect data
-incorrectUsername: "someUsername12345" #should be generated randomly - fix this and other yamls where needed
-incorrectPassword: "somePassword12345" #same as above
+invalidUsername: "someUsername12345" #should be generated randomly - fix this and other yamls where needed
+invalidPassword: "somePassword12345" #same as above
 
 #alert messages
-incorrectUsernameOrPasswordAlert: "Incorrect username or password."
-emptyPasswordAndUsernameAlert: "Please fill out Username and Password."
+invalidCredentialsAlert: "Incorrect username or password."
+emptyCredentialsAlert: "Please fill out Username and Password."

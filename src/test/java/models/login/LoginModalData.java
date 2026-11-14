@@ -2,7 +2,10 @@ package models.login;
 
 public class LoginModalData {
 
-    private String loginModalHeader;
+    /*=========================
+        GLOBAL VARIABLES
+    =========================*/
+    private String header;
 
     private UserCredentials user1;
     private UserCredentials user2;
@@ -10,10 +13,21 @@ public class LoginModalData {
     private UserCredentials user4;
     private UserCredentials user5;
 
-    private String emptyPasswordAndUsernameAlert;
+    private String invalidUsername;
+    private String invalidPassword;
+    private String invalidCredentialsAlert;
+    private String emptyCredentialsAlert;
 
-    public String getLoginModalHeader() {
-        return loginModalHeader;
+
+    /*=========================
+        GETTERS AND SETTERS
+    =========================*/
+    public String geHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public UserCredentials getUser1() {
@@ -56,10 +70,6 @@ public class LoginModalData {
         this.user5 = user5;
     }
 
-    public String getEmptyPasswordAndUsernameAlert() {
-        return emptyPasswordAndUsernameAlert;
-    }
-
     public UserCredentials getUser(String user) {
         return switch (user) {
             case "user1" -> getUser1();
@@ -69,5 +79,37 @@ public class LoginModalData {
             case "user5" -> getUser5();
             default -> throw new IllegalArgumentException("Unknown user: " + user);
         };
+    }
+
+    public String getInvalidUsername() {
+        return invalidUsername;
+    }
+
+    public void setInvalidUsername(String invalidUsername) {
+        this.invalidUsername = invalidUsername;
+    }
+
+    public String getInvalidPassword() {
+        return invalidPassword;
+    }
+
+    public void setInvalidPassword(String invalidPassword) {
+        this.invalidPassword = invalidPassword;
+    }
+
+    public String getInvalidCredentialsAlert() {
+        return invalidCredentialsAlert;
+    }
+
+    public void setInvalidCredentialsAlert(String invalidCredentialsAlert) {
+        this.invalidCredentialsAlert = invalidCredentialsAlert;
+    }
+
+    public String getEmptyCredentialsAlert() {
+        return emptyCredentialsAlert;
+    }
+
+    public void setEmptyCredentialsAlert(String emptyCredentialsAlert) {
+        this.emptyCredentialsAlert = emptyCredentialsAlert;
     }
 }
