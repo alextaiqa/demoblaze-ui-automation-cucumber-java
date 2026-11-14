@@ -1,5 +1,6 @@
 package steps.components.modals;
 
+import context.TestContext;
 import data.TestDataProvider;
 import flows.AuthFlow;
 import io.cucumber.java.en.And;
@@ -20,16 +21,19 @@ public class LoginModalSteps {
     private final AuthFlow authFlow;
     private final LoginModalData loginModalData;
 
+
     /*=========================
         CONSTRUCTOR
     =========================*/
     public LoginModalSteps(LoginModal logInModal,
                            AuthFlow authFlow,
-                           TestDataProvider testDataProvider) {
+                           TestDataProvider testDataProvider,
+                           TestContext testContext) {
 
         this.logInModal = logInModal;
         this.authFlow = authFlow;
         this.loginModalData = testDataProvider.getLoginModalData();
+        testContext.set("isLoginValid", true);
     }
 
     /*=========================
@@ -80,8 +84,14 @@ public class LoginModalSteps {
         logInModal.enterInvalidPassword(invalidPassword);
     }
 
-    @And("I click on the log in modal confirmation button")
-    public void iClickOnTheLogInModalConfirmationButton(){
+    @And("I click on the log in modal confirmation button after valid data")
+    public void iClickOnTheLogInModalConfirmationButtonAfterValidData() {
+        logInModal.clickLoginButton();
+        logInModal.waitForClosure();
+    }
+
+    @And("I click on the log in modal confirmation button after invalid data")
+    public void iClickOnTheLogInModalConfirmationButtonAfterInvalidData() {
         logInModal.clickLoginButton();
     }
 

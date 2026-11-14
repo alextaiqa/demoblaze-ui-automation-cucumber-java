@@ -65,7 +65,6 @@ public abstract class BaseModal {
     protected void clickButton(By selector, String modalButtonName) {
         log.info("{} modal - clicking on '{}' button", getModalName(), modalButtonName);
         driverUtils.click(selector);
-//        waitForClosure(); but what if there is an alert? or what if it's like a cart place order modal?
     }
 
     protected boolean isFieldEmpty(By selector, String fieldName) {
@@ -73,7 +72,8 @@ public abstract class BaseModal {
         return driverUtils.isAttributeEmpty(selector, "value");
     }
 
-    protected void waitForClosure() {
+    //modals with valid credentials require a short wait to close
+    public void waitForClosure() {
         log.info("{} modal - waiting for it to close", getModalName());
         if (!driverUtils.isElementInvisible(getContainerSelector())) {
             throw new IllegalStateException(getModalName() + " modal did not close.");

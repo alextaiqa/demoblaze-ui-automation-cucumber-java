@@ -10,7 +10,7 @@ Feature: Verify that login modal functionality works correctly
 
   Scenario: Validate a successful log in - valid credentials
     And I enter valid login credentials for "user1"
-    And I click on the log in modal confirmation button
+    And I click on the log in modal confirmation button after valid data
     Then I see a nav bar welcome message for "user1"
 
   @known_bug @bug
@@ -18,11 +18,11 @@ Feature: Verify that login modal functionality works correctly
 #    Actual result: "User does not exist."
   Scenario: Validate an unsuccessful log in - invalid credentials
     And I enter invalid login credentials
-    And I click on the log in modal confirmation button
+    And I click on the log in modal confirmation button after invalid data
     Then I see a wrong username or password login message
 
   Scenario: Validate an unsuccessful log in - empty username and password fields
-    And I click on the log in modal confirmation button
+    And I click on the log in modal confirmation button after invalid data
     Then I see a missing username and password login message
 
   @known_bug @bug
