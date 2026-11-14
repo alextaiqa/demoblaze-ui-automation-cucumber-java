@@ -12,7 +12,9 @@ import java.util.Map;
 
 public class TestDataGenerator {
 
-    //    GLOBAL VARIABLES
+    /*=========================
+        GLOBAL VARIABLES
+    =========================*/
     private final Logger log;
     private static final String STANDARD_NAME_START = "AutoUser";
     private static final Map<String, List<String>> LOCATIONS = Map.of(
@@ -28,12 +30,16 @@ public class TestDataGenerator {
             "Switzerland", List.of("Zurich", "Geneva", "Basel")
     );
 
-    //    CONSTRUCTOR
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
     public TestDataGenerator() {
         log = LoggerFactory.getLogger(this.getClass());
     }
 
-    //    METHODS
+    /*=========================
+        METHODS
+    =========================*/
     public String generateUsername() {
         String username = STANDARD_NAME_START + generateTenRandomLetters();
         log.info("Generated a username: {}", username);
@@ -114,7 +120,9 @@ public class TestDataGenerator {
     }
 
 
-    //HELPERS
+    /*=========================
+        HELPERS
+    =========================*/
     private String generateTenRandomLetters() {
         return generateRandomLetters(10);
     }
