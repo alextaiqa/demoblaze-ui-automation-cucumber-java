@@ -5,37 +5,44 @@ import flows.AuthFlow;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import models.login.LoginModalData;
+import models.login.UserCredentials;
 import pages.components.modals.LoginModal;
-import steps.BaseSteps;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LoginModalSteps {
 
-    // =======================
-// GLOBAL VARIABLES
-// =======================
+    /*=========================
+        GLOBAL VARIABLES
+    =========================*/
     private final LoginModal logInModal;
     private final AuthFlow authFlow;
     private final LoginModalData loginModalData;
 
-    // =======================
-// CONSTRUCTOR
-// =======================
-    public LoginModalSteps(LoginModal logInModal, AuthFlow authFlow, TestDataProvider testDataProvider) {
+    /*=========================
+        CONSTRUCTOR
+    =========================*/
+    public LoginModalSteps(LoginModal logInModal,
+                           AuthFlow authFlow,
+                           TestDataProvider testDataProvider) {
+
 //        super("testdata/loginModal.yaml");
         this.logInModal = logInModal;
         this.authFlow = authFlow;
         this.loginModalData = testDataProvider.getLoginModalData();
     }
 
-    // =======================
-// METHODS
-// =======================
+    /*=========================
+        METHODS
+    =========================*/
     @And("I log in as {string}")
     public void iLogInAs(String userNum) {
-        authFlow.login(data.get(userNum + ".username"), data.get(userNum + ".password"));
+        UserCredentials user = loginModalData.getUser(userNum);
+        String username = user.getUsername();
+        String password = user.getPassword();
+
+        authFlow.login(username, password);
     }
 
     @And("I enter valid login credentials for {string}")
@@ -46,15 +53,14 @@ public class LoginModalSteps {
 
     @And("I enter a valid login username for {string}")
     public void iEnterAValidLoginUsername(String userNum) {
-        String s = userNum + ".username";
-        String username = data.get(s);
-
+        String username = loginModalData.getUser(userNum).getUsername();
         logInModal.enterValidUsername(username);
     }
 
     @And("I enter a valid login password for {string}")
     public void iEnterAValidLoginPassword(String userNum) {
-        logInModal.enterACorrectPassword(data.get(userNum + ".password"));
+        String password = loginModalData.getUser(userNum).getPassword();
+        logInModal.enterACorrectPassword(password);
     }
 
     @And("I enter invalid login credentials")
@@ -65,12 +71,14 @@ public class LoginModalSteps {
 
     @And("I enter an invalid login username")
     public void iEnterAnInvalidLoginUsername() {
-        logInModal.enterAnIncorrectUsername(data.get("incorrectUsername"));
+        String invalidUsername = loginModalData.getInvalidUsername();
+        logInModal.enterAnIncorrectUsername(invalidUsername);
     }
 
     @And("I enter an invalid login password")
     public void iEnterAnInvalidLoginPassword() {
-        logInModal.enterAnIncorrectPassword(data.get("incorrectPassword"));
+        String invalidPassword = loginModalData.getInvalidPassword();
+        logInModal.enterAnIncorrectPassword(invalidPassword);
     }
 
     @And("I click on the log in modal confirmation button")
@@ -80,17 +88,17 @@ public class LoginModalSteps {
 
     @Then("I see a wrong username or password login message")
     public void iSeeAWrongUsernameOrPasswordLoginMessage() {
-        String actualAlertMessage = logInModal.getInvalidFieldsAlert();
-        String expectedAlertMessage = data.get("incorrectUsernameOrPasswordAlert");
-        assertEquals(actualAlertMessage, expectedAlertMessage,
+        String actualMessage = logInModal.getInvalidFieldsAlert();
+        String expectedMessage = loginModalData.getInvalidCredentialsAlert();
+        assertEquals(actualMessage, expectedMessage,
                 "Login modal - incorrect username or password - alert doesn't have a right message");
     }
 
     @Then("I see a missing username and password login message")
     public void iSeeAMissingUsernameAndPasswordLoginMessage() {
-        String actualAlertMessage = logInModal.getEmptyFieldsAlert();
-        String expectedAlertMessage = data.get("emptyPasswordAndUsernameAlert");
-        assertEquals(actualAlertMessage, expectedAlertMessage,
+        String actualMessage = logInModal.getEmptyFieldsAlert();
+        String expectedMessage = loginModalData.getEmptyCredentialsAlert();
+        assertEquals(actualMessage, expectedMessage,
                 "Login modal - wrong alert message for an empty username and password");
     }
 
@@ -98,7 +106,7 @@ public class LoginModalSteps {
     public void iSeeTheLoginModalWithACorrectHeaderAppears() {
         assertTrue(logInModal.isDisplayed(), "The 'Log in' modal is not displayed");
         String actualHeader = logInModal.getHeader();
-        String expectedHeader = data.get("loginModalHeader");
+        String expectedHeader = loginModalData.geHeader();
         assertEquals(actualHeader, expectedHeader, "The 'Log in' modal has an incorrect header");
     }
 
