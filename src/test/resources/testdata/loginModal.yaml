@@ -2,26 +2,25 @@
 header: "Log in"
 
 #EXISTING USERS - VALID CREDENTIALS
-users:
-  user1:
-    username: "cucumberTesting"
-    password: "cucumberTestingPassword"
+user1:
+  username: "cucumberTesting"
+  password: "cucumberTestingPassword"
 
-  user2:
-    username: ""
-    password: ""
+user2:
+  username: ""
+  password: ""
 
-  user3:
-    username: ""
-    password: ""
+user3:
+  username: ""
+  password: ""
 
-  user4:
-    username: ""
-    password: ""
+user4:
+  username: ""
+  password: ""
 
-  user5:
-    username: ""
-    password: ""
+user5:
+  username: ""
+  password: ""
 
 #incorrect data
 invalidUsername: "someUsername12345" #should be generated randomly - fix this and other yamls where needed
